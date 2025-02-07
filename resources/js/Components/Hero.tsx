@@ -6,6 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/effect-fade";
+import { Button } from "./ui/moving-border";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
+import FormSearch from "./FormSearch";
 
 const slider = [
   { img: "img/hero.png" },
@@ -22,12 +25,22 @@ const Hero = () => {
     <section className="relative h-[92vh] bg-cover bg-bottom">
       <div className="absolute inset-0 z-[99] h-full flex justify-center items-center">
         <div className="text-center">
-          <p className="font-sen mb-5 bg-[#23529A] inline-block px-5 py-1 rounded text-base text-slate-100 tracking-wider font-light uppercase">
-            Selamat datang di website
-          </p>
-          <h1 className="font-sen text-white text-5xl font-bold leading-[53px]">
-            Portal Resmi Pemerintah Daerah <br /> Kota Kendari
-          </h1>
+          <div className="mb-5">
+            <Button
+              borderRadius="4px"
+              duration={3500}
+              className="border-none text-sm bg-[#23529A] tracking-wider text-white uppercase font-sen font-light"
+            >
+              Selamat datang di website
+            </Button>
+          </div>
+          <TextGenerateEffect
+            className="max-w-4xl font-extrabold text-white text-5xl leading-[53px] font-sen"
+            duration={1}
+            filter={true}
+            words={"Portal Resmi Pemerintah Daerah Kota Kendari"}
+          />
+
           <p className="mx-auto mt-10 max-w-3xl text-base text-slate-300 leading-relaxed">
             Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya
             kendari kota layak huni yang berbasis Ekologi, Informasi &
@@ -35,38 +48,8 @@ const Hero = () => {
           </p>
         </div>
 
-        <div className="absolute w-[70%] bg-white shadow-lg rounded px-8 py-5 -bottom-12">
-          <form
-            onSubmit={(e) => {
-              e.preventDefault();
-              window.open(
-                "https://berita.kendarikota.go.id/?s=kendari",
-                "_blank"
-              );
-            }}
-            className="grid grid-cols-6 text-sm gap-5"
-          >
-            <div className="col-span-3">
-              <input
-                type="text"
-                className="rounded px-5 py-4 w-full bg-[#F4F5F5] border-none"
-                placeholder="Cari berita apa..."
-              />
-            </div>
-            <div className="col-span-2">
-              <select className="rounded px-5 py-4 w-full bg-[#F4F5F5] border-none">
-                <option value="">Kategori</option>
-              </select>
-            </div>
-            <div className="col-span-1">
-              <button
-                type="submit"
-                className="rounded text-white font-semibold tracking-wide px-5 py-4 w-full bg-[#1A5590] hover:bg-[#1a5590c4] transition ease-in"
-              >
-                Search
-              </button>
-            </div>
-          </form>
+        <div className="absolute w-[40rem] bg-white shadow-lg rounded-[40px] px-6 py-5 -bottom-12">
+          <FormSearch />
         </div>
       </div>
 
