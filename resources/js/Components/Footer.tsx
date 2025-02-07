@@ -99,11 +99,12 @@ const Footer = () => {
                   <span className="text-white">08114057119</span>
                 </div>
                 <div className="flex items-start gap-x-2 text-white/80">
-                  <div className="mt-0.5 w-9 flex justify-center">
+                  <div className="mt-0.5 w-5 flex justify-center">
                     <i className="fa-solid fa-envelope"></i>
                   </div>
                   <span className="text-white">
-                    kominfokendarikota@gmail.com | kominfokendarikota@gmail.com
+                    kominfokendarikota@gmail.com <br />
+                    kominfokendarikota@gmail.com
                   </span>
                 </div>
               </div>

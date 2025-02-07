@@ -1,7 +1,6 @@
 import { Link } from "@inertiajs/react";
 
 import { cn } from "@/lib/utils";
-// import { Icons } from "@/components/icons"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +10,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar = () => {
   const menuKendariKita: {
@@ -116,18 +115,44 @@ const Navbar = () => {
     },
   ];
 
+  // Handle scrool nav
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 400);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="z-[995] fixed w-full top-[28px] bg-black/15 text-white backdrop-blur shadow font-sen">
-      <div className="navbar container h-16 flex items-center justify-between transition-all duration-300">
-        <img className="w-56 text-black" src="/img/logo.svg" alt="logo" />
+    <nav
+      className={`z-[995] fixed transform w-full backdrop-blur-sm top-0 shadow transition-all translate-y-[28px] bg-black/20 text-white font-sen ease-out ${
+        isScrolled && "!translate-y-[0px] !bg-[#173454]/95 !backdrop-blur"
+      }`}
+    >
+      <div
+        className={`navbar container flex items-center justify-between h-16 ${
+          isScrolled && "!h-14"
+        }`}
+      >
+        <img
+          className={`w-56 text-black ${isScrolled && "!w-52"}`}
+          src="/img/logo.svg"
+          // src={isScrolled ? "/img/logo-hitam.svg" : "/img/logo.svg"}
+          alt="logo"
+        />
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem className="nav__link">
-              <Link href={route("home")}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Beranda
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={route("home")}>Beranda</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
@@ -167,43 +192,41 @@ const Navbar = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
-              <button
-                onClick={() =>
-                  window.open(
-                    "https://berita.kendarikota.go.id",
-                    "_blank",
-                    "noopener,noreferrer"
-                  )
-                }
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
               >
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                <a target="_blank" href="https://berita.kendarikota.go.id">
                   Berita
-                </NavigationMenuLink>
-              </button>
+                </a>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
-              <Link href={route("home")}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Arsip
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={route("home")}>Arsip</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
-              <Link href={route("home")}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Peraturan Daerah
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={route("home")}>Peraturan Daerah</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
-              <Link href={route("home")}>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Statistik
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={route("home")}>Statistik</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

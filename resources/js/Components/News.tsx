@@ -22,7 +22,7 @@ export default function News() {
   };
 
   useEffect(() => {
-    fetch("http://kendarikota.test/api/pengumuman")
+    fetch("/api/pengumuman")
       .then((res) => res.json())
       .then((response: Post[]) =>
         setPengumuman({ loading: false, response, error: null })
@@ -31,7 +31,7 @@ export default function News() {
         setPengumuman({ loading: false, response: null, error: error.message })
       );
 
-    fetch("http://kendarikota.test/api/postbycategory")
+    fetch("/api/postbycategory")
       .then((res) => res.json())
       .then((response: Post[]) =>
         setPemerintahan({ loading: false, response, error: null })
@@ -107,7 +107,7 @@ export default function News() {
 
   // <div id="gpr-kominfo-widget-container"></div>
   return (
-    <section className="py-12 mt-20">
+    <section className="py-12 pt-0">
       <div className="container grid grid-cols-8 gap-8">
         <div className="col-span-6">
           <h1 className="mt-1 mb-2 font-sen text-4xl font-bold">
