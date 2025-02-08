@@ -20,13 +20,13 @@ const Navbar = () => {
   }[] = [
     {
       title: "Sejarah Kota kendari",
-      href: "/docs/primitives/alert-dialog",
+      href: "/kendari-kita/sejarah-kota-kendari",
       description:
         "A modal dialog that interrupts the user with important content and expects a response.",
     },
     {
       title: "Visi & Misi",
-      href: "/docs/primitives/hover-card",
+      href: "/kendari-kita/visi-misi",
       description:
         "For sighted users to preview content available behind a link.",
     },

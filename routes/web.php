@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Meta;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
@@ -9,13 +10,29 @@ use Inertia\Inertia;
 
 // Guest route
 Route::get('/', function () {
-  return Inertia::render('Welcome', [
-    'canLogin' => Route::has('login'),
-    'canRegister' => Route::has('register'),
-    'laravelVersion' => Application::VERSION,
-    'phpVersion' => PHP_VERSION,
-  ]);
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('Welcome');
 })->name('home');
+
+Route::get('/kendari-kita/sejarah-kota-kendari', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('Sejarah', [
+    'title' => 'Sejarah Kota Kendari'
+  ]);
+})->name('index.sejarah');
+
+Route::get('/kendari-kita/visi-misi', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('Sejarah', [
+    'title' => 'Visi & Misi'
+  ]);
+})->name('index.sejarah');
 
 
 Route::get('/api/pengumuman', function () {
