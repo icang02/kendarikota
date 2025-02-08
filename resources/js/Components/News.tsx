@@ -1,7 +1,4 @@
-import { ApiResponse } from "@/types";
-import { useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Skeleton } from "./ui/skeleton";
+import { Card } from "@/Components/ui/card";
 
 export default function News() {
   // const [pengumuman, setPengumuman] = useState<ApiResponse>({
@@ -37,10 +34,12 @@ export default function News() {
   return (
     <section className="py-12 pt-0">
       <div className="container grid grid-cols-10 gap-8">
-        <div className="col-span-7">
+        <div className="col-span-10 lg:col-span-7">
           <div className="mb-4">
-            <h1 className="font-sen text-3xl font-bold">Kendari Kini</h1>
-            <p className="text-sm italic">
+            <h1 className="font-sen text-xl lg:text-3xl font-bold">
+              Kendari Kini
+            </h1>
+            <p className="text-xs lg:text-sm italic">
               Baca berita terupdate seputar kota kendari
             </p>
           </div>
@@ -114,10 +113,10 @@ export default function News() {
             </span>
           </a>
         </div>
-        <div className="col-span-3">
+        <div className="col-span-10 lg:col-span-3">
           <div className="mb-4">
             <h1 className="font-sen text-xl font-bold">Berita Komdigi</h1>
-            <p className="text-sm italic">
+            <p className="text-xs lg:text-sm italic">
               Informasi Kementerian Komunikasi dan Digital
             </p>
           </div>

@@ -22,33 +22,33 @@ const slider = [
 
 const Hero = () => {
   return (
-    <section className="relative h-[92vh] bg-cover bg-bottom">
+    <section className="relative h-[55vh] lg:h-[92vh] bg-cover bg-bottom">
       <div className="absolute inset-0 z-[99] h-full flex justify-center items-center">
         <div className="text-center">
           <div className="mb-5">
             <Button
               borderRadius="4px"
               duration={3500}
-              className="border-none text-sm bg-[#23529A] tracking-wider text-white uppercase font-sen font-light"
+              className="border-none text-xs lg:text-sm bg-[#23529A] tracking-wider text-white uppercase font-sen font-light"
             >
               Selamat datang di website
             </Button>
           </div>
           <TextGenerateEffect
-            className="max-w-4xl font-extrabold text-white text-5xl leading-[53px] font-sen"
+            className="p-text max-w-4xl font-extrabold text-white text-2xl lg:text-5xl leading-tight lg:leading-[53px] font-sen"
             duration={1}
             filter={true}
             words={"Portal Resmi Pemerintah Daerah Kota Kendari"}
           />
 
-          <p className="mx-auto mt-10 max-w-3xl text-base text-slate-300 leading-relaxed">
+          <p className="p-text text-sm lg:text-base mx-auto mt-7 lg:mt-10 max-w-3xl text-slate-300 leading-relaxed">
             Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya
             kendari kota layak huni yang berbasis Ekologi, Informasi &
             Teknologi.
           </p>
         </div>
 
-        <div className="absolute w-[40rem] bg-white shadow-lg rounded-[40px] px-6 py-5 -bottom-12">
+        <div className="absolute w-[90%] lg:w-[40rem] bg-white shadow-lg rounded-[40px] px-0 py-3.5 lg:px-6 lg:py-5 -bottom-8 lg:-bottom-12">
           <FormSearch />
         </div>
       </div>
@@ -70,7 +70,7 @@ const Hero = () => {
             <img
               src={item.img}
               alt="img"
-              className="h-[92vh] w-full object-cover object-center"
+              className="h-[55vh] lg:h-[92vh] w-full object-cover object-center"
             />
           </SwiperSlide>
         ))}

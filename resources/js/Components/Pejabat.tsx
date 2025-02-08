@@ -5,8 +5,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
-import { Card } from "@/components/ui/card";
+} from "@/Components/ui/carousel";
+import { Card } from "@/Components/ui/card";
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
 import { Pagination } from "swiper/modules";
@@ -21,18 +21,20 @@ import "swiper/css/scrollbar";
 
 const Pejabat = () => {
   return (
-    <section className="pb-14">
+    <section className="pb-12 lg:pb-14">
       <div className="container grid grid-cols-10 gap-8">
-        <div className="col-span-6">
+        <div className="col-span-10 lg:col-span-6">
           <BackgroundGradientAnimation className="flex items-center justify-center w-full h-full">
-            <div className="text-white w-full px-10">
-              <h1 className="mb-1 font-sen text-3xl font-bold">Video</h1>
-              <p className="text-sm italic">
+            <div className="text-white w-full px-6 lg:px-10">
+              <h1 className="mb-1 font-sen text-xl lg:text-3xl font-bold">
+                Video
+              </h1>
+              <p className="text-xs lg:text-sm italic">
                 Video program dan kegiatan Pemerintah Kota Kendari
               </p>
 
               {/* Frame Video */}
-              <Card className="mt-7 p-4 w-full bg-white/20 border-none">
+              <Card className="mt-7 p-3 lg:p-4 w-full bg-white/20 border-none">
                 <Swiper
                   modules={[Pagination]}
                   slidesPerView={1}
@@ -74,12 +76,12 @@ const Pejabat = () => {
           </BackgroundGradientAnimation>
         </div>
 
-        <div className="col-span-4 text-center">
-          <div className="mb-6">
-            <h1 className="mb-2 font-sen text-3xl font-bold">
+        <div className="col-span-10 lg:col-span-4 text-center">
+          <div className="mb-5 lg:mb-6">
+            <h1 className="mb-1 lg:mb-2 font-sen text-2xl lg:text-3xl font-bold">
               Pejabat Pemerintah
             </h1>
-            <p className="text-sm italic">
+            <p className="text-xs lg:text-sm italic">
               Pejabat Pemerintah Daerah Kota Kendari
             </p>
           </div>
@@ -89,8 +91,12 @@ const Pejabat = () => {
               <CarouselItem>
                 <div className="relative flex items-center justify-center">
                   <DirectionAwareHover imageUrl={"/img/pejabat-2.jpg"}>
-                    <p className="font-bold text-xl">In the mountains</p>
-                    <p className="font-normal text-sm">$1299 / night</p>
+                    <p className="font-bold text-base lg:text-xl">
+                      In the mountains
+                    </p>
+                    <p className="font-normal text-xs lg:text-sm">
+                      $1299 / night
+                    </p>
                   </DirectionAwareHover>
                 </div>
               </CarouselItem>

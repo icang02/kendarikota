@@ -129,22 +129,27 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`z-[995] fixed transform w-full backdrop-blur-sm top-0 shadow transition-all translate-y-[28px] bg-black/20 text-white font-sen ease-out ${
+      className={`z-[995] fixed transform w-full backdrop-blur-sm top-0 shadow transition-all translate-y-0 lg:translate-y-[28px] bg-black/20 text-white font-sen ease-out ${
         isScrolled && "!translate-y-[0px] !bg-[#173454]/95 !backdrop-blur"
       }`}
     >
       <div
-        className={`navbar container flex items-center justify-between h-16 ${
-          isScrolled && "!h-14"
+        className={`navbar container flex items-center justify-between h-14 lg:h-16 transition-all lg:transition-none ${
+          isScrolled && "!h-12 lg:!h-14"
         }`}
       >
         <img
-          className={`w-56 text-black ${isScrolled && "!w-52"}`}
+          className={`w-36 lg:w-56 text-black ${
+            isScrolled && "!w-36 lg:!w-52"
+          }`}
           src="/img/logo.svg"
-          // src={isScrolled ? "/img/logo-hitam.svg" : "/img/logo.svg"}
           alt="logo"
         />
-        <NavigationMenu>
+        {/* Breadcrumb */}
+        <span className="block lg:hidden text-white text-xl">
+          <i className="fa-solid fa-bars"></i>
+        </span>
+        <NavigationMenu className="hidden lg:block">
           <NavigationMenuList>
             <NavigationMenuItem className="nav__link">
               <NavigationMenuLink

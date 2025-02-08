@@ -23,7 +23,7 @@ const Topnav = () => {
 
   return (
     <div
-      className={`backdrop-blur bg-[#1A3C61]/95 z-[997] top-0 transform translate-y-[0px] fixed w-full text-white transition-all ease-out ${
+      className={`hidden lg:block backdrop-blur bg-[#1A3C61]/95 z-[997] top-0 transform translate-y-[0px] fixed w-full text-white transition-all ease-out ${
         isScrolled && "!translate-y-[-35px]"
       }`}
     >
