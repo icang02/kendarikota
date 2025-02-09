@@ -18,7 +18,15 @@ export default {
 
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "100%",
+          },
+        },
+      },
       animation: {
+        move: "move 5s linear infinite",
         aurora: "aurora 60s linear infinite",
         scroll:
           "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
@@ -29,6 +37,10 @@ export default {
         fifth: "moveInCircle 20s ease infinite",
       },
       keyframes: {
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
         moveHorizontal: {
           "0%": {
             transform: "translateX(-50%) translateY(-10%)",
@@ -149,6 +161,7 @@ export default {
   },
 
   plugins: [
+    require("@tailwindcss/typography"),
     forms,
     require("tailwindcss-animate"),
     addVariablesForColors,

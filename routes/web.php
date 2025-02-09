@@ -20,20 +20,55 @@ Route::get('/kendari-kita/sejarah-kota-kendari', function () {
   Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
   Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
 
-  return Inertia::render('Sejarah', [
+  return Inertia::render('PageOne', [
     'title' => 'Sejarah Kota Kendari'
   ]);
-})->name('index.sejarah');
+});
 
 Route::get('/kendari-kita/visi-misi', function () {
   Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
   Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
 
-  return Inertia::render('Sejarah', [
+  return Inertia::render('PageOne', [
     'title' => 'Visi & Misi'
   ]);
-})->name('index.sejarah');
+});
 
+Route::get('/kendari-kita/walikota', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('PageTwo', [
+    'title' => 'Profil Walikota'
+  ]);
+});
+
+Route::get('/kendari-kita/wakil-walikota', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('PageTwo', [
+    'title' => 'Profil Wakil Walikota'
+  ]);
+});
+
+Route::get('/kendari-kita/pejabat-pemerintah', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('PageThree', [
+    'title' => 'Pejabat Pemerintah'
+  ]);
+});
+
+Route::get('/kendari-kita/perangkat-daerah', function () {
+  Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
+  Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
+
+  return Inertia::render('PageFour', [
+    'title' => 'Perangkat Daerah'
+  ]);
+});
 
 Route::get('/api/pengumuman', function () {
   $response = Http::withHeaders([

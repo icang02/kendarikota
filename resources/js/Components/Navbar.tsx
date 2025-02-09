@@ -32,24 +32,24 @@ const Navbar = () => {
     },
     {
       title: "Profil Walikota",
-      href: "/docs/primitives/progress",
+      href: "/kendari-kita/walikota",
       description:
         "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
     },
     {
       title: "Profil Wakil Walikota",
-      href: "/docs/primitives/scroll-area",
+      href: "/kendari-kita/wakil-walikota",
       description: "Visually or semantically separates content.",
     },
     {
       title: "Pejabat Pemerintah",
-      href: "/docs/primitives/tabs",
+      href: "/kendari-kita/pejabat-pemerintah",
       description:
         "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
     },
     {
       title: "Perangkat Daerah",
-      href: "/docs/primitives/tooltip",
+      href: "/kendari-kita/perangkat-daerah",
       description:
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
     },
@@ -112,6 +112,25 @@ const Navbar = () => {
       href: "/docs/primitives/tooltip",
       description:
         "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+    },
+  ];
+
+  const menuEvent: {
+    title: string;
+    href: string;
+    description: string;
+  }[] = [
+    {
+      title: "Agenda",
+      href: "/event/agenda",
+      description:
+        "popup that displays information related to an element when the element receives keyboard focus or the mouse hovers",
+    },
+    {
+      title: "Pengumuman",
+      href: "/event/pengumuman",
+      description:
+        "popup that displays information related to an element when the element receives keyboard focus or the mouse hovers",
     },
   ];
 
@@ -205,6 +224,25 @@ const Navbar = () => {
                   Berita
                 </a>
               </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuTrigger className="nav__link">
+                Event
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {menuEvent.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
