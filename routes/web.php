@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use App\Meta;
-use Illuminate\Foundation\Application;
+use App\Models\Pejabat;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
@@ -56,8 +55,13 @@ Route::get('/kendari-kita/pejabat-pemerintah', function () {
   Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah KOta Kendari');
   Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
 
+  $pejabat = Pejabat::with('jabatan')->limit(12)
+    ->orderBy('jabatan_id')
+    ->paginate(16);
+
   return Inertia::render('PageThree', [
-    'title' => 'Pejabat Pemerintah'
+    'title' => 'Pejabat Pemerintah',
+    'pejabat' => $pejabat,
   ]);
 });
 
@@ -105,15 +109,15 @@ Route::get('/api/postbycategory', function () {
 
 
 // Dashboard route
-Route::get('/dashboard', function () {
-  return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//   return Inertia::render('Dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-  Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-  Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-  Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 // Auth route
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';
