@@ -1,6 +1,10 @@
 import "../css/app.css";
 import "./bootstrap";
 
+import "swiper/css";
+import "swiper/css/autoplay";
+import "swiper/css/effect-fade";
+
 import { createInertiaApp } from "@inertiajs/react";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { createRoot } from "react-dom/client";
@@ -21,6 +25,6 @@ createInertiaApp({
     root.render(<App {...props} />);
   },
   progress: {
-    color: "#1A5590",
+    color: "#A1E3F9",
   },
 });

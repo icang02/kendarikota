@@ -92,7 +92,7 @@ export default {
         center: true,
         padding: {
           DEFAULT: "1rem",
-          lg: "3rem",
+          lg: "1rem",
           xl: "8rem",
         },
       },

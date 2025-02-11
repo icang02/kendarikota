@@ -1,62 +1,12 @@
 import { usePage } from "@inertiajs/react";
 import { GlowingEffect } from "./ui/glowing-effect";
 
-const subdomain = [
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "SPPD",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "SIMPEKA",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "SIMPER",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "Shope",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "Toko pedia",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "Mboile Legend",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "Absen Digital",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/id/c/c1/Lambang_Kota_Kendari_2022.png",
-    link: "#",
-    title: "Kominfo",
-  },
-];
-
-type Aplikasi = {
-  id: number;
-  nama: string;
-  icon: string;
-  link: string;
-};
-
 const SubDomain = () => {
-  const { aplikasi } = usePage().props;
+  const { aplikasi }: any = usePage().props;
 
   return (
-    <section className="py-12 pt-0">
-      <div className="container">
+    <section className="py-12 pb-16 pt-0">
+      <div>
         <div className="mb-6">
           <h1 className="font-sen text-xl lg:text-3xl font-bold">
             Akses Cepat
@@ -67,10 +17,12 @@ const SubDomain = () => {
         </div>
 
         <div className="grid grid-cols-6 gap-4 lg:gap-5">
-          {aplikasi.map((item) => (
+          {aplikasi.map((item: any) => (
             <div
               key={item.id}
-              className="relative text-center col-span-3 lg:col-span-1 border rounded-xl lg:rounded-3xl py-3 pb-10 lg:py-4 lg:pb-10"
+              className={`relative text-center col-span-3 border rounded-xl lg:rounded-3xl py-3 pb-10 lg:py-4 lg:pb-10 ${
+                location.pathname == "/" ? "lg:col-span-2" : "lg:col-span-1"
+              }`}
             >
               <GlowingEffect
                 blur={0}
@@ -106,10 +58,11 @@ const SubDomain = () => {
               </div>
             </div>
           ))}
-          <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
+
+          <div className="mt-4 text-center col-span-6">
             <a
               href="#"
-              className="bg-white border px-6 py-2.5 rounded text-black text-xs lg:text-sm transition ease-out hover:bg-gray-100"
+              className="mt-3 bg-white border px-6 py-2.5 rounded text-black text-xs lg:text-sm transition ease-out hover:bg-gray-100"
             >
               Lihat lainnya
             </a>

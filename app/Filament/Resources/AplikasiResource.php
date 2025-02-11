@@ -21,7 +21,14 @@ class AplikasiResource extends Resource
   protected static ?string $model = Aplikasi::class;
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-  protected static ?string $navigationLabel = 'Aplikasi';
+  protected static ?string $navigationLabel = 'Aplikasi Kendarikota';
+  protected static ?string $navigationGroup = 'Data lainnya';
+  protected static ?int $navigationSort = 99;
+
+  public static function getSlug(): string
+  {
+    return 'aplikasi';
+  }
 
   public static function form(Form $form): Form
   {

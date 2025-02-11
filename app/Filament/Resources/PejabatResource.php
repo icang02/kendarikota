@@ -8,6 +8,7 @@ use App\Models\Pejabat;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
+use Filament\Support\Colors\Color;
 use Filament\Tables;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\ImageColumn;
@@ -21,6 +22,14 @@ class PejabatResource extends Resource
   protected static ?string $model = Pejabat::class;
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationLabel = 'Pejabat Pemerintah';
+  protected static ?string $navigationGroup = 'Menu Kendari Kita';
+  protected static ?int $navigationSort = 1;
+
+  public static function getSlug(): string
+  {
+    return 'pejabat';
+  }
 
   public static function form(Form $form): Form
   {
@@ -52,7 +61,9 @@ class PejabatResource extends Resource
         BadgeColumn::make('jabatan.nama')
           ->label('Jabatan')
           ->color('info')
+          // ->color(Color::hex('#A1E3F9'))
           ->searchable()
+          ->sortable(),
       ])
       ->filters([
         //

@@ -26,3 +26,8 @@ export interface ApiResponse {
   response: Post[] | null;
   error: string | null;
 }
+
+type WordObject = {
+  text: string;
+  className?: string;
+};

@@ -16,4 +16,9 @@ class Pejabat extends Model
   {
     return $this->belongsTo(Jabatan::class);
   }
+
+  public function opd(): BelongsTo
+  {
+    return $this->belongsTo(OPD::class);
+  }
 }

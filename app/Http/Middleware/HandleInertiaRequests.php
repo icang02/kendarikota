@@ -35,7 +35,7 @@ class HandleInertiaRequests extends Middleware
       'auth' => [
         'user' => $request->user(),
       ],
-      'aplikasi' => Aplikasi::limit(11)->get(),
+      'aplikasi' => Aplikasi::limit(12)->get(),
     ];
   }
 }

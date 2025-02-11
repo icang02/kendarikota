@@ -10,130 +10,30 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "./ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/Components/ui/dropdown-menu";
 import React, { useEffect, useState } from "react";
+import {
+  menuArsip,
+  menuDirektori,
+  menuEvent,
+  menuKendariKita,
+  menuPeraturanDaerah,
+  menuStatistik,
+  navProgramKotaku,
+} from "@/lib/constant";
+import { ChevronDown } from "lucide-react";
 
 const Navbar = () => {
-  const menuKendariKita: {
-    title: string;
-    href: string;
-    description: string;
-  }[] = [
-    {
-      title: "Sejarah Kota kendari",
-      href: "/kendari-kita/sejarah-kota-kendari",
-      description:
-        "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-      title: "Visi & Misi",
-      href: "/kendari-kita/visi-misi",
-      description:
-        "For sighted users to preview content available behind a link.",
-    },
-    {
-      title: "Profil Walikota",
-      href: "/kendari-kita/walikota",
-      description:
-        "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-      title: "Profil Wakil Walikota",
-      href: "/kendari-kita/wakil-walikota",
-      description: "Visually or semantically separates content.",
-    },
-    {
-      title: "Pejabat Pemerintah",
-      href: "/kendari-kita/pejabat-pemerintah",
-      description:
-        "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-      title: "Perangkat Daerah",
-      href: "/kendari-kita/perangkat-daerah",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-  ];
-
-  const menuDirektori: {
-    title: string;
-    href: string;
-    description: string;
-  }[] = [
-    {
-      title: "Wisata",
-      href: "/docs/primitives/alert-dialog",
-      description:
-        "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-      title: "Institusi Pendidikan",
-      href: "/docs/primitives/hover-card",
-      description:
-        "For sighted users to preview content available behind a link.",
-    },
-    {
-      title: "Rumah Sakit",
-      href: "/docs/primitives/progress",
-      description:
-        "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-      title: "Rumah Ibadah",
-      href: "/docs/primitives/scroll-area",
-      description: "Visually or semantically separates content.",
-    },
-    {
-      title: "Pusat Perbelanjaan",
-      href: "/docs/primitives/tabs",
-      description:
-        "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-      title: "Hiburan",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-    {
-      title: "Kelurahan & Kecamatan",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-    {
-      title: "Olahraga",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-    {
-      title: "Transportasi",
-      href: "/docs/primitives/tooltip",
-      description:
-        "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-  ];
-
-  const menuEvent: {
-    title: string;
-    href: string;
-    description: string;
-  }[] = [
-    {
-      title: "Agenda",
-      href: "/event/agenda",
-      description:
-        "popup that displays information related to an element when the element receives keyboard focus or the mouse hovers",
-    },
-    {
-      title: "Pengumuman",
-      href: "/event/pengumuman",
-      description:
-        "popup that displays information related to an element when the element receives keyboard focus or the mouse hovers",
-    },
-  ];
-
   // Handle scrool nav
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -170,6 +70,7 @@ const Navbar = () => {
         </span>
         <NavigationMenu className="hidden lg:block">
           <NavigationMenuList>
+            {/* Beranda */}
             <NavigationMenuItem className="nav__link">
               <NavigationMenuLink
                 className={navigationMenuTriggerStyle()}
@@ -179,17 +80,103 @@ const Navbar = () => {
               </NavigationMenuLink>
             </NavigationMenuItem>
 
+            {/* Program Kotaku */}
             <NavigationMenuItem className="nav__link">
-              <NavigationMenuTrigger>Kendari Kita</NavigationMenuTrigger>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <NavigationMenuLink
+                    className={navigationMenuTriggerStyle() + " cursor-pointer"}
+                    asChild
+                  >
+                    <span>
+                      {navProgramKotaku.title}
+                      <ChevronDown
+                        className="relative top-[1px] ml-1 h-3 w-3 transition duration-300 group-data-[state=open]:rotate-180"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </NavigationMenuLink>
+                </DropdownMenuTrigger>
+                {/* Dropdown menu */}
+                <DropdownMenuContent className="font-medium w-full z-[999] font-sen">
+                  <DropdownMenuGroup>
+                    {navProgramKotaku.menu.map((item, i) =>
+                      item.subMenu ? (
+                        <DropdownMenuSub key={`menu-${i}`}>
+                          <DropdownMenuSubTrigger>
+                            {item.label}
+                          </DropdownMenuSubTrigger>
+                          <DropdownMenuPortal>
+                            <DropdownMenuSubContent className="font-sen font-medium">
+                              {item.subMenu.map((list, j) =>
+                                list.subMenu ? (
+                                  <DropdownMenuSub key={`submenu-${i}-${j}`}>
+                                    <DropdownMenuSubTrigger className="max-w-72">
+                                      {list.label}
+                                    </DropdownMenuSubTrigger>
+                                    <DropdownMenuPortal>
+                                      <DropdownMenuSubContent className="font-sen font-medium">
+                                        {list.subMenu.map((m, k) => (
+                                          <DropdownMenuItem
+                                            key={`submenu-item-${i}-${j}-${k}`}
+                                          >
+                                            <a
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              href={m.url}
+                                            >
+                                              {m.label}
+                                            </a>
+                                          </DropdownMenuItem>
+                                        ))}
+                                      </DropdownMenuSubContent>
+                                    </DropdownMenuPortal>
+                                  </DropdownMenuSub>
+                                ) : (
+                                  <DropdownMenuItem key={`item-${i}-${j}`}>
+                                    <a
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      href={list.url}
+                                    >
+                                      {list.label}
+                                    </a>
+                                  </DropdownMenuItem>
+                                )
+                              )}
+                            </DropdownMenuSubContent>
+                          </DropdownMenuPortal>
+                        </DropdownMenuSub>
+                      ) : (
+                        <DropdownMenuItem key={`menu-item-${i}`} asChild>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={item.url}
+                          >
+                            {item.label}
+                          </a>
+                        </DropdownMenuItem>
+                      )
+                    )}
+                  </DropdownMenuGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuTrigger className="nav__link">
+                {menuKendariKita.label}
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuKendariKita.map((component) => (
+                  {menuKendariKita.menu.map((item) => (
                     <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
                     >
-                      {component.description}
+                      {item.description}
                     </ListItem>
                   ))}
                 </ul>
@@ -198,47 +185,36 @@ const Navbar = () => {
 
             <NavigationMenuItem className="nav__link">
               <NavigationMenuTrigger className="nav__link">
-                Direktori
+                {menuDirektori.label}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuDirektori.map((component) => (
+                  {menuDirektori.menu.map((item) => (
                     <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
                     >
-                      {component.description}
+                      {item.description}
                     </ListItem>
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <a target="_blank" href="https://berita.kendarikota.go.id">
-                  Berita
-                </a>
-              </NavigationMenuLink>
             </NavigationMenuItem>
 
             <NavigationMenuItem className="nav__link">
               <NavigationMenuTrigger className="nav__link">
-                Event
+                {menuEvent.label}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuEvent.map((component) => (
+                  {menuEvent.menu.map((item) => (
                     <ListItem
-                      key={component.title}
-                      title={component.title}
-                      href={component.href}
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
                     >
-                      {component.description}
+                      {item.description}
                     </ListItem>
                   ))}
                 </ul>
@@ -250,7 +226,7 @@ const Navbar = () => {
                 className={navigationMenuTriggerStyle()}
                 asChild
               >
-                <Link href={route("home")}>Arsip</Link>
+                <Link href={menuArsip.url}>{menuArsip.label}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
@@ -259,7 +235,9 @@ const Navbar = () => {
                 className={navigationMenuTriggerStyle()}
                 asChild
               >
-                <Link href={route("home")}>Peraturan Daerah</Link>
+                <Link href={menuPeraturanDaerah.url}>
+                  {menuPeraturanDaerah.label}
+                </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
@@ -268,7 +246,7 @@ const Navbar = () => {
                 className={navigationMenuTriggerStyle()}
                 asChild
               >
-                <Link href={route("home")}>Statistik</Link>
+                <Link href={menuStatistik.url}>{menuStatistik.label}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>

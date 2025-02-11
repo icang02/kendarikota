@@ -2,10 +2,6 @@
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/autoplay";
-import "swiper/css/effect-fade";
 import { Button } from "./ui/moving-border";
 import { TextGenerateEffect } from "./ui/text-generate-effect";
 import FormSearch from "./FormSearch";
