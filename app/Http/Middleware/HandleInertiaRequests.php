@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Aplikasi;
+use App\Models\Direktori;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -36,6 +37,7 @@ class HandleInertiaRequests extends Middleware
         'user' => $request->user(),
       ],
       'aplikasi' => Aplikasi::limit(12)->get(),
+      'globalDirektori' => Direktori::all(),
     ];
   }
 }

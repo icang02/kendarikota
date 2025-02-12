@@ -1,4 +1,5 @@
 import { WordObject } from "@/types";
+import { Download } from "lucide-react";
 
 export function convertStringToWords(inputString: string): WordObject[] {
   return inputString.split(" ").map((word, index, array) => {
@@ -280,7 +281,7 @@ export const menuEvent = {
     {
       title: "Pengumuman",
       href: "/event/pengumuman",
-      description: "Informasi penting dan pengumuman pemerintah",
+      description: "Informasi penting dan pengumuman pemerintah Kota Kendari",
     },
   ],
 };
@@ -302,3 +303,147 @@ export const menuStatistik = {
   url: "/statistik",
   description: "Statistik dan laporan Pemerintah Daerah Kota Kendari",
 };
+
+export const columnsPengumuman = [
+  {
+    accessorKey: "judul",
+    header: "Judul",
+    cell: ({ row }: any) => (
+      <div className="capitalize w-[90%]">{row.getValue("judul")}</div>
+    ),
+  },
+  {
+    accessorKey: "sumber",
+    header: "Sumber",
+    cell: ({ row }: any) => (
+      <div className="capitalize">{row.getValue("sumber")}</div>
+    ),
+  },
+  {
+    accessorKey: "tanggal",
+    header: "Tanggal Upload",
+    cell: ({ row }: any) => (
+      <div className="capitalize">{row.getValue("tanggal")}</div>
+    ),
+  },
+  {
+    accessorKey: "link",
+    header: "Lihat",
+    cell: ({ row }: any) => (
+      <a
+        href={row.getValue("link")}
+        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+      >
+        <Download size={14} /> <span>Download</span>
+      </a>
+    ),
+  },
+];
+
+export const columnsArsip = [
+  {
+    accessorKey: "judul",
+    header: "Judul",
+    cell: ({ row }: any) => (
+      <div className="capitalize w-[90%]">{row.getValue("judul")}</div>
+    ),
+  },
+  {
+    accessorKey: "sumber",
+    header: "Sumber",
+    cell: ({ row }: any) => (
+      <div className="capitalize">{row.getValue("sumber")}</div>
+    ),
+  },
+  {
+    accessorKey: "release",
+    header: "Tanggal Upload",
+    cell: ({ row }: any) => (
+      <div className="capitalize text-nowrap">{row.getValue("release")}</div>
+    ),
+  },
+  {
+    accessorKey: "link",
+    header: "Lihat",
+    cell: ({ row }: any) => (
+      <a
+        href={row.getValue("link")}
+        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+      >
+        <Download size={14} /> <span>Download</span>
+      </a>
+    ),
+  },
+];
+
+export const columnsStatistik = [
+  {
+    accessorKey: "judul",
+    header: "Judul",
+    cell: ({ row }: any) => (
+      <div className="capitalize w-[90%]">{row.getValue("judul")}</div>
+    ),
+  },
+  {
+    accessorKey: "tanggal",
+    header: "Tanggal",
+    cell: ({ row }: any) => (
+      <div className="capitalize">{row.getValue("tanggal")}</div>
+    ),
+  },
+  {
+    accessorKey: "download",
+    header: "Download",
+    cell: ({ row }: any) => (
+      <div className="capitalize">{row.getValue("download")}</div>
+    ),
+  },
+  {
+    accessorKey: "file",
+    header: "File",
+    cell: ({ row }: any) => (
+      <a
+        href={row.getValue("file")}
+        className="flex flex-wrap items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+      >
+        <Download size={14} /> <span>Download</span>
+      </a>
+    ),
+  },
+];
+
+export const columnsPerda = [
+  {
+    accessorKey: "no_perda",
+    header: "Nomor",
+    cell: ({ row }: any) => (
+      <div className="capitalize w-[170px]">{row.getValue("no_perda")}</div>
+    ),
+  },
+  {
+    accessorKey: "tentang",
+    header: "Tentang",
+    cell: ({ row }: any) => (
+      <div className="capitalize w-[500px]">{row.getValue("tentang")}</div>
+    ),
+  },
+  {
+    accessorKey: "tanggal",
+    header: "Tanggal Upload",
+    cell: ({ row }: any) => (
+      <div className="capitalize text-nowrap">{row.getValue("tanggal")}</div>
+    ),
+  },
+  {
+    accessorKey: "file",
+    header: "Lihat",
+    cell: ({ row }: any) => (
+      <a
+        href={row.getValue("file")}
+        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+      >
+        <Download size={14} /> <span>Download</span>
+      </a>
+    ),
+  },
+];

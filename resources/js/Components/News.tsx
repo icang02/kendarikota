@@ -1,35 +1,28 @@
 import { Card } from "@/Components/ui/card";
+import { ApiResponse, Post } from "@/types";
+import { Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 export default function News() {
-  // const [pengumuman, setPengumuman] = useState<ApiResponse>({
-  //   loading: true,
-  //   response: null,
-  //   error: null,
-  // });
+  const [refreshKey, setRefreshKey] = useState(0);
+  const [pengumuman, setPengumuman] = useState<ApiResponse>({
+    loading: true,
+    response: null,
+    error: null,
+  });
 
-  // useEffect(() => {
-  //   fetch("/api/pengumuman")
-  //     .then((res) => res.json())
-  //     .then((response: Post[]) =>
-  //       setPengumuman({ loading: false, response, error: null })
-  //     )
-  //     .catch((error) =>
-  //       setPengumuman({ loading: false, response: null, error: error.message })
-  //     );
-
-  //   fetch("/api/postbycategory")
-  //     .then((res) => res.json())
-  //     .then((response: Post[]) =>
-  //       setPemerintahan({ loading: false, response, error: null })
-  //     )
-  //     .catch((error) =>
-  //       setPemerintahan({
-  //         loading: false,
-  //         response: null,
-  //         error: error.message,
-  //       })
-  //     );
-  // }, []);
+  useEffect(() => {
+    fetch("/api/pengumuman")
+      .then((res) => res.json())
+      .then((response: Post[]) => {
+        setPengumuman({ loading: false, response, error: null });
+        console.log(response);
+      })
+      .catch((error) =>
+        setPengumuman({ loading: false, response: null, error: error.message })
+      );
+  }, [refreshKey]);
 
   return (
     <section className="py-12 pt-0">
@@ -45,62 +38,80 @@ export default function News() {
           </div>
 
           <div className="mb-5 grid grid-cols-3 gap-4">
-            {Array.from({ length: 5 }, (_, i) => i + 1).map((item, i) => (
-              <div
-                key={i}
-                className={`${
-                  i == 3
-                    ? "col-span-3 lg:col-span-2"
-                    : "col-span-3 lg:col-span-1"
-                }`}
-              >
-                <Card className="p-4 h-full hover:shadow-xl transition group">
-                  <a href="#" className="relative overflow-hidden">
-                    <img
-                      src="https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                      alt="img"
-                      className="hover:brightness-90 object-cover object-center mb-3 w-full h-[145px] rounded-lg transition"
-                    />
-                  </a>
-                  <div className="group-hover:translate-x-1.5 transition ease-out">
-                    <span className="text-xs text-neutral-500">
-                      <i className="fa-regular fa-clock"></i>
-                      <span className="font-sen ml-1.5 font-medium">
-                        Rabu, 5 Maret 2025
-                      </span>
-                    </span>
-                    <a
-                      href="#"
-                      className="block line-clamp-1 my-2 font-sen text-[15px] font-semibold"
-                    >
-                      The Dawn of Innovation
+            {pengumuman.loading ? (
+              Array.from({ length: 5 }, (_, i) => i + 1).map((item, i) => (
+                <div
+                  key={i}
+                  className={`${
+                    i == 3
+                      ? "col-span-3 lg:col-span-2"
+                      : "col-span-3 lg:col-span-1"
+                  }`}
+                >
+                  <Card className="p-4 h-full">
+                    <Skeleton className="object-cover object-center mb-3 w-full h-[145px] rounded-lg" />
+                    <div>
+                      <Skeleton className="h-3.5 w-[40%]" />
+                      <Skeleton className="h-3.5 my-2 mt-5" />
+                      <Skeleton className="h-3.5 w-[50%]" />
+                    </div>
+                  </Card>
+                </div>
+              ))
+            ) : pengumuman.error ? (
+              <div className="col-span-3 text-center py-6">
+                <p className="text-red-500 font-semibold">
+                  Gagal memuat berita
+                </p>
+                <p className="text-sm mt-1 text-gray-500">
+                  Failed to fetch data from api
+                </p>
+                <button
+                  onClick={() => setRefreshKey((prev) => prev + 1)}
+                  className="text-xs px-4 py-2 bg-[#1A5590] text-white rounded-md hover:bg-blue-600 transition"
+                >
+                  Refresh
+                </button>
+              </div>
+            ) : (
+              pengumuman.response?.map((item, i) => (
+                <div
+                  key={i}
+                  className={`${
+                    i == 3
+                      ? "col-span-3 lg:col-span-2"
+                      : "col-span-3 lg:col-span-1"
+                  }`}
+                >
+                  <Card className="p-4 h-full hover:shadow-xl transition group">
+                    <a href="#" className="relative overflow-hidden">
+                      <img
+                        src={item.better_featured_image?.source_url}
+                        alt="img"
+                        className="hover:brightness-90 object-cover object-center mb-3 w-full h-[145px] rounded-lg transition"
+                      />
                     </a>
-                    <p className="line-clamp-2 text-xs font-light">
-                      Explore the birth of groundbreaking ideas and inventions.
-                    </p>
-                  </div>
-                </Card>
-              </div>
-            ))}
-            {/* {Array.from({ length: 5 }, (_, i) => i + 1).map((item, i) => (
-              <div
-                key={i}
-                className={`${
-                  i == 3
-                    ? "col-span-3 lg:col-span-2"
-                    : "col-span-3 lg:col-span-1"
-                }`}
-              >
-                <Card className="p-4 h-full">
-                  <Skeleton className="object-cover object-center mb-3 w-full h-[145px] rounded-lg" />
-                  <div>
-                    <Skeleton className="h-3.5 w-[40%]" />
-                    <Skeleton className="h-3.5 my-2 mt-5" />
-                    <Skeleton className="h-3.5 w-[50%]" />
-                  </div>
-                </Card>
-              </div>
-            ))} */}
+                    <div className="group-hover:translate-x-1.5 transition ease-out">
+                      <span className="text-xs text-neutral-500 flex items-center space-x-1">
+                        <Clock className="w-[12px]" />
+                        <span className="font-sen ml-1.5 font-medium">
+                          {item.date}
+                        </span>
+                      </span>
+                      <p className="mt-2">
+                        <a
+                          target="_blank"
+                          href={item.link}
+                          className="line-clamp-2 leading-tight font-sen text-[15px] font-semibold"
+                        >
+                          {item.title.rendered}
+                        </a>
+                      </p>
+                    </div>
+                  </Card>
+                </div>
+              ))
+            )}
           </div>
           <a
             target="_blank"

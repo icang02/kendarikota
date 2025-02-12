@@ -8,4 +8,6 @@ class Arsip extends Model
 {
   protected $table = 'arsip';
   protected $guarded = [''];
+
+  public $timestamps = false;
 }

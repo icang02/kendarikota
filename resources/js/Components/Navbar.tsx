@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 
 import { cn } from "@/lib/utils";
 import {
@@ -24,7 +24,6 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   menuArsip,
-  menuDirektori,
   menuEvent,
   menuKendariKita,
   menuPeraturanDaerah,
@@ -34,6 +33,8 @@ import {
 import { ChevronDown } from "lucide-react";
 
 const Navbar = () => {
+  const { globalDirektori }: any = usePage().props;
+
   // Handle scrool nav
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -185,17 +186,17 @@ const Navbar = () => {
 
             <NavigationMenuItem className="nav__link">
               <NavigationMenuTrigger className="nav__link">
-                {menuDirektori.label}
+                Direktori
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuDirektori.menu.map((item) => (
+                  {globalDirektori.map((item: any) => (
                     <ListItem
-                      key={item.title}
-                      title={item.title}
-                      href={item.href}
+                      key={item.id}
+                      title={item.nama}
+                      href={"/direktori/" + item.slug}
                     >
-                      {item.description}
+                      {item.deskripsi}
                     </ListItem>
                   ))}
                 </ul>

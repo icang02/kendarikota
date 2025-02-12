@@ -1,4 +1,4 @@
-import { usePage } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { GlowingEffect } from "./ui/glowing-effect";
 
 const SubDomain = () => {
@@ -60,12 +60,12 @@ const SubDomain = () => {
           ))}
 
           <div className="mt-4 text-center col-span-6">
-            <a
-              href="#"
+            <Link
+              href={"/all-sub-domain"}
               className="mt-3 bg-white border px-6 py-2.5 rounded text-black text-xs lg:text-sm transition ease-out hover:bg-gray-100"
             >
               Lihat lainnya
-            </a>
+            </Link>
           </div>
         </div>
       </div>

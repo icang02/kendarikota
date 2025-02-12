@@ -2,10 +2,10 @@ import Hero from "@/Components/Hero";
 import News from "@/Components/News";
 import Pejabat from "@/Components/Pejabat";
 import SubDomain from "@/Components/SubDomain";
-import Twibbon from "@/Components/Twibbon";
 import { Card } from "@/Components/ui/card";
 import Walikota from "@/Components/Walikota";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { useEffect } from "react";
 
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -16,6 +16,17 @@ export default function Welcome({
   infografis,
   twibbon,
 }: any) {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://widget.kominfo.go.id/gpr-widget-kominfo.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <GuestLayout>
       <Hero />
@@ -36,7 +47,7 @@ export default function Welcome({
                 Unggah foto untuk membuat twibbon kamu
               </p>
 
-              {/* <Card className="mt-5 p-5 py-7">
+              <Card className="mt-5 p-5 py-7">
                 <h6 className="w-full lg:w-[90%] mx-auto font-extrabold font-sen text-base text-[#1A3C61] uppercase leading-tight text-center">
                   {twibbon.title}
                 </h6>
@@ -53,8 +64,8 @@ export default function Welcome({
                     Lihat lainnya
                   </button>
                 </div>
-              </Card> */}
-              <Twibbon />
+              </Card>
+              {/* <Twibbon /> */}
             </div>
 
             <div className="p-1">

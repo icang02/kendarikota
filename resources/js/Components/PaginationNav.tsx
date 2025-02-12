@@ -3,28 +3,25 @@ import parse from "html-react-parser";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
 } from "@/Components/ui/pagination";
 
-const PaginationNav = ({ links, currentPage, setCurrentPage }: any) => {
+const PaginationNav = ({ links }: any) => {
   const handlePageChange = (url: any) => {
-    const pageParam = new URL(url).searchParams.get("page");
-    setCurrentPage(pageParam);
     router.get(url, { preserveState: true });
   };
 
   return (
     <Pagination>
-      <PaginationContent>
+      <PaginationContent className="flex flex-wrap">
         {links.map((link: any, i: any) => (
           <PaginationItem key={i}>
             {link.label == "pagination.previous" ? (
               <PaginationPrevious
-                href="#"
+                className="cursor-pointer"
                 onClick={(e) => {
                   e.preventDefault();
                   handlePageChange(link.url);
@@ -32,7 +29,7 @@ const PaginationNav = ({ links, currentPage, setCurrentPage }: any) => {
               />
             ) : link.label == "pagination.next" ? (
               <PaginationNext
-                href="#"
+                className="cursor-pointer"
                 onClick={(e) => {
                   e.preventDefault();
                   handlePageChange(link.url);
@@ -41,7 +38,6 @@ const PaginationNav = ({ links, currentPage, setCurrentPage }: any) => {
             ) : (
               <PaginationLink
                 isActive={link.active}
-                href="#"
                 className="cursor-pointer"
                 onClick={(e) => {
                   e.preventDefault();

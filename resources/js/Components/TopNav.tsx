@@ -1,12 +1,28 @@
 import { useEffect, useState } from "react";
 import Clock from "./Clock";
+import {
+  MapPin,
+  Clock as ClockIcon,
+  Facebook,
+  Instagram,
+  Youtube,
+} from "lucide-react";
 
 const Topnav = () => {
+  // https://www.tiktok.com/@kendarikota.go.id
   const icons = [
-    { link: "#", icon: <i className="fa-brands fa-facebook-f"></i> },
-    { link: "#", icon: <i className="fa-brands fa-instagram"></i> },
-    { link: "#", icon: <i className="fa-brands fa-tiktok"></i> },
-    { link: "#", icon: <i className="fa-brands fa-youtube"></i> },
+    {
+      link: "https://www.facebook.com/people/Kendarikota/100083031531002/",
+      icon: <Facebook className="w-[13px]" />,
+    },
+    {
+      link: "https://www.instagram.com/kendarikotagoid/",
+      icon: <Instagram className="w-[13px]" />,
+    },
+    {
+      link: "https://www.youtube.com/@kendarikotagoid9481/featured",
+      icon: <Youtube className="w-[13px]" />,
+    },
   ];
 
   // Handle scrool nav
@@ -29,23 +45,18 @@ const Topnav = () => {
     >
       <div className="py-1.5 pb-2 container flex items-center justify-between">
         <div className="flex items-center gap-7">
-          <p className="font-sen text-xs text-white/90">
-            <span className="text-[10px] text-white/80">
-              <i className="fa-solid fa-location-dot"></i>
-            </span>{" "}
-            Kendari, Sulawesi Tenggara
+          <p className="font-sen text-xs text-white/90 flex items-center space-x-1">
+            <MapPin className="w-[10px] text-white/80" />
+            <span>Kendari, Sulawesi Tenggara</span>
           </p>
 
-          <p className="text-xs text-white/90">
-            <span className="text-[10px] text-white/80">
-              <i className="fa-regular fa-clock"></i>
-            </span>
-            &nbsp;&nbsp;
+          <p className="text-xs text-white/90 flex items-center space-x-1">
+            <ClockIcon className="w-[10px] text-white/80" />
             <Clock className="text-xs" />
           </p>
         </div>
 
-        <div className="flex space-x-1 text-[10px]">
+        <div className="flex space-x-1.5 text-[10px]">
           {icons.map((item, i) => (
             <a
               target="_blank"

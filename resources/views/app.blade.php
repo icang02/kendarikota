@@ -23,8 +23,7 @@
 <body class="font-sans antialiased">
   @inertia
 
-  <script src="{{ asset('js/all.min.js') }}"></script>
-  <script type="text/javascript" src="https://widget.kominfo.go.id/gpr-widget-kominfo.min.js"></script>
+  {{-- <script src="{{ asset('js/all.min.js') }}"></script> --}}
 </body>
 
 </html>

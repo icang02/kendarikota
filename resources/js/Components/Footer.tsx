@@ -1,4 +1,22 @@
+import { Link } from "@inertiajs/react";
+import { Facebook, Instagram, Youtube } from "lucide-react";
+
 const Footer = () => {
+  const icons = [
+    {
+      link: "https://www.facebook.com/people/Kendarikota/100083031531002/",
+      icon: <Facebook className="w-[20px]" />,
+    },
+    {
+      link: "https://www.instagram.com/kendarikotagoid/",
+      icon: <Instagram className="w-[20px]" />,
+    },
+    {
+      link: "https://www.youtube.com/@kendarikotagoid9481/featured",
+      icon: <Youtube className="w-[20px]" />,
+    },
+  ];
+
   return (
     <>
       <footer className="py-8 bg-main text-white">
@@ -6,14 +24,15 @@ const Footer = () => {
           <div className="grid grid-cols-4 gap-8 lg:gap-10">
             <div className="col-span-4 lg:col-span-1">
               <img src="/img/logo.svg" alt="logo" className="w-44 lg:w-52" />
-              <p className="mt-6 mb-5 lg:mt-8 lg:mb-10  text-xs lg:text-sm">
+              <p className="mt-6 mb-5 lg:mt-8 lg:mb-9  text-xs lg:text-sm">
                 Alamat Redaksi: Jln. Balaikota II No. 65 A Kota Kendari
               </p>
               <div className="flex items-center space-x-3.5 text-base lg:text-xl">
-                <i className="fa-brands fa-facebook"></i>
-                <i className="fa-brands fa-instagram"></i>
-                <i className="fa-brands fa-youtube"></i>
-                <i className="fa-brands fa-tiktok"></i>
+                {icons.map((item: any, i: any) => (
+                  <a key={i} href={item.link}>
+                    {item.icon}
+                  </a>
+                ))}
               </div>
             </div>
 
@@ -33,10 +52,12 @@ const Footer = () => {
               </div>
 
               <div className="mt-4 flex flex-wrap flex-row lg:flex-col gap-5 gap-y-1.5 lg:gap-3.5 text-xs lg:text-sm">
-                <a href="#">Beranda</a>
-                <a href="#">Profil</a>
-                <a href="#">Berita</a>
-                <a href="#">Galeri</a>
+                <Link href="/">Beranda</Link>
+                <Link href="/kendari-kita/sejarah-kota-kendari">Sejarah</Link>
+                <Link href="/kendari-kita/visi-misi">Visi & Misi</Link>
+                <Link href="/event/agenda">Agenda</Link>
+                <Link href="/event/pengumuman">Pengumuman</Link>
+                <Link href="/statistik">Statistik</Link>
               </div>
             </div>
 
@@ -56,20 +77,20 @@ const Footer = () => {
               </div>
 
               <div className="mt-4 flex flex-wrap flex-row lg:flex-col gap-5 gap-y-1.5 lg:gap-3.5 text-xs lg:text-sm">
-                <a target="_blank" href="#">
+                <a target="_blank" href="https://indonesia.go.id">
                   Indonesia
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="https://www.komdigi.go.id">
                   Komdigi RI
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="https://www.kemendag.go.id">
                   Kemendagri
                 </a>
-                <a target="_blank" href="#">
+                <a target="_blank" href="https://www.sultraprov.go.id">
                   Provinsi Sultra
                 </a>
-                <a target="_blank" href="#">
-                  Laporan Keuangan
+                <a target="_blank" href="https://www.lapor.go.id">
+                  Lapor
                 </a>
               </div>
             </div>
