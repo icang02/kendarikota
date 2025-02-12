@@ -20,6 +20,7 @@ class AgendaResource extends Resource
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationGroup = 'Menu Event';
+  protected static ?int $navigationSort = 30;
 
   public static function getSlug(): string
   {

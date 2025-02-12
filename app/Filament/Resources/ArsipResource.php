@@ -24,7 +24,8 @@ class ArsipResource extends Resource
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Arsip';
-  protected static ?string $navigationGroup = 'Dokumen';
+  protected static ?string $navigationGroup = 'Menu Arsip';
+  protected static ?int $navigationSort = 40;
 
   public static function getSlug(): string
   {

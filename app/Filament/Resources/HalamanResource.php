@@ -21,6 +21,7 @@ class HalamanResource extends Resource
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Sejarah & Visi Misi';
   protected static ?string $navigationGroup = 'Menu Kendari Kita';
+  protected static ?int $navigationSort = 10;
 
   // Show/hide button add
   public static function canCreate(): bool

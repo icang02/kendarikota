@@ -11,7 +11,6 @@ export default function EventPage({
   title: string;
   data: any;
 }) {
-  console.log(data);
   return (
     <GuestLayout>
       <PageLayout title={title}>

@@ -23,7 +23,6 @@ class AplikasiResource extends Resource
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Aplikasi Kendarikota';
   protected static ?string $navigationGroup = 'Data lainnya';
-  protected static ?int $navigationSort = 99;
 
   public static function getSlug(): string
   {

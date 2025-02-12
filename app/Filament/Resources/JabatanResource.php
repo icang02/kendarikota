@@ -21,7 +21,6 @@ class JabatanResource extends Resource
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'List Jabatan';
   protected static ?string $navigationGroup = 'Data lainnya';
-  protected static ?int $navigationSort = 2;
 
   public static function getSlug(): string
   {

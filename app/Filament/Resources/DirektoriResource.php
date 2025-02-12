@@ -21,7 +21,8 @@ class DirektoriResource extends Resource
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Direktori';
-  protected static ?string $navigationGroup = 'Direktori';
+  protected static ?string $navigationGroup = 'Menu Direktori';
+  protected static ?int $navigationSort = 20;
 
   public static function getSlug(): string
   {

@@ -11,7 +11,9 @@ import {
 
 const PaginationNav = ({ links }: any) => {
   const handlePageChange = (url: any) => {
-    router.get(url, { preserveState: true });
+    if (url != null) {
+      router.get(url, { preserveState: true });
+    }
   };
 
   return (

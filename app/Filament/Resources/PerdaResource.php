@@ -22,7 +22,8 @@ class PerdaResource extends Resource
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Peraturan Daerah';
-  protected static ?string $navigationGroup = 'Dokumen';
+  protected static ?string $navigationGroup = 'Menu Peraturan Daerah';
+  protected static ?int $navigationSort = 50;
 
   public static function getSlug(): string
   {

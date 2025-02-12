@@ -12,12 +12,20 @@ export default function News() {
     error: null,
   });
 
+  const handleRefresh = () => {
+    setPengumuman({
+      loading: true,
+      response: null,
+      error: null,
+    });
+    setRefreshKey((prev) => prev + 1);
+  };
+
   useEffect(() => {
     fetch("/api/pengumuman")
       .then((res) => res.json())
       .then((response: Post[]) => {
         setPengumuman({ loading: false, response, error: null });
-        console.log(response);
       })
       .catch((error) =>
         setPengumuman({ loading: false, response: null, error: error.message })
@@ -63,11 +71,11 @@ export default function News() {
                 <p className="text-red-500 font-semibold">
                   Gagal memuat berita
                 </p>
-                <p className="text-sm mt-1 text-gray-500">
+                <p className="text-sm mt-1 mb-3 text-gray-500">
                   Failed to fetch data from api
                 </p>
                 <button
-                  onClick={() => setRefreshKey((prev) => prev + 1)}
+                  onClick={handleRefresh}
                   className="text-xs px-4 py-2 bg-[#1A5590] text-white rounded-md hover:bg-blue-600 transition"
                 >
                   Refresh

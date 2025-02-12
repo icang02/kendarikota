@@ -24,7 +24,6 @@ class PejabatResource extends Resource
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
   protected static ?string $navigationLabel = 'Pejabat Pemerintah';
   protected static ?string $navigationGroup = 'Menu Kendari Kita';
-  protected static ?int $navigationSort = 1;
 
   public static function getSlug(): string
   {

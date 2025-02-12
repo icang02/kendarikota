@@ -21,8 +21,9 @@ class DownloadResource extends Resource
   protected static ?string $model = Download::class;
 
   protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-  protected static ?string $navigationLabel = 'Download';
-  protected static ?string $navigationGroup = 'Dokumen';
+  protected static ?string $navigationLabel = 'Statistik';
+  protected static ?string $navigationGroup = 'Menu Statistik';
+  protected static ?int $navigationSort = 60;
 
   public static function getSlug(): string
   {
