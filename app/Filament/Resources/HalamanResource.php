@@ -6,6 +6,9 @@ use App\Filament\Resources\HalamanResource\Pages;
 use App\Filament\Resources\HalamanResource\RelationManagers;
 use App\Models\Halaman;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -29,11 +32,22 @@ class HalamanResource extends Resource
     return false;
   }
 
+  protected function mutateFormDataBeforeSave(array $data): array
+  {
+    $data['slug'] = \Illuminate\Support\Str::slug($data['judul']);
+    return $data;
+  }
+
   public static function form(Form $form): Form
   {
     return $form
       ->schema([
-        //
+        Card::make()->schema([
+          TextInput::make('judul')
+            ->disabled(),
+          RichEditor::make('isi')
+            ->label('Isi Konten'),
+        ])
       ]);
   }
 

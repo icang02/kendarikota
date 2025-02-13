@@ -5,20 +5,38 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/tes', function () {
-//   $data = App\Models\Arsip::all();
-//   $count = 0;
-//   foreach ($data as $item) {
-//     if ($item->penetapan != null) {
-//       $timestamp = $item->penetapan;
-//       $count += 1;
-//       $datetime = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
-//       $item->update(['penetapann' => $datetime]);
-//     }
-//   }
+Route::get('/tes', function () {
+  // $data = App\Models\Infografis::all();
+  // $count = 0;
+  // foreach ($data as $item) {
+  //   if ($item->release != null) {
+  //     $timestamp = $item->release;
+  //     $count += 1;
+  //     $datetime = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
+  //     $item->update(['releasee' => $datetime]);
+  //   }
+  // }
 
-//   echo $count;
-// });
+  // echo $count;
+
+  // Ambil semua foto dari database
+  // $data = Infografis::whereNotNull('img')->pluck('img')->toArray();
+
+  // // Ambil semua file dalam folder infografis/2023
+  // $files = Storage::disk('public')->files('infografis/2023');
+
+  // // Hapus file yang tidak ada dalam database
+  // foreach ($files as $file) {
+  //   if (!in_array($file, $data)) {
+  //     Storage::disk('public')->delete($file);
+  //   }
+  // }
+
+  // // Hapus data di database jika tidak ada filenya di penyimpanan
+  // Infografis::whereNotIn('img', $files)->delete();
+
+  // echo "oke";
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/event/{menu}', [HomeController::class, 'menuEvent']);
@@ -33,7 +51,6 @@ Route::get('/kendari-kita/walikota', [HomeController::class, 'walikota']);
 Route::get('/kendari-kita/wakil-walikota', [HomeController::class, 'wakilWalikota']);
 Route::get('/kendari-kita/pejabat-pemerintah', [HomeController::class, 'pejabat']);
 Route::get('/kendari-kita/perangkat-daerah', [HomeController::class, 'perangkatDaerah']);
-
 Route::get('/all-sub-domain', [HomeController::class, 'allSubDomain']);
 
 Route::get('/api/pengumuman', function () {

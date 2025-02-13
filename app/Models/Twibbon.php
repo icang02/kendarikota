@@ -8,4 +8,6 @@ class Twibbon extends Model
 {
   protected $table = 'twibbon';
   protected $guarded = [''];
+
+  public $timestamps = false;
 }

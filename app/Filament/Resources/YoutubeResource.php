@@ -33,13 +33,19 @@ class YoutubeResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('link')
+          ->label('Code embed')
+          ->placeholder('Code embed')
+          ->helperText('https://www.youtube.com/watch?v=code_embed. Hanya masukkan code embed.')
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Youtube::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -55,6 +61,7 @@ class YoutubeResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -75,8 +82,8 @@ class YoutubeResource extends Resource
   {
     return [
       'index' => Pages\ListYoutubes::route('/'),
-      'create' => Pages\CreateYoutube::route('/create'),
-      'edit' => Pages\EditYoutube::route('/{record}/edit'),
+      // 'create' => Pages\CreateYoutube::route('/create'),
+      // 'edit' => Pages\EditYoutube::route('/{record}/edit'),
     ];
   }
 }

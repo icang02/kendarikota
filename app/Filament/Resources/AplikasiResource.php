@@ -33,13 +33,35 @@ class AplikasiResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\Grid::make(3)
+          ->schema([
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\TextInput::make('nama')
+                  ->required(),
+                Forms\Components\TextInput::make('link')
+                  ->label('Link Aplikasi')
+                  ->required(),
+              ])->columnSpan(2),
+
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\FileUpload::make('icon')
+                  ->image()
+                  ->maxSize(1024)
+                  ->disk('public')
+                  ->directory('icon-aplikasi'),
+              ])->columnSpan(1)
+          ])
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Aplikasi::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -66,6 +88,7 @@ class AplikasiResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -86,8 +109,8 @@ class AplikasiResource extends Resource
   {
     return [
       'index' => Pages\ListAplikasis::route('/'),
-      'create' => Pages\CreateAplikasi::route('/create'),
-      'edit' => Pages\EditAplikasi::route('/{record}/edit'),
+      // 'create' => Pages\CreateAplikasi::route('/create'),
+      // 'edit' => Pages\EditAplikasi::route('/{record}/edit'),
     ];
   }
 }

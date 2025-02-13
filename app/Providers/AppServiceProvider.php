@@ -2,24 +2,37 @@
 
 namespace App\Providers;
 
+use App\Models\Aplikasi;
+use App\Models\Infografis;
+use App\Models\Pejabat;
+use App\Models\Twibbon;
+use App\Observers\AplikasiObserver;
+use App\Observers\InfografisObserver;
+use App\Observers\PejabatObserver;
+use App\Observers\TwibbonObserver;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
-    {
-        //
-    }
+  /**
+   * Register any application services.
+   */
+  public function register(): void
+  {
+    //
+  }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
-    {
-        Vite::prefetch(concurrency: 3);
-    }
+  /**
+   * Bootstrap any application services.
+   */
+  public function boot(): void
+  {
+    Vite::prefetch(concurrency: 3);
+
+    Pejabat::observe(PejabatObserver::class);
+    Aplikasi::observe(AplikasiObserver::class);
+    Infografis::observe(InfografisObserver::class);
+    Twibbon::observe(TwibbonObserver::class);
+  }
 }

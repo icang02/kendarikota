@@ -6,6 +6,12 @@ use App\Filament\Resources\PejabatResource\Pages;
 use App\Filament\Resources\PejabatResource\RelationManagers;
 use App\Models\Pejabat;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\RichEditor;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
@@ -34,13 +40,68 @@ class PejabatResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Grid::make(3)->schema([
+          Card::make()->schema([
+            Grid::make(2)->schema([
+              TextInput::make('nama')
+                ->required(),
+              Select::make('jabatan_id')
+                ->label('Jabatan')
+                ->options(\App\Models\Jabatan::pluck('nama', 'id'))
+                ->searchable()
+                ->required(),
+              Select::make('opd_id')
+                ->label('OPD')
+                ->options(\App\Models\OPD::pluck('nama', 'id'))
+                ->searchable(),
+              TextInput::make('tahun_periode')
+                ->label('Tahun Periode')
+                ->maxLength(20),
+            ]),
+            RichEditor::make('keterangan')
+              ->label('Keterangan Lain')
+              ->toolbarButtons([
+                // 'attachFiles',
+                'blockquote',
+                'bold',
+                'bulletList',
+                'codeBlock',
+                'h2',
+                'h3',
+                'italic',
+                'link',
+                'orderedList',
+                'redo',
+                'strike',
+                'underline',
+                'undo',
+              ]),
+          ])->columnSpan(2),
+
+          Grid::make(1)->schema([
+            Card::make()->schema([
+              FileUpload::make('foto')
+                ->disk('public')
+                ->image()
+                ->maxSize(1024)
+                ->directory('foto-pejabat'),
+            ]),
+            Card::make()->schema([
+              TextInput::make('facebook')->label('Link Facebook'),
+              TextInput::make('twitter')->label('Link Twitter'),
+              TextInput::make('instagram')->label('Link Instagram'),
+            ]),
+          ])->columnSpan(1),
+        ])
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Pejabat::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -48,7 +109,7 @@ class PejabatResource extends Resource
           ->width('7%'),
 
         ImageColumn::make('foto')
-          ->label('Logo')
+          ->label('Foto')
           ->circular()
           ->default(asset('img/default/foto-pejabat.png')),
 
@@ -60,7 +121,6 @@ class PejabatResource extends Resource
         BadgeColumn::make('jabatan.nama')
           ->label('Jabatan')
           ->color('info')
-          // ->color(Color::hex('#A1E3F9'))
           ->searchable()
           ->sortable(),
       ])
@@ -68,6 +128,7 @@ class PejabatResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([

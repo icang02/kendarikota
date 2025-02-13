@@ -7,6 +7,10 @@ use App\Filament\Resources\OPDResource\RelationManagers;
 use App\Models\OPD;
 use App\Models\Pejabat;
 use Filament\Forms;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Support\Colors\Color;
@@ -34,16 +38,26 @@ class OPDResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Card::make()->schema([
+          Grid::make(2)->schema([
+            TextInput::make('nama')
+              ->required(),
+            Select::make('kategori_opd_id')
+              ->label('Kategori')
+              ->options(\App\Models\KategoriOPD::pluck('nama', 'id'))
+              ->searchable()
+              ->required(),
+          ])
+        ])
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
-      // ->query(
-      //   OPD::query()->orderBy('kategori')
-      // )
+      ->query(
+        OPD::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -55,7 +69,7 @@ class OPDResource extends Resource
           ->searchable()
           ->sortable(),
 
-        BadgeColumn::make('kategori')
+        BadgeColumn::make('kategori.nama')
           ->label('Kategori')
           ->color('info')
           ->searchable()

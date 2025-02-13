@@ -32,7 +32,48 @@ class TwibbonResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\Grid::make(3)
+          ->schema([
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\TextInput::make('title')
+                  ->label('Judul')
+                  ->required(),
+                Forms\Components\TextInput::make('slogan')
+                  ->required(),
+                Forms\Components\RichEditor::make('deskripsi')
+                  ->required()
+                  ->toolbarButtons([
+                    // 'attachFiles',
+                    'blockquote',
+                    'bold',
+                    'bulletList',
+                    'codeBlock',
+                    'h2',
+                    'h3',
+                    'italic',
+                    'link',
+                    'orderedList',
+                    'redo',
+                    'strike',
+                    'underline',
+                    'undo',
+                  ])
+                // Forms\Components\Textarea::make('deskripsi')
+                //   ->required(),
+              ])->columnSpan(2),
+
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\FileUpload::make('img')
+                  ->label('Upload Twibbon')
+                  ->required()
+                  ->image()
+                  ->maxSize(1024)
+                  ->disk('public')
+                  ->directory('twibbon/' . date('Y')),
+              ])->columnSpan(1)
+          ])
       ]);
   }
 
@@ -40,7 +81,7 @@ class TwibbonResource extends Resource
   {
     return $table
       ->query(
-        Twibbon::query()->orderBy('created_at', 'desc')
+        Twibbon::query()->orderBy('id', 'desc')
       )
       ->columns([
         TextColumn::make('#')
@@ -69,6 +110,7 @@ class TwibbonResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -89,8 +131,8 @@ class TwibbonResource extends Resource
   {
     return [
       'index' => Pages\ListTwibbons::route('/'),
-      'create' => Pages\CreateTwibbon::route('/create'),
-      'edit' => Pages\EditTwibbon::route('/{record}/edit'),
+      // 'create' => Pages\CreateTwibbon::route('/create'),
+      // 'edit' => Pages\EditTwibbon::route('/{record}/edit'),
     ];
   }
 }

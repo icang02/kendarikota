@@ -8,5 +8,10 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreatePejabat extends CreateRecord
 {
-    protected static string $resource = PejabatResource::class;
+  protected static string $resource = PejabatResource::class;
+
+  protected function getRedirectUrl(): string
+  {
+    return $this->getResource()::getUrl('index');
+  }
 }

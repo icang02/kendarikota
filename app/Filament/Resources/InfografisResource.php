@@ -32,7 +32,30 @@ class InfografisResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\Grid::make(3)
+          ->schema([
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\TextInput::make('title')
+                  ->label('Judul')
+                  ->required(),
+                Forms\Components\DateTimePicker::make('release')
+                  ->default(now())
+                  ->label('Tanggal')
+                  ->required(),
+              ])->columnSpan(2),
+
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\FileUpload::make('img')
+                  ->label('Gambar')
+                  ->required()
+                  ->image()
+                  ->maxSize(1024)
+                  ->disk('public')
+                  ->directory('infografis/' . date('Y')),
+              ])->columnSpan(1)
+          ])
       ]);
   }
 
@@ -68,6 +91,7 @@ class InfografisResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -88,8 +112,8 @@ class InfografisResource extends Resource
   {
     return [
       'index' => Pages\ListInfografis::route('/'),
-      'create' => Pages\CreateInfografis::route('/create'),
-      'edit' => Pages\EditInfografis::route('/{record}/edit'),
+      // 'create' => Pages\CreateInfografis::route('/create'),
+      // 'edit' => Pages\EditInfografis::route('/{record}/edit'),
     ];
   }
 }

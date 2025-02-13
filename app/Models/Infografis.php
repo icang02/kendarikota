@@ -8,4 +8,6 @@ class Infografis extends Model
 {
   protected $table = 'infografis';
   protected $guarded = [''];
+
+  public $timestamps = false;
 }

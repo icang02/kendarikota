@@ -29,11 +29,11 @@ class HomeController extends Controller
     Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
 
     return Inertia::render('Welcome', [
-      'youtube' => Youtube::limit(5)->get(),
+      'youtube' => Youtube::limit(5)->orderBy('id', 'desc')->get(),
       'pejabat' => Pejabat::with(['jabatan'])->limit(5)
         ->orderBy('jabatan_id')->get(),
       'infografis' => Infografis::limit(4)->orderBy('release', 'desc')->get(),
-      'twibbon' => Twibbon::orderBy('created_at', 'desc')->first(),
+      'twibbon' => Twibbon::orderBy('id', 'desc')->first(),
     ]);
   }
 

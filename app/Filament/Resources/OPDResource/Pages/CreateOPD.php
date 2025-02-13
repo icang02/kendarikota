@@ -8,5 +8,10 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateOPD extends CreateRecord
 {
-    protected static string $resource = OPDResource::class;
+  protected static string $resource = OPDResource::class;
+
+  protected function getRedirectUrl(): string
+  {
+    return $this->getResource()::getUrl('index');
+  }
 }

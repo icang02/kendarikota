@@ -33,7 +33,14 @@ class DirektoriResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\Card::make()
+          ->schema([
+            Forms\Components\Grid::make(2)
+              ->schema([
+                Forms\Components\TextInput::make('nama'),
+                Forms\Components\TextInput::make('deskripsi'),
+              ])
+          ])
       ]);
   }
 
