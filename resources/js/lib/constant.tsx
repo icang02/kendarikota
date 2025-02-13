@@ -404,7 +404,7 @@ export const columnsStatistik = [
     cell: ({ row }: any) => (
       <a
         href={row.getValue("file")}
-        className="flex flex-wrap items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
       >
         <Download size={14} /> <span>Download</span>
       </a>

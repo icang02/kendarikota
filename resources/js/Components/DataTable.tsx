@@ -94,7 +94,7 @@ export function DataTable({ data, columns, keySearch = "judul" }: any) {
         </DropdownMenu>
       </div>
       <div className="rounded-md border px-3 py-2">
-        <Table>
+        <Table className="text-xs lg:text-sm">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
@@ -145,8 +145,7 @@ export function DataTable({ data, columns, keySearch = "judul" }: any) {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          Result : {table.getFilteredRowModel().rows.length} data.
         </div>
         <div className="space-x-2">
           <Button

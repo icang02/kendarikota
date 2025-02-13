@@ -24,13 +24,25 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   menuArsip,
+  menuDirektori,
   menuEvent,
   menuKendariKita,
   menuPeraturanDaerah,
   menuStatistik,
   navProgramKotaku,
 } from "@/lib/constant";
-import { ChevronDown } from "lucide-react";
+import { AlignJustify, ChevronDown, ExternalLink } from "lucide-react";
+
+import { Button } from "@/Components/ui/button";
+import { Input } from "@/Components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/Components/ui/accordion";
 
 const Navbar = () => {
   const { globalDirektori }: any = usePage().props;
@@ -58,17 +70,184 @@ const Navbar = () => {
           isScrolled && "!h-12 lg:!h-14"
         }`}
       >
-        <img
-          className={`w-36 lg:w-56 text-black ${
-            isScrolled && "!w-36 lg:!w-52"
-          }`}
-          src="/img/logo.svg"
-          alt="logo"
-        />
-        {/* Breadcrumb */}
-        <span className="block lg:hidden text-white text-xl">
-          <i className="fa-solid fa-bars"></i>
-        </span>
+        <Link href="/">
+          <img
+            className={`w-36 lg:w-56 text-black ${
+              isScrolled && "!w-36 lg:!w-52"
+            }`}
+            src="/img/logo.svg"
+            alt="logo"
+          />
+        </Link>
+        {/* Hamburger */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <span className="cursor-pointer block lg:hidden text-white text-xl">
+              <AlignJustify />
+            </span>
+          </SheetTrigger>
+          <SheetContent className="z-[999] py-10 overflow-y-scroll">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value={"beranda"}>
+                <Link
+                  className="font-medium font-sen text-[14px] py-3.5 block hover:underline"
+                  href={"/"}
+                >
+                  Beranda
+                </Link>
+              </AccordionItem>
+
+              <AccordionItem value={navProgramKotaku.title}>
+                <AccordionTrigger className="font-sen">
+                  {navProgramKotaku.title}
+                </AccordionTrigger>
+                <AccordionContent className="font-mulish text-[13px]">
+                  <div className="flex flex-col space-y-3.5">
+                    {navProgramKotaku.menu.map((item: any, i: any) =>
+                      item.subMenu ? (
+                        <div>
+                          <span className="cursor-pointer hover:underline">
+                            {item.label}
+                          </span>
+                          <div className="pl-2.5 flex flex-col mt-1.5 space-y-1">
+                            {item.subMenu.map((list: any, j: any) =>
+                              list.subMenu ? (
+                                <div>
+                                  <span className="cursor-pointer hover:underline">
+                                    {list.label}
+                                  </span>
+                                  <div className="pl-2.5 flex mt-1.5 flex-col space-y-1">
+                                    {list.subMenu.map((list2: any, k: any) => (
+                                      <a
+                                        target="_blank"
+                                        key={k}
+                                        href={list2.url}
+                                        className="hover:underline flex items-center space-x-1.5"
+                                      >
+                                        <span>{list2.label}</span>
+                                        <ExternalLink className="w-[11px] text-black/60" />
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              ) : (
+                                <a
+                                  target="_blank"
+                                  key={j}
+                                  href={list.url}
+                                  className="hover:underline flex items-center space-x-1.5"
+                                >
+                                  <span>{list.label}</span>
+                                  <ExternalLink className="w-[11px] text-black/60" />
+                                </a>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          target="_blank"
+                          key={i}
+                          href={item.url}
+                          className="hover:underline flex items-center space-x-1.5"
+                        >
+                          <span>{item.label}</span>
+                          <ExternalLink className="w-[11px] text-black/60" />
+                        </a>
+                      )
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value={menuKendariKita.label}>
+                <AccordionTrigger className="font-sen">
+                  {menuKendariKita.label}
+                </AccordionTrigger>
+                <AccordionContent className="font-mulish text-[13px]">
+                  <div className="flex flex-col space-y-3.5">
+                    {menuKendariKita.menu.map((item: any, i: any) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        className="hover:underline"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value={menuDirektori.label}>
+                <AccordionTrigger className="font-sen">
+                  {menuDirektori.label}
+                </AccordionTrigger>
+                <AccordionContent className="font-mulish text-[13px]">
+                  <div className="flex flex-col space-y-3.5">
+                    {menuDirektori.menu.map((item: any, i: any) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        className="hover:underline"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value={menuEvent.label}>
+                <AccordionTrigger className="font-sen">
+                  {menuEvent.label}
+                </AccordionTrigger>
+                <AccordionContent className="font-mulish text-[13px]">
+                  <div className="flex flex-col space-y-3.5">
+                    {menuEvent.menu.map((item: any, i: any) => (
+                      <Link
+                        key={i}
+                        href={item.href}
+                        className="hover:underline"
+                      >
+                        {item.title}
+                      </Link>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+
+              <AccordionItem value={menuArsip.label}>
+                <Link
+                  className="font-medium font-sen text-[14px] py-3.5 block hover:underline"
+                  href={menuArsip.url}
+                >
+                  {menuArsip.label}
+                </Link>
+              </AccordionItem>
+
+              <AccordionItem value={menuPeraturanDaerah.label}>
+                <Link
+                  className="font-medium font-sen text-[14px] py-3.5 block hover:underline"
+                  href={menuPeraturanDaerah.url}
+                >
+                  {menuPeraturanDaerah.label}
+                </Link>
+              </AccordionItem>
+
+              <AccordionItem value={menuStatistik.label}>
+                <Link
+                  className="font-medium font-sen text-[14px] py-3.5 block hover:underline"
+                  href={menuStatistik.url}
+                >
+                  {menuStatistik.label}
+                </Link>
+              </AccordionItem>
+            </Accordion>
+          </SheetContent>
+        </Sheet>
+
+        {/* Nav desktop menu */}
         <NavigationMenu className="hidden lg:block">
           <NavigationMenuList>
             {/* Beranda */}
