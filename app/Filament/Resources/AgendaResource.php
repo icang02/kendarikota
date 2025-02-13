@@ -31,13 +31,25 @@ class AgendaResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('nama')
+          ->required(),
+        Forms\Components\DatePicker::make('tanggal')
+          ->default(now())
+          ->required(),
+        Forms\Components\Textarea::make('deskripsi')
+          ->rows(4)
+          ->required(),
+        Forms\Components\TextInput::make('lokasi')
+          ->required(),
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Agenda::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -56,8 +68,8 @@ class AgendaResource extends Resource
           ->searchable()
           ->sortable(),
 
-        TextColumn::make('tgl_mulai')
-          ->label('Tanggal Mulai')
+        TextColumn::make('tanggal')
+          ->label('Tanggal')
           ->searchable()
           ->sortable(),
 
@@ -69,6 +81,7 @@ class AgendaResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -89,8 +102,8 @@ class AgendaResource extends Resource
   {
     return [
       'index' => Pages\ListAgendas::route('/'),
-      'create' => Pages\CreateAgenda::route('/create'),
-      'edit' => Pages\EditAgenda::route('/{record}/edit'),
+      // 'create' => Pages\CreateAgenda::route('/create'),
+      // 'edit' => Pages\EditAgenda::route('/{record}/edit'),
     ];
   }
 }

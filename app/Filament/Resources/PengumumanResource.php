@@ -32,13 +32,24 @@ class PengumumanResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('judul')
+          ->required(),
+        Forms\Components\TextInput::make('link')
+          ->required(),
+        Forms\Components\TextInput::make('sumber')
+          ->required(),
+        Forms\Components\DateTimePicker::make('tanggal')
+          ->default(now())
+          ->required(),
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Pengumuman::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -62,15 +73,16 @@ class PengumumanResource extends Resource
           ->formatStateUsing(fn(?string $state) => 'Lihat')
           ->url(fn(?string $state): ?string => $state, true),
 
-        TextColumn::make('tgl')
+        TextColumn::make('tanggal')
           ->label('Tanggal')
           ->sortable()
-          ->formatStateUsing(fn($state) => Carbon::create($state)->toDateString()),
+          ->formatStateUsing(fn($state) =>  Carbon::parse($state)->format('d M Y - H:i:s'))
       ])
       ->filters([
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -91,8 +103,8 @@ class PengumumanResource extends Resource
   {
     return [
       'index' => Pages\ListPengumumen::route('/'),
-      'create' => Pages\CreatePengumuman::route('/create'),
-      'edit' => Pages\EditPengumuman::route('/{record}/edit'),
+      // 'create' => Pages\CreatePengumuman::route('/create'),
+      // 'edit' => Pages\EditPengumuman::route('/{record}/edit'),
     ];
   }
 }

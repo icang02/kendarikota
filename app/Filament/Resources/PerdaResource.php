@@ -34,7 +34,14 @@ class PerdaResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('no_perda')
+          ->required(),
+        Forms\Components\TextInput::make('tentang')
+          ->required(),
+        Forms\Components\DateTimePicker::make('tanggal')
+          ->required(),
+        Forms\Components\TextInput::make('link')
+          ->required(),
       ]);
   }
 
@@ -42,7 +49,7 @@ class PerdaResource extends Resource
   {
     return $table
       ->query(
-        Perda::query()->orderBy('tanggal', 'desc')
+        Perda::query()->orderBy('id', 'desc')
       )
       ->columns([
         TextColumn::make('#')
@@ -60,20 +67,22 @@ class PerdaResource extends Resource
           ->wrap()
           ->sortable(),
 
-        BadgeColumn::make('file')
-          ->label('Data File')
+        BadgeColumn::make('link')
+          ->label('Link')
           ->color('info')
-          ->formatStateUsing(fn(?string $state) => 'Data File')
+          ->formatStateUsing(fn(?string $state) => 'Link')
           ->url(fn(?string $state): ?string => $state, true),
 
         TextColumn::make('tanggal')
+          ->label('Tanggal upload')
           ->sortable()
-          ->formatStateUsing(fn($state) => Carbon::createFromTimestamp($state)->toDateString()),
+          ->formatStateUsing(fn($state) => Carbon::parse($state)->format('d m Y - H:i:s')),
       ])
       ->filters([
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -94,8 +103,8 @@ class PerdaResource extends Resource
   {
     return [
       'index' => Pages\ListPerdas::route('/'),
-      'create' => Pages\CreatePerda::route('/create'),
-      'edit' => Pages\EditPerda::route('/{record}/edit'),
+      // 'create' => Pages\CreatePerda::route('/create'),
+      // 'edit' => Pages\EditPerda::route('/{record}/edit'),
     ];
   }
 }

@@ -3,6 +3,7 @@ import HeroPage from "@/Components/HeroPage";
 import SubDomain from "@/Components/SubDomain";
 import {
   menuArsip,
+  menuDirektori,
   menuEvent,
   menuKendariKita,
   menuPeraturanDaerah,
@@ -31,7 +32,7 @@ export default function PageLayout({
         menuKendariKita.menu.find((item) => item.href == pathname)?.description
       );
     } else if (pathname.includes("/direktori")) {
-      setBreadcrumb([menuEvent.label, title]);
+      setBreadcrumb([menuDirektori.label, title]);
     } else if (pathname.includes("/event")) {
       setBreadcrumb([menuEvent.label, title]);
       setDescription(

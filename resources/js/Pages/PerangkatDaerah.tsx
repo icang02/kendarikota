@@ -5,24 +5,24 @@ import PageLayout from "@/Layouts/PageLayout";
 
 export default function PerangkatDaerah({
   title,
-  opd,
+  data,
 }: {
   title: string;
-  opd: any;
+  data: any;
 }) {
   return (
     <GuestLayout>
       <PageLayout title={title}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 gap-5 lg:gap-7">
-          {Object.keys(opd).map((kategori, i) => (
+          {data.map((item: any, i: any) => (
             <div key={i} className="col-span-2 lg:col-span-1">
               <Card className="bg-white/95 backdrop-blur-md shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] rounded-2xl px-6 py-5 w-full border border-white/30">
                 <h6 className="font-extrabold text-base text-[#173454] font-sen uppercase">
-                  {kategori}
+                  {item.nama}
                 </h6>
                 <ScrollArea className="h-20 pt-3">
                   <ul className="flex flex-col space-y-1.5 lg:space-y-1 text-xs lg:text-sm">
-                    {opd[kategori].map((list: any, j: any) => (
+                    {item.opd.map((list: any, j: any) => (
                       <li key={j} className="flex items-center space-x-2">
                         <span className="size-2 bg-blue-800"></span>
                         <span>{list.nama}</span>

@@ -15,6 +15,7 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 use function PHPUnit\Framework\isNull;
 
@@ -37,13 +38,26 @@ class ArsipResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('judul')
+          ->required(),
+        Forms\Components\TextInput::make('sumber')
+          ->required(),
+        Forms\Components\DateTimePicker::make('release'),
+        Forms\Components\DateTimePicker::make('penetapan'),
+
+        Forms\Components\TextInput::make('link')
+          ->label('Link file')
+          ->required()
+          ->url(),
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Arsip::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -68,12 +82,13 @@ class ArsipResource extends Resource
 
         TextColumn::make('release')
           ->sortable()
-          ->formatStateUsing(fn($state) => Carbon::createFromTimestamp($state)->toDateString()),
+          ->formatStateUsing(fn($state) =>  Carbon::parse($state)->format('j M Y - H:i:s'))
       ])
       ->filters([
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -94,8 +109,8 @@ class ArsipResource extends Resource
   {
     return [
       'index' => Pages\ListArsips::route('/'),
-      'create' => Pages\CreateArsip::route('/create'),
-      'edit' => Pages\EditArsip::route('/{record}/edit'),
+      // 'create' => Pages\CreateArsip::route('/create'),
+      // 'edit' => Pages\EditArsip::route('/{record}/edit'),
     ];
   }
 }

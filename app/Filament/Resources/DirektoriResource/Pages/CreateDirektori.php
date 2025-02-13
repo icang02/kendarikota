@@ -8,5 +8,12 @@ use Filament\Resources\Pages\CreateRecord;
 
 class CreateDirektori extends CreateRecord
 {
-    protected static string $resource = DirektoriResource::class;
+  protected static string $resource = DirektoriResource::class;
+
+  protected function mutateFormDataBeforeCreate(array $data): array
+  {
+    $data['slug'] = str()->slug($data['nama']);
+
+    return $data;
+  }
 }

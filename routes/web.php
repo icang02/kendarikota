@@ -52,6 +52,7 @@ Route::get('/kendari-kita/wakil-walikota', [HomeController::class, 'wakilWalikot
 Route::get('/kendari-kita/pejabat-pemerintah', [HomeController::class, 'pejabat']);
 Route::get('/kendari-kita/perangkat-daerah', [HomeController::class, 'perangkatDaerah']);
 Route::get('/all-sub-domain', [HomeController::class, 'allSubDomain']);
+Route::get('/all-twibbon', [HomeController::class, 'allTwibbon']);
 
 Route::get('/api/pengumuman', function () {
   $response = Http::withHeaders([

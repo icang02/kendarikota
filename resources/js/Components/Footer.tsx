@@ -1,5 +1,12 @@
 import { Link } from "@inertiajs/react";
-import { Facebook, Instagram, Youtube } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPinHouse,
+  Phone,
+  Youtube,
+} from "lucide-react";
 
 const Footer = () => {
   const icons = [
@@ -111,24 +118,18 @@ const Footer = () => {
               </div>
 
               <div className="mt-4 flex flex-col space-y-3.5 text-xs lg:text-sm">
-                <div className="flex items-start gap-x-2 text-white/80">
-                  <div className="w-5 flex justify-center">
-                    <i className="fa-solid fa-location-dot"></i>
-                  </div>
+                <div className="flex items-center gap-x-2 text-white/80">
+                  <MapPinHouse className="w-[13px] lg:w-[15px]" />
                   <span className="text-white">
                     Jln. Balaikota II No. 65 A Kota Kendari
                   </span>
                 </div>
-                <div className="flex items-start gap-x-2 text-white/80">
-                  <div className="w-5 flex justify-center">
-                    <i className="fa-solid fa-phone"></i>
-                  </div>
+                <div className="flex items-center gap-x-2 text-white/80">
+                  <Phone className="w-[13px] lg:w-[15px]" />
                   <span className="text-white">08114057119</span>
                 </div>
-                <div className="flex items-start gap-x-2 text-white/80">
-                  <div className="mt-0.5 w-5 flex justify-center">
-                    <i className="fa-solid fa-envelope"></i>
-                  </div>
+                <div className="flex items-center gap-x-2 text-white/80">
+                  <Mail className="w-[13px] lg:w-[15px]" />
                   <span className="text-white">
                     kominfokendarikota@gmail.com <br />
                     kominfokendarikota@gmail.com

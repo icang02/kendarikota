@@ -37,7 +37,8 @@ class DirektoriResource extends Resource
           ->schema([
             Forms\Components\Grid::make(2)
               ->schema([
-                Forms\Components\TextInput::make('nama'),
+                Forms\Components\TextInput::make('nama')
+                  ->required(),
                 Forms\Components\TextInput::make('deskripsi'),
               ])
           ])

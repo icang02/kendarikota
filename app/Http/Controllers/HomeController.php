@@ -10,6 +10,7 @@ use App\Models\Direktori;
 use App\Models\Download;
 use App\Models\Halaman;
 use App\Models\Infografis;
+use App\Models\KategoriOPD;
 use App\Models\Lokasi;
 use App\Models\OPD;
 use App\Models\Pejabat;
@@ -168,11 +169,11 @@ class HomeController extends Controller
 
   public function perangkatDaerah()
   {
-    $opd = OPD::get()->groupBy('kategori');
+    $kategoriOpd = KategoriOPD::with('opd')->get();
 
     return Inertia::render('PerangkatDaerah', [
       'title' => 'Perangkat Daerah',
-      'opd'   => $opd
+      'data'   => $kategoriOpd
     ]);
   }
 
@@ -181,6 +182,14 @@ class HomeController extends Controller
     return Inertia::render('AllSubDomain', [
       'title' => 'Akses Cepat',
       'data' => Aplikasi::paginate(18)
+    ]);
+  }
+
+  public function allTwibbon()
+  {
+    return Inertia::render('Twibbon', [
+      'title' => 'Twibbon',
+      'data' => Twibbon::paginate(9)
     ]);
   }
 }

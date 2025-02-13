@@ -35,13 +35,13 @@ class LokasiRelationManager extends RelationManager
               ->rows(4),
             Forms\Components\TextInput::make('telp')
               ->label('No. Kontak')
-              ->maxLength(50),
+              ->maxLength(20),
             Forms\Components\TextInput::make('latitude')
               ->required()
-              ->maxLength(255),
+              ->maxLength(50),
             Forms\Components\TextInput::make('longitude')
               ->required()
-              ->maxLength(255),
+              ->maxLength(50),
           ])
       ]);
   }

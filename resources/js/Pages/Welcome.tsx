@@ -5,6 +5,7 @@ import SubDomain from "@/Components/SubDomain";
 import { Card } from "@/Components/ui/card";
 import Walikota from "@/Components/Walikota";
 import GuestLayout from "@/Layouts/GuestLayout";
+import { Link } from "@inertiajs/react";
 import { useEffect } from "react";
 
 import { Autoplay, EffectFade } from "swiper/modules";
@@ -60,9 +61,12 @@ export default function Welcome({
                   <button className="w-full bg-[#1A5590] hover:bg-opacity-90 transition ease-out text-xs font-sen py-2 text-white font-medium uppercase tracking-wide">
                     Buat
                   </button>
-                  <button className="w-full border border-gray-300 bg-white hover:bg-gray-100 transition ease-out text-xs font-sen py-2 text-black font-medium uppercase tracking-wide">
+                  <Link
+                    href="/all-twibbon"
+                    className="text-center w-full border border-gray-300 bg-white hover:bg-gray-100 transition ease-out text-xs font-sen py-2 text-black font-medium uppercase tracking-wide"
+                  >
                     Lihat lainnya
-                  </button>
+                  </Link>
                 </div>
               </Card>
               {/* <Twibbon /> */}

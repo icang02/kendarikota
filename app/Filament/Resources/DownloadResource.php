@@ -35,13 +35,24 @@ class DownloadResource extends Resource
   {
     return $form
       ->schema([
-        //
+        Forms\Components\TextInput::make('judul')
+          ->required(),
+        Forms\Components\TextInput::make('deskripsi')
+          ->required(),
+        Forms\Components\DateTimePicker::make('tanggal')
+          ->required(),
+        Forms\Components\TextInput::make('link')
+          ->url()
+          ->required(),
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->query(
+        Download::query()->orderBy('id', 'desc')
+      )
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -71,6 +82,7 @@ class DownloadResource extends Resource
         //
       ])
       ->actions([
+        Tables\Actions\DeleteAction::make(),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
@@ -91,8 +103,8 @@ class DownloadResource extends Resource
   {
     return [
       'index' => Pages\ListDownloads::route('/'),
-      'create' => Pages\CreateDownload::route('/create'),
-      'edit' => Pages\EditDownload::route('/{record}/edit'),
+      // 'create' => Pages\CreateDownload::route('/create'),
+      // 'edit' => Pages\EditDownload::route('/{record}/edit'),
     ];
   }
 }

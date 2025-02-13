@@ -3,6 +3,7 @@ import { Card } from "@/Components/ui/card";
 import PageLayout from "@/Layouts/PageLayout";
 import { Phone } from "lucide-react";
 import Maps from "@/Components/Maps";
+import { Link, usePage } from "@inertiajs/react";
 
 export default function EventPage({
   title,
@@ -11,6 +12,8 @@ export default function EventPage({
   title: string;
   data: any;
 }) {
+  const { globalDirektori }: any = usePage().props;
+
   return (
     <GuestLayout>
       <PageLayout title={title}>
@@ -36,6 +39,25 @@ export default function EventPage({
                     <Phone size={12} />{" "}
                     <span>{data.telp ?? "No phone data"}</span>
                   </p>
+                </div>
+              </Card>
+
+              <Card className="mt-6 p-6 lg:p-8 lg:px-9">
+                <h6 className="text-[#1D3D61] font-sen text-lg font-bold leading-tight uppercase">
+                  Direktori
+                </h6>
+                <div className="mt-4">
+                  <div className="flex flex-wrap">
+                    {globalDirektori.map((item: any, i: any) => (
+                      <Link
+                        key={i}
+                        className="mr-1 mb-1 font-sen hover:bg-opacity-90 text-xs px-4 rounded py-2 bg-yellow-600 text-white font-semibold uppercase tracking-wider"
+                        href={`/direktori/${item.slug}`}
+                      >
+                        {item.nama}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </Card>
             </div>

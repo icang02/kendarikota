@@ -15,9 +15,9 @@ export default function AllSubDomain({
       <PageLayout title={title}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-6 gap-4 lg:gap-5">
-            {data.data.map((item: any) => (
+            {data.data.map((item: any, i: any) => (
               <div
-                key={item.id}
+                key={i}
                 className={`bg-white/90 backdrop-blur relative text-center col-span-3 lg:col-span-1 border rounded-xl lg:rounded-3xl py-3 pb-10 lg:py-4 lg:pb-10`}
               >
                 <GlowingEffect
