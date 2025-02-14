@@ -27,7 +27,7 @@ export default function EventPage({
                       {item.lokasi}
                     </p>
                   </div>
-                  <div className="flex-1">
+                  <div className="flex-1 w-full">
                     <h6 className="font-sen text-base font-bold leading-tight">
                       {item.nama}
                     </h6>

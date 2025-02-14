@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PlaceholdersAndVanishInput } from "./ui/vanish-input";
+import { PlaceholdersAndVanishInput } from "./ui/aceternity/vanish-input";
 
 const FormSearch = () => {
   const [search, setSearch] = useState<string>("");

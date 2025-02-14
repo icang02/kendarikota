@@ -24,7 +24,6 @@ import {
 import React, { useEffect, useState } from "react";
 import {
   menuArsip,
-  menuDirektori,
   menuEvent,
   menuKendariKita,
   menuPeraturanDaerah,
@@ -33,8 +32,6 @@ import {
 } from "@/lib/constant";
 import { AlignJustify, ChevronDown, ExternalLink } from "lucide-react";
 
-import { Button } from "@/Components/ui/button";
-import { Input } from "@/Components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/Components/ui/sheet";
 
 import {
@@ -105,14 +102,14 @@ const Navbar = () => {
                   <div className="flex flex-col space-y-3.5">
                     {navProgramKotaku.menu.map((item: any, i: any) =>
                       item.subMenu ? (
-                        <div>
+                        <div key={i}>
                           <span className="cursor-pointer hover:underline">
                             {item.label}
                           </span>
                           <div className="pl-2.5 flex flex-col mt-1.5 space-y-1">
                             {item.subMenu.map((list: any, j: any) =>
                               list.subMenu ? (
-                                <div>
+                                <div key={j}>
                                   <span className="cursor-pointer hover:underline">
                                     {list.label}
                                   </span>
@@ -179,19 +176,19 @@ const Navbar = () => {
                 </AccordionContent>
               </AccordionItem>
 
-              <AccordionItem value={menuDirektori.label}>
+              <AccordionItem value={"Direktori"}>
                 <AccordionTrigger className="font-sen">
-                  {menuDirektori.label}
+                  Direktori
                 </AccordionTrigger>
                 <AccordionContent className="font-mulish text-[13px]">
                   <div className="flex flex-col space-y-3.5">
-                    {menuDirektori.menu.map((item: any, i: any) => (
+                    {globalDirektori.map((item: any, i: any) => (
                       <Link
                         key={i}
-                        href={item.href}
+                        href={`/direktori/${item.slug}`}
                         className="hover:underline"
                       >
-                        {item.title}
+                        {item.nama}
                       </Link>
                     ))}
                   </div>

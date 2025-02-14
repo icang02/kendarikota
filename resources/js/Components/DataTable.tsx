@@ -64,11 +64,11 @@ export function DataTable({ data, columns, keySearch = "judul" }: any) {
           onChange={(event) =>
             table.getColumn(keySearch)?.setFilterValue(event.target.value)
           }
-          className="max-w-sm"
+          className="max-w-sm text-xs lg:text-sm"
         />
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto text-xs lg:text-sm">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
@@ -80,7 +80,7 @@ export function DataTable({ data, columns, keySearch = "judul" }: any) {
                 return (
                   <DropdownMenuCheckboxItem
                     key={column.id}
-                    className="capitalize"
+                    className="capitalize text-xs lg:text-sm"
                     checked={column.getIsVisible()}
                     onCheckedChange={(value) =>
                       column.toggleVisibility(!!value)

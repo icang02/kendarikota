@@ -15,7 +15,7 @@ export default function Pejabat({
       <PageLayout title={title}>
         <div className="max-w-6xl mx-auto grid grid-cols-4 gap-6 lg:gap-7">
           {pejabat.data.map((item: any, i: any) => (
-            <div key={i} className="col-span-4 lg:col-span-1">
+            <div key={i} className="px-6 lg:px-0 col-span-4 lg:col-span-1">
               <Card className="shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] rounded-3xl px-6 py-7 h-full w-full bg-blue-200 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-0 border border-white/30">
                 <img
                   src={

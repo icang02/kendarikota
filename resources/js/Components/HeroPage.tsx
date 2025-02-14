@@ -7,7 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/Components/ui/breadcrumb";
-import { TypewriterEffect } from "@/Components/ui/typewriter-effect";
+import { TypewriterEffect } from "@/Components/ui/aceternity/typewriter-effect";
 
 const HeroPage = ({
   title,
@@ -54,7 +54,7 @@ const HeroPage = ({
           </BreadcrumbList>
         </Breadcrumb>
         <TypewriterEffect
-          className="mt-7 lg:mt-10 mb-4 font-sen text-start tracking-wide uppercase"
+          className="mt-7 lg:mt-10 mb-2 lg:mb-4 font-sen text-start tracking-wide uppercase"
           words={convertStringToWords(title)}
         />
         <p className="font-dmsans font-light text-xs lg:text-sm text-slate-200 max-w-xl">

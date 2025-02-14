@@ -3,7 +3,6 @@ import HeroPage from "@/Components/HeroPage";
 import SubDomain from "@/Components/SubDomain";
 import {
   menuArsip,
-  menuDirektori,
   menuEvent,
   menuKendariKita,
   menuPeraturanDaerah,
@@ -27,12 +26,12 @@ export default function PageLayout({
     const pathname = location.pathname;
 
     if (pathname.includes("/kendari-kita")) {
-      setBreadcrumb([menuEvent.label, title]);
+      setBreadcrumb([menuKendariKita.label, title]);
       setDescription(
         menuKendariKita.menu.find((item) => item.href == pathname)?.description
       );
     } else if (pathname.includes("/direktori")) {
-      setBreadcrumb([menuDirektori.label, title]);
+      setBreadcrumb(["Direktori", title]);
     } else if (pathname.includes("/event")) {
       setBreadcrumb([menuEvent.label, title]);
       setDescription(

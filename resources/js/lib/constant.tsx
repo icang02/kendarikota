@@ -219,57 +219,6 @@ export const menuKendariKita = {
   ],
 };
 
-export const menuDirektori = {
-  label: "Direktori",
-  menu: [
-    {
-      title: "Wisata",
-      href: "/direktori/wisata",
-      description: "Informasi destinasi wisata di Kota Kendari.",
-    },
-    {
-      title: "Institusi Pendidikan",
-      href: "/direktori/institusi-pendidikan",
-      description: "Daftar sekolah dan perguruan tinggi di Kendari.",
-    },
-    {
-      title: "Rumah Sakit",
-      href: "/direktori/rumah-sakit",
-      description: "Informasi rumah sakit dan layanan kesehatan",
-    },
-    {
-      title: "Rumah Ibadah",
-      href: "/direktori/rumah-ibadah",
-      description: "Lokasi tempat ibadah berbagai agama di Kendari",
-    },
-    {
-      title: "Pusat Perbelanjaan",
-      href: "/direktori/pusat-perbelanjaan",
-      description: "Daftar pusat perbelanjaan dan pasar di Kendari",
-    },
-    {
-      title: "Hiburan",
-      href: "/direktori/hiburan",
-      description: "Tempat hiburan dan taman rekreasi Kota Kendari",
-    },
-    {
-      title: "Kelurahan & Kecamatan",
-      href: "/direktori/kelurahan-kecamatan",
-      description: "Informasi wilayah administratif Kota Kendari",
-    },
-    {
-      title: "Olahraga",
-      href: "/direktori/olahraga",
-      description: "Sarana dan fasilitas olahraga yang tersedia",
-    },
-    {
-      title: "Transportasi",
-      href: "/direktori/transportasi",
-      description: "Moda transportasi umum dan layanan angkutan",
-    },
-  ],
-};
-
 export const menuEvent = {
   label: "Event",
   menu: [
@@ -332,7 +281,11 @@ export const columnsPengumuman = [
     cell: ({ row }: any) => (
       <a
         href={row.getValue("link")}
-        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+        className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
+          row.getValue("link")
+            ? "hover:bg-opacity-90"
+            : "cursor-default bg-opacity-70"
+        }`}
       >
         <Download size={14} /> <span>Download</span>
       </a>
@@ -368,7 +321,11 @@ export const columnsArsip = [
     cell: ({ row }: any) => (
       <a
         href={row.getValue("link")}
-        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+        className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
+          row.getValue("link")
+            ? "hover:bg-opacity-90"
+            : "cursor-default bg-opacity-70"
+        }`}
       >
         <Download size={14} /> <span>Download</span>
       </a>
@@ -404,7 +361,11 @@ export const columnsStatistik = [
     cell: ({ row }: any) => (
       <a
         href={row.getValue("file")}
-        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+        className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
+          row.getValue("file")
+            ? "hover:bg-opacity-90"
+            : "cursor-default bg-opacity-70"
+        }`}
       >
         <Download size={14} /> <span>Download</span>
       </a>
@@ -440,7 +401,11 @@ export const columnsPerda = [
     cell: ({ row }: any) => (
       <a
         href={row.getValue("file")}
-        className="flex items-center space-x-1 bg-[#173454] hover:bg-opacity-90 transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit"
+        className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
+          row.getValue("file")
+            ? "hover:bg-opacity-90"
+            : "cursor-default bg-opacity-70"
+        }`}
       >
         <Download size={14} /> <span>Download</span>
       </a>

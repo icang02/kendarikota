@@ -1,5 +1,5 @@
 import { Link, usePage } from "@inertiajs/react";
-import { GlowingEffect } from "./ui/glowing-effect";
+import { GlowingEffect } from "./ui/aceternity/glowing-effect";
 
 const SubDomain = () => {
   const { aplikasi }: any = usePage().props;

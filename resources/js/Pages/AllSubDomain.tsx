@@ -1,7 +1,7 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 import PaginationNav from "@/Components/PaginationNav";
 import PageLayout from "@/Layouts/PageLayout";
-import { GlowingEffect } from "@/Components/ui/glowing-effect";
+import { GlowingEffect } from "@/Components/ui/aceternity/glowing-effect";
 
 export default function AllSubDomain({
   title,

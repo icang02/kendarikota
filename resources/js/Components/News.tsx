@@ -47,7 +47,7 @@ export default function News() {
 
           <div className="mb-5 grid grid-cols-3 gap-4">
             {pengumuman.loading ? (
-              Array.from({ length: 5 }, (_, i) => i + 1).map((item, i) => (
+              Array.from({ length: 5 }, (_, i) => i + 1).map((_, i) => (
                 <div
                   key={i}
                   className={`${
@@ -57,7 +57,7 @@ export default function News() {
                   }`}
                 >
                   <Card className="p-4 h-full">
-                    <Skeleton className="object-cover object-center mb-3 w-full h-[145px] rounded-lg" />
+                    <Skeleton className="object-cover object-center mb-3 w-full h-[180px] lg:h-[145px] rounded-lg" />
                     <div>
                       <Skeleton className="h-3.5 w-[40%]" />
                       <Skeleton className="h-3.5 my-2 mt-5" />
@@ -96,7 +96,7 @@ export default function News() {
                       <img
                         src={item.better_featured_image?.source_url}
                         alt="img"
-                        className="hover:brightness-90 object-cover object-center mb-3 w-full h-[145px] rounded-lg transition"
+                        className="hover:brightness-90 object-cover object-center mb-3 w-full h-[180px] lg:h-[145px] rounded-lg transition"
                       />
                     </a>
                     <div className="group-hover:translate-x-1.5 transition ease-out">

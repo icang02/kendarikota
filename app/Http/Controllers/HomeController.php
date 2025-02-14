@@ -12,7 +12,6 @@ use App\Models\Halaman;
 use App\Models\Infografis;
 use App\Models\KategoriOPD;
 use App\Models\Lokasi;
-use App\Models\OPD;
 use App\Models\Pejabat;
 use App\Models\Pengumuman;
 use App\Models\Perda;

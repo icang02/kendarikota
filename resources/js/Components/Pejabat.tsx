@@ -2,7 +2,7 @@ import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { Card } from "@/Components/ui/card";
-import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
+import { BackgroundGradientAnimation } from "./ui/aceternity/background-gradient-animation";
 
 // Import Swiper styles
 import "swiper/css";
@@ -16,7 +16,7 @@ const Pejabat = ({ youtube, pejabat }: any) => {
       <div className="container grid grid-cols-10 gap-8">
         <div className="col-span-10 lg:col-span-7">
           <BackgroundGradientAnimation className="flex items-center justify-center w-full h-full">
-            <div className="text-white w-full px-6 lg:px-10">
+            <div className="text-white w-full px-3.5 lg:px-10">
               <h1 className="mb-1 font-sen text-xl lg:text-3xl font-bold">
                 Video
               </h1>
@@ -25,7 +25,7 @@ const Pejabat = ({ youtube, pejabat }: any) => {
               </p>
 
               {/* Frame Video */}
-              <Card className="mt-7 p-3 lg:p-4 w-full bg-white/20 border-none">
+              <Card className="mt-7 p-1.5 lg:p-4 w-full bg-white/20 border-none">
                 <Swiper
                   modules={[Pagination]}
                   slidesPerView={1}
@@ -79,7 +79,7 @@ const Pejabat = ({ youtube, pejabat }: any) => {
               {pejabat.map((item: any, i: any) => (
                 <SwiperSlide key={i} className="relative group">
                   <img
-                    className="transition ease-out group-hover:brightness-50 rounded-lg border aspect-[3/4] object-cover object-top w-full"
+                    className="transition ease-out brightness-[0.9] group-hover:brightness-50 rounded-lg border aspect-[3/4] object-cover object-top w-full"
                     src={
                       item.foto
                         ? `/storage/${item.foto}`

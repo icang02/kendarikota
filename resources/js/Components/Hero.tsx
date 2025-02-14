@@ -2,8 +2,8 @@
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Button } from "./ui/moving-border";
-import { TextGenerateEffect } from "./ui/text-generate-effect";
+import { Button } from "./ui/aceternity/moving-border";
+import { TextGenerateEffect } from "./ui/aceternity/text-generate-effect";
 import FormSearch from "./FormSearch";
 
 const slider = [
