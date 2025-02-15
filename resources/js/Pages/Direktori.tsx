@@ -1,5 +1,5 @@
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import PageLayout from "@/Layouts/PageLayout";
 import { Map, Phone } from "lucide-react";
 import { Link, useForm } from "@inertiajs/react";

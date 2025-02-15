@@ -1,5 +1,5 @@
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import PageLayout from "@/Layouts/PageLayout";
 import { DataTable } from "@/Components/DataTable";
 import {

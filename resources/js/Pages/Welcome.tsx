@@ -2,7 +2,7 @@ import Hero from "@/Components/Hero";
 import News from "@/Components/News";
 import Pejabat from "@/Components/Pejabat";
 import SubDomain from "@/Components/SubDomain";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import Walikota from "@/Components/Walikota";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Link } from "@inertiajs/react";

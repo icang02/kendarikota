@@ -1,5 +1,4 @@
 import {
-  ColumnDef,
   ColumnFiltersState,
   SortingState,
   VisibilityState,
@@ -12,7 +11,7 @@ import {
 } from "@tanstack/react-table";
 import { ChevronDown } from "lucide-react";
 
-import { Button } from "@/Components/ui/button";
+import { Button } from "@/Components/button";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

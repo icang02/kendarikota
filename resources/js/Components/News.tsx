@@ -1,4 +1,4 @@
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import { ApiResponse, Post } from "@/types";
 import { Clock } from "lucide-react";
 import { useEffect, useState } from "react";

@@ -1,7 +1,7 @@
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import { BackgroundGradientAnimation } from "./ui/aceternity/background-gradient-animation";
 
 // Import Swiper styles

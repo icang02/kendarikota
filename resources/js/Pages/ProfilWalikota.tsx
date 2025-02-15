@@ -5,7 +5,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/Components/ui/card";
+} from "@/Components/card";
 import PageLayout from "@/Layouts/PageLayout";
 import parse from "html-react-parser";
 import { ArrowBigUp } from "lucide-react";

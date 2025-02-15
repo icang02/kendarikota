@@ -1,5 +1,5 @@
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import { ScrollArea } from "@/Components/ui/scroll-area";
 import PageLayout from "@/Layouts/PageLayout";
 

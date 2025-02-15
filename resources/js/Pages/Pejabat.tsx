@@ -1,5 +1,5 @@
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import PaginationNav from "@/Components/PaginationNav";
 import PageLayout from "@/Layouts/PageLayout";
 

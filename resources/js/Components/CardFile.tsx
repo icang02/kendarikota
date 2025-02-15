@@ -1,5 +1,5 @@
-import { Button } from "@/Components/ui/button";
-import { Card, CardContent, CardHeader } from "@/Components/ui/card";
+import { Button } from "@/Components/button";
+import { Card, CardContent, CardHeader } from "@/Components/card";
 import { Download, FileText } from "lucide-react";
 
 export default function DownloadCard({ fileName, sumber, downloadUrl }: any) {

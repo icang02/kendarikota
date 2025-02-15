@@ -1,7 +1,7 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 import PaginationNav from "@/Components/PaginationNav";
 import PageLayout from "@/Layouts/PageLayout";
-import { Card } from "@/Components/ui/card";
+import { Card } from "@/Components/card";
 import parse from "html-react-parser";
 
 export default function Twibbon({ title, data }: { title: string; data: any }) {
