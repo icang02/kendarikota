@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/tes', function () {
+  dd(str()->slug('1_Surat_Daftar_Lokasi_dan_Alokasi_Bantuan_Pemerintah_2017'));
   // $data = App\Models\Infografis::all();
   // $count = 0;
   // foreach ($data as $item) {

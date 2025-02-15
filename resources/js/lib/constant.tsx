@@ -23,7 +23,7 @@ export const navProgramKotaku = {
       subMenu: [
         {
           label: "SK Pengurangan Kumuh 2020",
-          url: "/dokumen/SK_Kumuh_Walikota_Kendari_2020.pdf",
+          url: "/storage/dokumen/program-kotaku/SK-Kumuh-Walikota-Kendari-2020.pdf",
         },
         {
           label:
@@ -31,23 +31,23 @@ export const navProgramKotaku = {
           subMenu: [
             {
               label: "Tahun 2017",
-              url: "/dokumen/1_Surat_Daftar_Lokasi_dan_Alokasi_Bantuan_Pemerintah_2017.pdf",
+              url: "/storage/dokumen/program-kotaku/1-surat-daftar-lokasi-dan-alokasi-bantuan-pemerintah-2017.pdf",
             },
             {
               label: "Tahun 2018",
-              url: "/dokumen/180522_DAFLOK_BDI_2018.pdf",
+              url: "/storage/dokumen/program-kotaku/180522-DAFLOK-BDI-2018.pdf",
             },
             {
               label: "Tahun 2019",
-              url: "/dokumen/surat-dir-pkp-no-bw-0901-ttg-lokasi-alokasi-bpm-2019-nsup-kotaku.pdf",
+              url: "/storage/dokumen/program-kotaku/surat-dir-pkp-no-bw-0901-ttg-lokasi-alokasi-bpm-2019-nsup-kotaku.pdf",
             },
             {
               label: "Tahun 2020",
-              url: "/dokumen/Kepmen-PUPR-167-Lokasi-IBM-TA-2020.pdf",
+              url: "/storage/dokumen/program-kotaku/Kepmen-PUPR-167-Lokasi-IBM-TA-2020.pdf",
             },
             {
               label: "Tahun 2021",
-              url: "/dokumen/20210222-Kepmen-PUPR-No-177-KPTS-M-2021-penetapan-lokasi-dan-besaran-bantuan-kegiatan-IBM-2021.pdf",
+              url: "/storage/dokumen/program-kotaku/20210222-Kepmen-PUPR-No-177-KPTS-M-2021-penetapan-lokasi-dan-besaran-bantuan-kegiatan-IBM-2021.pdf",
             },
           ],
         },
@@ -280,6 +280,7 @@ export const columnsPengumuman = [
     header: "Lihat",
     cell: ({ row }: any) => (
       <a
+        target="_blank"
         href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
           row.getValue("link")
@@ -320,7 +321,13 @@ export const columnsArsip = [
     header: "Lihat",
     cell: ({ row }: any) => (
       <a
-        href={row.getValue("link")}
+        target="_blank"
+        href={
+          row.getValue("link") &&
+          row.getValue("link").startsWith("dokumen/static")
+            ? `/storage/${row.getValue("link")}`
+            : row.getValue("link") || "#"
+        }
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
           row.getValue("link")
             ? "hover:bg-opacity-90"
@@ -356,13 +363,14 @@ export const columnsStatistik = [
     ),
   },
   {
-    accessorKey: "file",
+    accessorKey: "link",
     header: "File",
     cell: ({ row }: any) => (
       <a
-        href={row.getValue("file")}
+        target="_blank"
+        href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
-          row.getValue("file")
+          row.getValue("link")
             ? "hover:bg-opacity-90"
             : "cursor-default bg-opacity-70"
         }`}
@@ -396,13 +404,14 @@ export const columnsPerda = [
     ),
   },
   {
-    accessorKey: "file",
-    header: "Lihat",
+    accessorKey: "link",
+    header: "File",
     cell: ({ row }: any) => (
       <a
-        href={row.getValue("file")}
+        target="_blank"
+        href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
-          row.getValue("file")
+          row.getValue("link")
             ? "hover:bg-opacity-90"
             : "cursor-default bg-opacity-70"
         }`}
