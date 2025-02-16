@@ -38,10 +38,11 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.5.2",
-    "fabric": "^6.2.0",
+    "fabric": "^6.0.2",
     "html-react-parser": "^5.2.2",
     "lucide-react": "^0.474.0",
     "motion": "^12.4.1",
+    "react-responsive": "^10.0.0",
     "swiper": "^11.2.2",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7"

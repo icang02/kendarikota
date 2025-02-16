@@ -190,7 +190,7 @@ class HomeController extends Controller
   {
     return Inertia::render('Twibbon', [
       'title' => 'Twibbon',
-      'data' => Twibbon::paginate(9)
+      'data' => Twibbon::orderBy('id', 'desc')->paginate(9)
     ]);
   }
 }

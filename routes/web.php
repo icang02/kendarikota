@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/tes', function () {
-  dd(bcrypt('admin'));
+  // return Inertia::render('Tes', [
+  //   'twibbon' => Twibbon::latest()
+  // ]);
   // $data = App\Models\Infografis::all();
   // $count = 0;
   // foreach ($data as $item) {

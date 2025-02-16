@@ -5,11 +5,12 @@ import SubDomain from "@/Components/SubDomain";
 import { Card } from "@/Components/card";
 import Walikota from "@/Components/Walikota";
 import GuestLayout from "@/Layouts/GuestLayout";
-import { Link } from "@inertiajs/react";
 import { useEffect } from "react";
 
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import CardTwibbonGenerate from "@/Components/CardTwibbonGenerate";
+// import CardTwibbonGenerate from "@/Components/CardTwibbonGenerate";
 
 export default function Welcome({
   youtube,
@@ -35,43 +36,22 @@ export default function Welcome({
       <Hero slider={slider} />
       <Walikota banner={banner} />
       <News />
-      <Pejabat youtube={youtube} pejabat={pejabat} />
+      {/* <Pejabat youtube={youtube} pejabat={pejabat} /> */}
 
       <div className="container pb-14">
         <div className="grid grid-cols-10 gap-0 lg:gap-10">
           <div className="col-span-10 lg:col-span-7">
             <SubDomain />
+            {/*  */}
           </div>
 
           <div className="col-span-10 lg:col-span-3">
             <div className="mb-7">
               <h1 className="font-sen text-xl font-bold">Twibbon</h1>
-              <p className="text-xs lg:text-sm italic">
+              <p className="mb-5 text-xs lg:text-sm italic">
                 Unggah foto untuk membuat twibbon kamu
               </p>
-
-              <Card className="mt-5 p-5 py-7">
-                <h6 className="w-full lg:w-[90%] mx-auto font-extrabold font-sen text-base text-[#1A3C61] uppercase leading-tight text-center">
-                  {twibbon.title}
-                </h6>
-                <img
-                  className="w-full lg:w-[90%] mx-auto my-4 mb-2 transition ease-out group-hover:brightness-50 rounded-lg border"
-                  src={`/storage/${twibbon.img}`}
-                  alt="img"
-                />
-                <div className="flex flex-col lg:flex-row gap-2 w-full">
-                  <button className="w-full bg-[#1A5590] hover:bg-opacity-90 transition ease-out text-xs font-sen py-2 text-white font-medium uppercase tracking-wide">
-                    Buat
-                  </button>
-                  <Link
-                    href="/all-twibbon"
-                    className="text-center w-full border border-gray-300 bg-white hover:bg-gray-100 transition ease-out text-xs font-sen py-2 text-black font-medium uppercase tracking-wide"
-                  >
-                    Lihat lainnya
-                  </Link>
-                </div>
-              </Card>
-              {/* <Twibbon /> */}
+              <CardTwibbonGenerate twibbon={twibbon} />
             </div>
 
             <div className="p-1">
