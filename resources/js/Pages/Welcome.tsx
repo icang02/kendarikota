@@ -36,7 +36,7 @@ export default function Welcome({
       <Hero slider={slider} />
       <Walikota banner={banner} />
       <News />
-      {/* <Pejabat youtube={youtube} pejabat={pejabat} /> */}
+      <Pejabat youtube={youtube} pejabat={pejabat} />
 
       <div className="container pb-14">
         <div className="grid grid-cols-10 gap-0 lg:gap-10">
@@ -54,7 +54,7 @@ export default function Welcome({
               <CardTwibbonGenerate twibbon={twibbon} />
             </div>
 
-            <div className="p-1">
+            <div className="p-1 lg:p-0">
               <h1 className="mb-3 font-sen text-xl font-bold">Infografis</h1>
               <Swiper
                 modules={[Autoplay, EffectFade]}
@@ -70,7 +70,7 @@ export default function Welcome({
                   <SwiperSlide key={i}>
                     <Card className="py-5">
                       <img
-                        className="w-full lg:w-[90%] mx-auto transition ease-out group-hover:brightness-50 rounded-none lg:rounded-lg border"
+                        className="w-full lg:w-[94%] mx-auto transition ease-out group-hover:brightness-50 rounded-none lg:rounded-lg border"
                         src={
                           item.img
                             ? `/storage/${item.img}`

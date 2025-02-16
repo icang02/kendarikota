@@ -83,7 +83,7 @@ const Navbar = () => {
               <AlignJustify />
             </span>
           </SheetTrigger>
-          <SheetContent className="z-[999] py-10 overflow-y-scroll">
+          <SheetContent className="z-[99999] py-10 overflow-y-scroll">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value={"beranda"}>
                 <Link

@@ -40,7 +40,7 @@ export const useTwibbonCanvas = (): UseTwibbonHookRes => {
 
   const [fabricCanvas, setFabricCanvas] = useState<fabric.Canvas>();
   const isMd = useMediaQuery({
-    query: "(min-width: 768px)",
+    query: "(min-width: 10000px)",
   });
 
   const oldFabricObject = fabric.FabricObject.prototype.toObject;

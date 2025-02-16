@@ -2,13 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+// use Inertia\Inertia;
 
 Route::get('/tes', function () {
-  // return Inertia::render('Tes', [
-  //   'twibbon' => Twibbon::latest()
-  // ]);
+  // return Inertia::render('Tes');
   // $data = App\Models\Infografis::all();
   // $count = 0;
   // foreach ($data as $item) {
@@ -57,37 +57,36 @@ Route::get('/kendari-kita/perangkat-daerah', [HomeController::class, 'perangkatD
 Route::get('/all-sub-domain', [HomeController::class, 'allSubDomain']);
 Route::get('/all-twibbon', [HomeController::class, 'allTwibbon']);
 
-Route::get('/api/pengumuman', function () {
-  $response = Http::withHeaders([
-    'X-Requested-With' => 'XMLHttpRequest',
-  ])->get('https://berita.kendarikota.go.id/wp-json/wp/v2/posts', [
-    'per_page' => 5,
-    'categories' => 22,
-  ]);
 
-  $posts = $response->json();
-  foreach ($posts as &$post) {
-    $post['date'] = Carbon::parse($post['date'])->diffForHumans();
+Route::get('/api/pengumuman', function () {
+  // Menentukan key untuk cache
+  $cacheKey = 'pengumuman_posts';
+
+  // Mengecek apakah data sudah ada di cache
+  if (Cache::has($cacheKey)) {
+    // Jika ada, ambil data dari cache
+    $posts = Cache::get($cacheKey);
+  } else {
+    // Jika tidak ada, ambil data dari API eksternal
+    $response = Http::withHeaders([
+      'X-Requested-With' => 'XMLHttpRequest',
+    ])->get('https://berita.kendarikota.go.id/wp-json/wp/v2/posts', [
+      'per_page' => 5,
+      'categories' => 22,
+    ]);
+
+    $posts = $response->json();
+
+    // Format tanggal menggunakan Carbon
+    foreach ($posts as &$post) {
+      $post['date'] = Carbon::parse($post['date'])->diffForHumans();
+    }
+
+    Cache::put($cacheKey, $posts, now()->addMinutes(180));
   }
 
   return response()->json($posts);
 });
-
-Route::get('/api/category', function () {
-  $categoriesResponse = Http::withHeaders([
-    'X-Requested-With' => 'XMLHttpRequest',
-  ])->get('https://berita.kendarikota.go.id/wp-json/wp/v2/categories');
-
-  $categories = collect($categoriesResponse->json())->map(function ($category) {
-    return [
-      'id' => $category['id'],
-      'name' => $category['name'],
-    ];
-  });
-
-  return response()->json($categories);
-});
-
 
 
 // Dashboard route
