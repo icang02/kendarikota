@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Aplikasi;
 use App\Models\Direktori;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -38,6 +39,7 @@ class HandleInertiaRequests extends Middleware
       ],
       'aplikasi' => Aplikasi::limit(12)->get(),
       'globalDirektori' => Direktori::all(),
+      'heroPageImage' => Slider::first()
     ];
   }
 }

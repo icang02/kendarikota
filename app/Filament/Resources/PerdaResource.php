@@ -20,7 +20,7 @@ class PerdaResource extends Resource
 {
   protected static ?string $model = Perda::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-document-text';
   protected static ?string $navigationLabel = 'Peraturan Daerah';
   protected static ?string $navigationGroup = 'Menu Peraturan Daerah';
   protected static ?int $navigationSort = 50;

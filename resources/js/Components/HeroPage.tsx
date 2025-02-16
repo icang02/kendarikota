@@ -8,22 +8,25 @@ import {
   BreadcrumbSeparator,
 } from "@/Components/ui/breadcrumb";
 import { TypewriterEffect } from "@/Components/ui/aceternity/typewriter-effect";
+import { usePage } from "@inertiajs/react";
 
 const HeroPage = ({
   title,
   description,
   breadcrumb,
-  bgImage,
 }: {
   title: string;
   description: string;
   breadcrumb: any;
-  bgImage?: string;
 }) => {
+  const { heroPageImage }: any = usePage().props;
+
   return (
     <section
       className="relative h-[380px] bg-cover bg-bottom"
-      style={{ backgroundImage: `url(${bgImage ?? "/img/hero.png"})` }}
+      style={{
+        backgroundImage: `url(${"/storage/" + heroPageImage.image})`,
+      }}
     >
       <div className="z-10 absolute inset-0 bg-black/50"></div>
       <div className="z-20 relative container pt-24 lg:pt-32">

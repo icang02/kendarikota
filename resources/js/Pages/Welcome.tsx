@@ -16,6 +16,8 @@ export default function Welcome({
   pejabat,
   infografis,
   twibbon,
+  slider,
+  banner,
 }: any) {
   useEffect(() => {
     const script = document.createElement("script");
@@ -30,8 +32,8 @@ export default function Welcome({
 
   return (
     <GuestLayout>
-      <Hero />
-      <Walikota />
+      <Hero slider={slider} />
+      <Walikota banner={banner} />
       <News />
       <Pejabat youtube={youtube} pejabat={pejabat} />
 
@@ -88,7 +90,7 @@ export default function Welcome({
                   <SwiperSlide key={i}>
                     <Card className="py-5">
                       <img
-                        className="w-full lg:w-[90%] mx-auto transition ease-out group-hover:brightness-50 rounded-lg border"
+                        className="w-full lg:w-[90%] mx-auto transition ease-out group-hover:brightness-50 rounded-none lg:rounded-lg border"
                         src={
                           item.img
                             ? `/storage/${item.img}`

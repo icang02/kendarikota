@@ -20,7 +20,7 @@ class YoutubeResource extends Resource
 {
   protected static ?string $model = Youtube::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-video-camera';
   protected static ?string $navigationLabel = 'Youtube Video';
   protected static ?string $navigationGroup = 'Data lainnya';
 

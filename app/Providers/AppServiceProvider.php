@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Models\Aplikasi;
 use App\Models\Infografis;
 use App\Models\Pejabat;
+use App\Models\Slider;
 use App\Models\Twibbon;
 use App\Observers\AplikasiObserver;
 use App\Observers\InfografisObserver;
 use App\Observers\PejabatObserver;
+use App\Observers\SliderObserver;
 use App\Observers\TwibbonObserver;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
@@ -34,5 +36,6 @@ class AppServiceProvider extends ServiceProvider
     Aplikasi::observe(AplikasiObserver::class);
     Infografis::observe(InfografisObserver::class);
     Twibbon::observe(TwibbonObserver::class);
+    Slider::observe(SliderObserver::class);
   }
 }

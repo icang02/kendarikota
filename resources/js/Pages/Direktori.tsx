@@ -2,7 +2,7 @@ import GuestLayout from "@/Layouts/GuestLayout";
 import { Card } from "@/Components/card";
 import PageLayout from "@/Layouts/PageLayout";
 import { Map, Phone } from "lucide-react";
-import { Link, useForm } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import PaginationNav from "@/Components/PaginationNav";
 
 export default function Direktori({
@@ -36,7 +36,7 @@ export default function Direktori({
                       </p>
                     </div>
                     <div>
-                      <Link href={`/direktori/${data.slug}/${item.id}`}>
+                      <Link href={`/direktori/lokasi/${item.id}`}>
                         <Map className="size-[40px] lg:size-[52px] text-white bg-gradient-to-b from-yellow-400/80 to-yellow-700/80 hover:from-yellow-400/95 hover:to-yellow-700/95 rounded-full p-2.5 lg:p-3" />
                       </Link>
                     </div>

@@ -19,7 +19,7 @@ class DirektoriResource extends Resource
 {
   protected static ?string $model = Direktori::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-folder';
   protected static ?string $navigationLabel = 'Direktori';
   protected static ?string $navigationGroup = 'Menu Direktori';
   protected static ?int $navigationSort = 20;

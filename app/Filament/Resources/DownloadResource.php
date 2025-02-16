@@ -20,7 +20,7 @@ class DownloadResource extends Resource
 {
   protected static ?string $model = Download::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-chart-pie';
   protected static ?string $navigationLabel = 'Statistik';
   protected static ?string $navigationGroup = 'Menu Statistik';
   protected static ?int $navigationSort = 60;

@@ -6,17 +6,7 @@ import { Button } from "./ui/aceternity/moving-border";
 import { TextGenerateEffect } from "./ui/aceternity/text-generate-effect";
 import FormSearch from "./FormSearch";
 
-const slider = [
-  { img: "img/hero.png" },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Kendari_Bay_Bridge.jpg",
-  },
-  {
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/63/Kendari_at_night.jpg",
-  },
-];
-
-const Hero = () => {
+const Hero = ({ slider }: any) => {
   return (
     <section className="relative h-[55vh] lg:h-[92vh] bg-cover bg-bottom">
       <div className="absolute inset-0 z-[99] h-full flex justify-center items-center">
@@ -61,10 +51,10 @@ const Hero = () => {
         effect="fade"
         speed={1500}
       >
-        {slider.map((item, i) => (
+        {slider.map((item: any, i: any) => (
           <SwiperSlide key={i}>
             <img
-              src={item.img}
+              src={`/storage/${item.image}`}
               alt="img"
               className="h-[55vh] lg:h-[92vh] w-full object-cover object-center"
             />

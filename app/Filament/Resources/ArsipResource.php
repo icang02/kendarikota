@@ -23,7 +23,7 @@ class ArsipResource extends Resource
 {
   protected static ?string $model = Arsip::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-archive-box';
   protected static ?string $navigationLabel = 'Arsip';
   protected static ?string $navigationGroup = 'Menu Arsip';
   protected static ?int $navigationSort = 40;

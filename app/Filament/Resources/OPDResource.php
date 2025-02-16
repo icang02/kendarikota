@@ -25,7 +25,7 @@ class OPDResource extends Resource
 {
   protected static ?string $model = OPD::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-building-office';
   protected static ?string $navigationLabel = 'Perangkat Daerah';
   protected static ?string $navigationGroup = 'Menu Kendari Kita';
 

@@ -19,7 +19,7 @@ class TwibbonResource extends Resource
 {
   protected static ?string $model = Twibbon::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-sparkles';
   protected static ?string $navigationLabel = 'Twibbon';
   protected static ?string $navigationGroup = 'Data lainnya';
 

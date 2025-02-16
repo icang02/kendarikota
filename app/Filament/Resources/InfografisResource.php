@@ -19,7 +19,7 @@ class InfografisResource extends Resource
 {
   protected static ?string $model = Infografis::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationIcon = 'heroicon-o-chart-bar';
   protected static ?string $navigationLabel = 'Infografis';
   protected static ?string $navigationGroup = 'Data lainnya';
 
