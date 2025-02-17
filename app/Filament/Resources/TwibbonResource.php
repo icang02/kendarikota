@@ -69,7 +69,8 @@ class TwibbonResource extends Resource
                   ->label('Upload Twibbon')
                   ->required()
                   ->image()
-                  ->maxSize(1024)
+                  ->maxSize(2048)
+                  ->helperText('Max upload file 2MB.')
                   ->disk('public')
                   ->directory('twibbon/' . date('Y')),
               ])->columnSpan(1)

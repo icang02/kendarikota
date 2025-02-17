@@ -2,61 +2,56 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\YoutubeResource\Pages;
-use App\Filament\Resources\YoutubeResource\RelationManagers;
-use App\Models\Youtube;
+use App\Filament\Resources\JabatanResource\Pages;
+use App\Filament\Resources\JabatanResource\RelationManagers;
+use App\Models\Jabatan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\BadgeColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Columns\ViewColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class YoutubeResource extends Resource
+class JabatanResource extends Resource
 {
-  protected static ?string $model = Youtube::class;
+  protected static ?string $model = Jabatan::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-video-camera';
-  protected static ?string $navigationLabel = 'Youtube Video';
+  protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+  protected static ?string $navigationLabel = 'List Jabatan';
   protected static ?string $navigationGroup = 'Data lainnya';
 
   public static function getSlug(): string
   {
-    return 'youtube';
+    return 'jabatan';
   }
 
   public static function form(Form $form): Form
   {
     return $form
       ->schema([
-        Forms\Components\TextInput::make('link')
-          ->label('Video ID')
-          ->placeholder('Video ID')
-          ->helperText('https://www.youtube.com/watch?v=video_id.')
+        Forms\Components\TextInput::make('nama')
+          ->label('Nama Jabatan')
+          ->unique(ignoreRecord: true)
+          ->required(),
       ]);
   }
 
   public static function table(Table $table): Table
   {
     return $table
+      ->reorderable('sort')
       ->query(
-        Youtube::query()->orderBy('id', 'desc')
+        Jabatan::query()->orderBy('sort')
       )
       ->columns([
-        TextColumn::make('#')
+        Tables\Columns\TextColumn::make('#')
           ->label('#')
           ->state(fn($rowLoop) => $rowLoop->iteration . '.')
           ->width('7%'),
-
-        ViewColumn::make('link')
-          ->label('Preview')
-          ->view('components.video-frame')
+        Tables\Columns\TextColumn::make('nama')
+          ->label('Nama Jabatan')
       ])
-
       ->filters([
         //
       ])
@@ -81,9 +76,9 @@ class YoutubeResource extends Resource
   public static function getPages(): array
   {
     return [
-      'index' => Pages\ListYoutubes::route('/'),
-      // 'create' => Pages\CreateYoutube::route('/create'),
-      // 'edit' => Pages\EditYoutube::route('/{record}/edit'),
+      'index' => Pages\ListJabatans::route('/'),
+      // 'create' => Pages\CreateJabatan::route('/create'),
+      // 'edit' => Pages\EditJabatan::route('/{record}/edit'),
     ];
   }
 }

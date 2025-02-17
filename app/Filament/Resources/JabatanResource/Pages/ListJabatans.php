@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\OPDResource\Pages;
+namespace App\Filament\Resources\JabatanResource\Pages;
 
-use App\Filament\Resources\OPDResource;
+use App\Filament\Resources\JabatanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListOPDS extends ListRecords
+class ListJabatans extends ListRecords
 {
-    protected static string $resource = OPDResource::class;
+    protected static string $resource = JabatanResource::class;
 
     protected function getHeaderActions(): array
     {

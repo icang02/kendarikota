@@ -36,24 +36,58 @@ export default function Welcome({
       <Hero slider={slider} />
       <Walikota banner={banner} />
       <News />
-      <Pejabat youtube={youtube} pejabat={pejabat} />
-
-      <div className="container pb-14">
+      <div className="container pb-5">
         <div className="grid grid-cols-10 gap-0 lg:gap-10">
           <div className="col-span-10 lg:col-span-7">
             <SubDomain />
             {/*  */}
           </div>
 
-          <div className="col-span-10 lg:col-span-3">
-            <div className="mb-7">
-              <h1 className="font-sen text-xl font-bold">Twibbon</h1>
-              <p className="mb-5 text-xs lg:text-sm italic">
-                Unggah foto untuk membuat twibbon kamu
-              </p>
-              <CardTwibbonGenerate twibbon={twibbon} />
+          <div className="col-span-10 lg:col-span-3 flex flex-col gap-5 lg:gap-8">
+            {/* Pejabat Pemerintah */}
+            <div>
+              <div className="mb-5 lg:mb-6">
+                <h1 className="mb-0.5 font-sen text-xl font-bold">
+                  Pejabat Pemerintah
+                </h1>
+                <p className="text-xs lg:text-sm italic">
+                  Pejabat Pemerintah Daerah Kota Kendari
+                </p>
+              </div>
+              <Card className="p-5">
+                <Swiper
+                  modules={[Autoplay, EffectFade]}
+                  slidesPerView={1}
+                  loop
+                  autoplay={{
+                    delay: 3500,
+                    disableOnInteraction: false,
+                  }}
+                  speed={1000}
+                >
+                  {pejabat.map((item: any, i: any) => (
+                    <SwiperSlide key={i} className="relative group">
+                      <img
+                        className="transition ease-out brightness-[0.9] group-hover:brightness-50 border aspect-[3/4] object-cover object-top w-full"
+                        src={
+                          item.foto
+                            ? `/storage/${item.foto}`
+                            : "/img/default/foto-pejabat.png"
+                        }
+                        alt="img"
+                      />
+                      <div className="p-5 font-sen text-start text-white absolute -bottom-[50%] duration-500 transition-all ease-out group-hover:bottom-0">
+                        <h6 className="font-bold text-base">{item.nama}</h6>
+                        <h6 className="font-normal text-sm">
+                          {item.jabatan.nama}
+                        </h6>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Card>
             </div>
-
+            {/* Infografis */}
             <div className="p-1 lg:p-0">
               <h1 className="mb-3 font-sen text-xl font-bold">Infografis</h1>
               <Swiper
@@ -86,6 +120,8 @@ export default function Welcome({
           </div>
         </div>
       </div>
+
+      <Pejabat twibbon={twibbon} youtube={youtube} />
     </GuestLayout>
   );
 }

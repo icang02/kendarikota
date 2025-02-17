@@ -49,6 +49,7 @@ class AplikasiResource extends Resource
                 Forms\Components\FileUpload::make('icon')
                   ->image()
                   ->maxSize(1024)
+                  ->helperText('Max upload file 1MB.')
                   ->disk('public')
                   ->directory('icon-aplikasi'),
               ])->columnSpan(1)

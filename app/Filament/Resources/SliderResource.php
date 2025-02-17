@@ -34,17 +34,19 @@ class SliderResource extends Resource
         Forms\Components\FileUpload::make('image')
           ->label('Upload Gambar')
           ->image()
-          ->maxSize(1024)
+          ->maxSize(2048)
           ->disk('public')
           ->directory('slider')
           ->required(),
-        Forms\Components\Select::make('is_banner')
+        Forms\Components\Select::make('jenis_gambar')
           ->options([
-            0 => 'Slider',
-            1 => 'Banner',
+            'slider' => 'Slider',
           ])
+          ->default('slider')
+          ->disabled()
           ->label('Tampilkan Sebagai')
           ->required()
+          ->helperText('Max upload file 2MB.')
       ]);
   }
 
@@ -52,7 +54,7 @@ class SliderResource extends Resource
   {
     return $table
       ->query(
-        Slider::query()->orderBy('id', 'desc')
+        Slider::query()->orderBy('jenis_gambar')
       )
       ->columns([
         Tables\Columns\TextColumn::make('#')
@@ -63,18 +65,26 @@ class SliderResource extends Resource
           ->label('Gambar')
           ->width('300px')
           ->height('auto'),
-        BadgeColumn::make('is_banner')
+        BadgeColumn::make('jenis_gambar')
           ->label('Tampilkan Sebagai')
-          ->color(fn(string $state): string => $state == 1 ? 'success' : 'info')
-          ->formatStateUsing(fn(string $state): string => $state == 1 ? 'BANNER' : 'SLIDER')
-          ->url(fn(string $state): string => $state, true)
-
+          ->color(
+            fn(string $state): string =>
+            $state == 'banner' ? 'success' : ($state == 'slider' ? 'info' : 'warning')
+          )
+          ->formatStateUsing(
+            fn(string $state): string =>
+            $state == 'banner' ? 'BANNER' : ($state == 'slider' ? 'SLIDER' : 'HERO HALAMAN')
+          )
+          ->url(fn(string $state): string => '#')
       ])
       ->filters([
         //
       ])
       ->actions([
-        Tables\Actions\DeleteAction::make(),
+        Tables\Actions\DeleteAction::make()
+          ->hidden(
+            fn($record): bool => in_array($record->jenis_gambar, ['banner', 'hero halaman'])
+          ),
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([

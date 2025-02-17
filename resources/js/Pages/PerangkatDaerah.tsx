@@ -1,7 +1,9 @@
 import GuestLayout from "@/Layouts/GuestLayout";
 import { Card } from "@/Components/card";
-import { ScrollArea } from "@/Components/ui/scroll-area";
 import PageLayout from "@/Layouts/PageLayout";
+import { Download, LayoutPanelTop } from "lucide-react";
+import { Dialog, DialogContent, DialogTrigger } from "@/Components/ui/dialog";
+import { Button } from "@/Components/button";
 
 export default function PerangkatDaerah({
   title,
@@ -10,6 +12,15 @@ export default function PerangkatDaerah({
   title: string;
   data: any;
 }) {
+  const handleDownload = (fileUrl: string, fileName?: string) => {
+    const link = document.createElement("a");
+    link.href = `${location.origin}/storage/${fileUrl}`;
+    link.download = fileName || fileUrl.split("/").pop() || "file";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <GuestLayout>
       <PageLayout title={title}>
@@ -20,16 +31,83 @@ export default function PerangkatDaerah({
                 <h6 className="font-extrabold text-base text-[#173454] font-sen uppercase">
                   {item.nama}
                 </h6>
-                <ScrollArea className="h-20 pt-3">
+                <div className="h-[95px] mt-3 overflow-y-scroll custom-scrollbar">
                   <ul className="flex flex-col space-y-1.5 lg:space-y-1 text-xs lg:text-sm">
                     {item.opd.map((list: any, j: any) => (
-                      <li key={j} className="flex items-center space-x-2">
-                        <span className="size-2 bg-blue-800"></span>
-                        <span>{list.nama}</span>
+                      <li
+                        key={j}
+                        className="flex gap-3 lg:gap-5 items-center justify-between pr-4"
+                      >
+                        <div className="flex items-center space-x-2">
+                          <span className="size-2 bg-blue-800"></span>
+                          <span>{list.nama}</span>
+                        </div>
+                        <div>
+                          <Dialog>
+                            <DialogTrigger
+                              asChild
+                              disabled={list.struktur_new === null}
+                            >
+                              <button
+                                className={`flex text-nowrap items-center space-x-1.5 font-extrabold bg-[#1A5590] text-white text-[10px] lg:text-[8px] px-3 lg:px-2 rounded py-0.5 hover:bg-opacity-90 transition ease-out ${
+                                  list.struktur_new === null
+                                    ? "cursor-not-allowed opacity-60"
+                                    : "cursor-pointer"
+                                }`}
+                              >
+                                <LayoutPanelTop className="w-[12px] lg:w-[10px]" />
+                                <span className="hidden lg:inline uppercase">
+                                  Struktur OPD
+                                </span>
+                              </button>
+                            </DialogTrigger>
+                            <DialogContent className="px-3 lg:px-6 py-6 h-[80vh] lg:h-[90vh]">
+                              <div className="pb-7">
+                                <div className="pr-8 lg:pr-6 mb-2.5 flex justify-between items-center space-x-5">
+                                  <div className="font-bold font-sen leading-tight">
+                                    Struktur OPD -{" "}
+                                    <span className="text-nthmain">
+                                      {list.nama}
+                                    </span>
+                                  </div>
+                                  <Button
+                                    onClick={() =>
+                                      handleDownload(
+                                        list.struktur_new,
+                                        `Struktur OPD - ${list.nama} Kota Kendari`
+                                      )
+                                    }
+                                    className="flex items-center"
+                                    variant={"outline"}
+                                    size={"sm"}
+                                  >
+                                    <Download />
+                                    <span className="hidden lg:inline">
+                                      Download
+                                    </span>
+                                  </Button>
+                                </div>
+
+                                <div className="h-full border-2 overflow-scroll custom-scrollbar">
+                                  <iframe
+                                    className="w-full h-full"
+                                    src={`https://docs.google.com/gview?url=${location.origin}/storage/${list.struktur_new}&embedded=true`}
+                                    title={list.nama}
+                                  />
+                                  {/* <iframe
+                                    className="w-full h-full"
+                                    src={`https://docs.google.com/gview?url=${"https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"}&embedded=true`}
+                                    title="Google PDF Viewer"
+                                  /> */}
+                                </div>
+                              </div>
+                            </DialogContent>
+                          </Dialog>
+                        </div>
                       </li>
                     ))}
                   </ul>
-                </ScrollArea>
+                </div>
               </Card>
             </div>
           ))}
@@ -38,59 +116,3 @@ export default function PerangkatDaerah({
     </GuestLayout>
   );
 }
-
-const dataUl = [
-  "Badan Kepegawaian & Pengembangan SDM",
-  "Badan Kesatuan Bangsa dan Politik",
-  "Badan Penanggulangan Bencana Daerah",
-  "Badan Pengelola Keuangan & Aset Daerah",
-  "Badan Pengelola Pajak & Retribusi Daerah",
-  "Badan Perencanaan Pembangunan Daerah",
-];
-const pejabat = [
-  {
-    nama: "Muhammad Yusuf, SE, M. Si",
-    image: "https://kendari.test/assets/img/pejabat/asmawa-tosepu-ap-msi2.png",
-    jabatan: "Pj Walikota",
-  },
-  {
-    nama: "Sri Yusnita, ST.,MM",
-    image: "https://kendari.test/assets/img/pejabat/sri-yusnita-stmm1.png",
-    jabatan: "Inspektur",
-    tempat: "Inspektorat",
-  },
-  {
-    nama: "Ir. Nismawati, M.Si",
-    image: "https://kendari.test/assets/img/pejabat/ir-nismawati-msi4.jpg",
-    jabatan: "Kepala Dinas",
-    tempat: "Dinas Komunikasi & Informatika",
-  },
-  {
-    nama: "Hj. Erlis Sadya Kencana, ST.,MT",
-    image:
-      "https://kendari.test/assets/img/pejabat/hj-erlis-sadya-kencana-stmt1.jpg",
-    jabatan: "Kepala Dinas",
-    tempat: "Dinas PU & Penataan Ruang",
-  },
-  {
-    nama: "Hj. Erlis Sadya Kencana, ST.,MT",
-    image:
-      "https://kendari.test/assets/img/pejabat/hj-erlis-sadya-kencana-stmt1.jpg",
-    jabatan: "Kepala Dinas",
-    tempat: "Dinas PU & Penataan Ruang",
-  },
-  {
-    nama: "Hj. Erlis Sadya Kencana, ST.,MT",
-    image:
-      "https://kendari.test/assets/img/pejabat/hj-erlis-sadya-kencana-stmt1.jpg",
-    jabatan: "Kepala Dinas",
-    tempat: "Dinas PU & Penataan Ruang",
-  },
-  {
-    nama: "Hj. Erlis Sadya Kencana, ST.,MT",
-    image:
-      "https://kendari.test/assets/img/pejabat/hj-erlis-sadya-kencana-stmt1.jpg",
-    jabatan: "Kepala Dinas",
-    tempat: "Dinas PU & Penataan Ruang",
-  },
-];

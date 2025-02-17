@@ -182,8 +182,8 @@ export const navProgramKotaku = {
   ],
 };
 
-export const menuKendariKita = {
-  label: "Kendari Kita",
+export const menuProfil = {
+  label: "Profil",
   menu: [
     {
       title: "Sejarah Kota Kendari",

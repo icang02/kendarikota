@@ -7,9 +7,17 @@ const FormSearch = () => {
   const placeholders = [
     "Berita terbaru hari ini di kota kita",
     "Apa kebijakan terbaru dari pemerintah kota?",
-    "Agenda acara minggu ini, jangan sampai ketinggalan!",
     "Bagaimana perkembangan proyek infrastruktur terbaru?",
-    "Laporan cuaca dan info lalu lintas terkini!",
+    "Informasi terbaru tentang program pemerintah Kota Kendari",
+    "Jadwal kegiatan resmi Walikota Kendari",
+    "Update terbaru tentang anggaran pembangunan Kota Kendari",
+    "Informasi tentang layanan kesehatan terbaru di Kendari",
+    "Berita tentang festival atau event budaya di Kendari",
+    "Berita terbaru tentang penanganan banjir di Kendari",
+    "Bagaimana perkembangan pembangunan jalan di Kota Kendari?",
+    "Informasi tentang program bantuan sosial di Kendari",
+    "Informasi tentang program pelestarian lingkungan di Kendari",
+    "Update tentang pengembangan pariwisata di Kota Kendari",
   ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

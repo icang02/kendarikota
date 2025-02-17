@@ -28,8 +28,8 @@ class PejabatResource extends Resource
   protected static ?string $model = Pejabat::class;
 
   protected static ?string $navigationIcon = 'heroicon-o-user-group';
-  protected static ?string $navigationLabel = 'Pejabat Pemerintah';
-  protected static ?string $navigationGroup = 'Menu Kendari Kita';
+  protected static ?string $navigationLabel = 'Wali Kota & Pejabat Pemerintah';
+  protected static ?string $navigationGroup = 'Menu Profil';
 
   public static function getSlug(): string
   {
@@ -47,7 +47,7 @@ class PejabatResource extends Resource
                 ->required(),
               Select::make('jabatan_id')
                 ->label('Jabatan')
-                ->options(\App\Models\Jabatan::pluck('nama', 'id'))
+                ->options(\App\Models\Jabatan::orderBy('sort')->pluck('nama', 'id'))
                 ->searchable()
                 ->required(),
               Select::make('opd_id')
@@ -83,7 +83,8 @@ class PejabatResource extends Resource
               FileUpload::make('foto')
                 ->disk('public')
                 ->image()
-                ->maxSize(1024)
+                ->maxSize(2048)
+                ->helperText('Max upload file 2MB.')
                 ->directory('foto-pejabat'),
             ]),
             Card::make()->schema([
@@ -100,7 +101,10 @@ class PejabatResource extends Resource
   {
     return $table
       ->query(
-        Pejabat::query()->orderBy('id', 'desc')
+        Pejabat::query()
+          ->join('jabatan', 'pejabat.jabatan_id', '=', 'jabatan.id')
+          ->orderBy('jabatan.sort', 'asc')
+          ->select('pejabat.*')
       )
       ->columns([
         TextColumn::make('#')

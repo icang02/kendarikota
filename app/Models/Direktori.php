@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Direktori extends Model
 {
@@ -11,7 +12,7 @@ class Direktori extends Model
 
   public $timestamps = false;
 
-  public function lokasi()
+  public function lokasi(): HasMany
   {
     return $this->hasMany(Lokasi::class);
   }

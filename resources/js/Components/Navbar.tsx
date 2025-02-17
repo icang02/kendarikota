@@ -25,7 +25,7 @@ import React, { useEffect, useState } from "react";
 import {
   menuArsip,
   menuEvent,
-  menuKendariKita,
+  menuProfil,
   menuPeraturanDaerah,
   menuStatistik,
   navProgramKotaku,
@@ -94,76 +94,13 @@ const Navbar = () => {
                 </Link>
               </AccordionItem>
 
-              <AccordionItem value={navProgramKotaku.title}>
+              <AccordionItem value={menuProfil.label}>
                 <AccordionTrigger className="font-sen">
-                  {navProgramKotaku.title}
+                  {menuProfil.label}
                 </AccordionTrigger>
                 <AccordionContent className="font-mulish text-[13px]">
                   <div className="flex flex-col space-y-3.5">
-                    {navProgramKotaku.menu.map((item: any, i: any) =>
-                      item.subMenu ? (
-                        <div key={i}>
-                          <span className="cursor-pointer hover:underline">
-                            {item.label}
-                          </span>
-                          <div className="pl-2.5 flex flex-col mt-1.5 space-y-1">
-                            {item.subMenu.map((list: any, j: any) =>
-                              list.subMenu ? (
-                                <div key={j}>
-                                  <span className="cursor-pointer hover:underline">
-                                    {list.label}
-                                  </span>
-                                  <div className="pl-2.5 flex mt-1.5 flex-col space-y-1">
-                                    {list.subMenu.map((list2: any, k: any) => (
-                                      <a
-                                        target="_blank"
-                                        key={k}
-                                        href={list2.url}
-                                        className="hover:underline flex items-center space-x-1.5"
-                                      >
-                                        <span>{list2.label}</span>
-                                        <ExternalLink className="w-[11px] text-black/60" />
-                                      </a>
-                                    ))}
-                                  </div>
-                                </div>
-                              ) : (
-                                <a
-                                  target="_blank"
-                                  key={j}
-                                  href={list.url}
-                                  className="hover:underline flex items-center space-x-1.5"
-                                >
-                                  <span>{list.label}</span>
-                                  <ExternalLink className="w-[11px] text-black/60" />
-                                </a>
-                              )
-                            )}
-                          </div>
-                        </div>
-                      ) : (
-                        <a
-                          target="_blank"
-                          key={i}
-                          href={item.url}
-                          className="hover:underline flex items-center space-x-1.5"
-                        >
-                          <span>{item.label}</span>
-                          <ExternalLink className="w-[11px] text-black/60" />
-                        </a>
-                      )
-                    )}
-                  </div>
-                </AccordionContent>
-              </AccordionItem>
-
-              <AccordionItem value={menuKendariKita.label}>
-                <AccordionTrigger className="font-sen">
-                  {menuKendariKita.label}
-                </AccordionTrigger>
-                <AccordionContent className="font-mulish text-[13px]">
-                  <div className="flex flex-col space-y-3.5">
-                    {menuKendariKita.menu.map((item: any, i: any) => (
+                    {menuProfil.menu.map((item: any, i: any) => (
                       <Link
                         key={i}
                         href={item.href}
@@ -240,6 +177,69 @@ const Navbar = () => {
                   {menuStatistik.label}
                 </Link>
               </AccordionItem>
+
+              <AccordionItem value={navProgramKotaku.title}>
+                <AccordionTrigger className="font-sen">
+                  {navProgramKotaku.title}
+                </AccordionTrigger>
+                <AccordionContent className="font-mulish text-[13px]">
+                  <div className="flex flex-col space-y-3.5">
+                    {navProgramKotaku.menu.map((item: any, i: any) =>
+                      item.subMenu ? (
+                        <div key={i}>
+                          <span className="cursor-pointer hover:underline">
+                            {item.label}
+                          </span>
+                          <div className="pl-2.5 flex flex-col mt-1.5 space-y-1">
+                            {item.subMenu.map((list: any, j: any) =>
+                              list.subMenu ? (
+                                <div key={j}>
+                                  <span className="cursor-pointer hover:underline">
+                                    {list.label}
+                                  </span>
+                                  <div className="pl-2.5 flex mt-1.5 flex-col space-y-1">
+                                    {list.subMenu.map((list2: any, k: any) => (
+                                      <a
+                                        target="_blank"
+                                        key={k}
+                                        href={list2.url}
+                                        className="hover:underline flex items-center space-x-1.5"
+                                      >
+                                        <span>{list2.label}</span>
+                                        <ExternalLink className="w-[11px] text-black/60" />
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              ) : (
+                                <a
+                                  target="_blank"
+                                  key={j}
+                                  href={list.url}
+                                  className="hover:underline flex items-center space-x-1.5"
+                                >
+                                  <span>{list.label}</span>
+                                  <ExternalLink className="w-[11px] text-black/60" />
+                                </a>
+                              )
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <a
+                          target="_blank"
+                          key={i}
+                          href={item.url}
+                          className="hover:underline flex items-center space-x-1.5"
+                        >
+                          <span>{item.label}</span>
+                          <ExternalLink className="w-[11px] text-black/60" />
+                        </a>
+                      )
+                    )}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
           </SheetContent>
         </Sheet>
@@ -254,6 +254,92 @@ const Navbar = () => {
                 asChild
               >
                 <Link href={route("home")}>Beranda</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuTrigger className="nav__link">
+                {menuProfil.label}
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {menuProfil.menu.map((item) => (
+                    <ListItem
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
+                    >
+                      {item.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuTrigger className="nav__link">
+                Direktori
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {globalDirektori.map((item: any) => (
+                    <ListItem
+                      key={item.id}
+                      title={item.nama}
+                      href={"/direktori/" + item.slug}
+                    >
+                      {item.deskripsi}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuTrigger className="nav__link">
+                {menuEvent.label}
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {menuEvent.menu.map((item) => (
+                    <ListItem
+                      key={item.title}
+                      title={item.title}
+                      href={item.href}
+                    >
+                      {item.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={menuArsip.url}>{menuArsip.label}</Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={menuPeraturanDaerah.url}>
+                  {menuPeraturanDaerah.label}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
+            <NavigationMenuItem className="nav__link">
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                asChild
+              >
+                <Link href={menuStatistik.url}>{menuStatistik.label}</Link>
               </NavigationMenuLink>
             </NavigationMenuItem>
 
@@ -339,92 +425,6 @@ const Navbar = () => {
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuTrigger className="nav__link">
-                {menuKendariKita.label}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuKendariKita.menu.map((item) => (
-                    <ListItem
-                      key={item.title}
-                      title={item.title}
-                      href={item.href}
-                    >
-                      {item.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuTrigger className="nav__link">
-                Direktori
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {globalDirektori.map((item: any) => (
-                    <ListItem
-                      key={item.id}
-                      title={item.nama}
-                      href={"/direktori/" + item.slug}
-                    >
-                      {item.deskripsi}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuTrigger className="nav__link">
-                {menuEvent.label}
-              </NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                  {menuEvent.menu.map((item) => (
-                    <ListItem
-                      key={item.title}
-                      title={item.title}
-                      href={item.href}
-                    >
-                      {item.description}
-                    </ListItem>
-                  ))}
-                </ul>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <Link href={menuArsip.url}>{menuArsip.label}</Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <Link href={menuPeraturanDaerah.url}>
-                  {menuPeraturanDaerah.label}
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem className="nav__link">
-              <NavigationMenuLink
-                className={navigationMenuTriggerStyle()}
-                asChild
-              >
-                <Link href={menuStatistik.url}>{menuStatistik.label}</Link>
-              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>

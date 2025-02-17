@@ -23,7 +23,7 @@ class HalamanResource extends Resource
 
   protected static ?string $navigationIcon = 'heroicon-o-book-open';
   protected static ?string $navigationLabel = 'Sejarah & Visi Misi';
-  protected static ?string $navigationGroup = 'Menu Kendari Kita';
+  protected static ?string $navigationGroup = 'Menu Profil';
   protected static ?int $navigationSort = 10;
 
   // Show/hide button add

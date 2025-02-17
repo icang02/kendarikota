@@ -23,7 +23,7 @@ const HeroPage = ({
 
   return (
     <section
-      className="relative h-[380px] bg-cover bg-bottom"
+      className="relative h-[380px] bg-cover bg-center"
       style={{
         backgroundImage: `url(${"/storage/" + heroPageImage.image})`,
       }}

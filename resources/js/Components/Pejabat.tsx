@@ -9,10 +9,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
+import CardTwibbonGenerate from "./CardTwibbonGenerate";
 
-const Pejabat = ({ youtube, pejabat }: any) => {
+const Pejabat = ({ twibbon, youtube }: any) => {
   return (
-    <section className="pb-12 lg:pb-14">
+    <section className="pb-6 lg:pb-20 mt-4 lg:mt-0">
       <div className="container grid grid-cols-10 gap-8">
         <div className="col-span-10 lg:col-span-7">
           <BackgroundGradientAnimation className="flex items-center justify-center w-full h-full">
@@ -23,7 +24,6 @@ const Pejabat = ({ youtube, pejabat }: any) => {
               <p className="text-xs lg:text-sm italic">
                 Video program dan kegiatan Pemerintah Kota Kendari
               </p>
-
               {/* Frame Video */}
               <Card className="mt-7 p-1.5 lg:p-4 w-full bg-white/20 border-none">
                 <Swiper
@@ -54,47 +54,14 @@ const Pejabat = ({ youtube, pejabat }: any) => {
           </BackgroundGradientAnimation>
         </div>
 
-        <div className="col-span-10 lg:col-span-3 text-center">
-          <div className="mb-5 lg:mb-6">
-            <h1 className="mb-1 lg:mb-2 font-sen text-2xl lg:text-3xl font-bold">
-              Pejabat Pemerintah
-            </h1>
-            <p className="text-xs lg:text-sm italic">
-              Pejabat Pemerintah Daerah Kota Kendari
+        <div className="col-span-10 lg:col-span-3">
+          <div className="mb-7">
+            <h1 className="font-sen text-xl font-bold">Twibbon</h1>
+            <p className="mb-5 text-xs lg:text-sm italic">
+              Unggah foto untuk membuat twibbon kamu
             </p>
+            <CardTwibbonGenerate twibbon={twibbon} />
           </div>
-
-          <Card className="p-5">
-            <Swiper
-              modules={[Autoplay, EffectFade]}
-              slidesPerView={1}
-              loop
-              autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-              }}
-              // effect="fade"
-              speed={1000}
-            >
-              {pejabat.map((item: any, i: any) => (
-                <SwiperSlide key={i} className="relative group">
-                  <img
-                    className="transition ease-out brightness-[0.9] group-hover:brightness-50 rounded-lg border aspect-[3/4] object-cover object-top w-full"
-                    src={
-                      item.foto
-                        ? `/storage/${item.foto}`
-                        : "/img/default/foto-pejabat.png"
-                    }
-                    alt="img"
-                  />
-                  <div className="p-5 font-sen text-start text-white absolute -bottom-[20%] duration-500 transition-all ease-out group-hover:bottom-0">
-                    <h6 className="font-bold text-base">{item.nama}</h6>
-                    <h6 className="font-normal text-sm">{item.jabatan.nama}</h6>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </Card>
         </div>
       </div>
     </section>

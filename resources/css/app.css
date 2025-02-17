@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Sen:wght@400..800&display=swap");
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -79,4 +80,22 @@
   @apply px-4 lg:px-0;
 }
 
+/* Gaya scrollbar untuk browser berbasis WebKit (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Lebar scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Warna track scrollbar */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #c6c6c6; /* Warna thumb scrollbar */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #b6b6b6; /* Warna thumb scrollbar saat dihover */
+}
 

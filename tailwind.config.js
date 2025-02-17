@@ -113,6 +113,7 @@ export default {
       },
       colors: {
         main: "#173454",
+        nthmain: "#1A5590",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

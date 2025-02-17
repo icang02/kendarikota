@@ -31,11 +31,17 @@ class HomeController extends Controller
 
     return Inertia::render('Welcome', [
       'youtube'    => Youtube::limit(3)->orderBy('id', 'desc')->get(),
-      'pejabat'    => Pejabat::with(['jabatan'])->limit(5)->orderBy('jabatan_id')->get(),
+      'pejabat'    => Pejabat::with(['jabatan'])
+        ->whereNotIn('jabatan_id', [1, 2])
+        ->join('jabatan', 'pejabat.jabatan_id', '=', 'jabatan.id')
+        ->orderBy('jabatan.sort')
+        ->select('pejabat.*')
+        ->limit(5)
+        ->get(),
       'infografis' => Infografis::limit(4)->orderBy('release', 'desc')->get(),
       'twibbon'    => Twibbon::orderBy('id', 'desc')->first(),
-      'slider'     => Slider::where('is_banner', false)->get(),
-      'banner'     => Slider::where('is_banner', true)->first(),
+      'slider'     => Slider::where('jenis_gambar', 'slider')->get(),
+      'banner'     => Slider::where('jenis_gambar', 'banner')->first(),
     ]);
   }
 
@@ -159,7 +165,10 @@ class HomeController extends Controller
   public function pejabat()
   {
     $pejabat = Pejabat::with(['jabatan', 'opd'])
-      ->orderBy('jabatan_id')
+      ->whereNotIn('jabatan_id', [1, 2])
+      ->join('jabatan', 'pejabat.jabatan_id', '=', 'jabatan.id')
+      ->orderBy('jabatan.sort')
+      ->select('pejabat.*')
       ->paginate(12);
 
     return Inertia::render('Pejabat', [

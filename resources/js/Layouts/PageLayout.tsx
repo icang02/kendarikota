@@ -4,8 +4,8 @@ import SubDomain from "@/Components/SubDomain";
 import {
   menuArsip,
   menuEvent,
-  menuKendariKita,
   menuPeraturanDaerah,
+  menuProfil,
   menuStatistik,
 } from "@/lib/constant";
 
@@ -26,9 +26,9 @@ export default function PageLayout({
     const pathname = location.pathname;
 
     if (pathname.includes("/kendari-kita")) {
-      setBreadcrumb([menuKendariKita.label, title]);
+      setBreadcrumb([menuProfil.label, title]);
       setDescription(
-        menuKendariKita.menu.find((item) => item.href == pathname)?.description
+        menuProfil.menu.find((item) => item.href == pathname)?.description
       );
     } else if (pathname.includes("/direktori")) {
       setBreadcrumb(["Direktori", title]);

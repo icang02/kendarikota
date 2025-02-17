@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
       ],
       'aplikasi' => Aplikasi::limit(12)->get(),
       'globalDirektori' => Direktori::all(),
-      'heroPageImage' => Slider::first()
+      'heroPageImage' => Slider::where('jenis_gambar', 'hero halaman')->first(),
     ];
   }
 }
