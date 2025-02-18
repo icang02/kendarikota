@@ -26,6 +26,7 @@ class OpdRelationManager extends RelationManager
               ->schema([
                 Forms\Components\TextInput::make('nama')
                   ->required()
+                  ->placeholder('Nama')
                   ->maxLength(255),
                 Forms\Components\Select::make('kategori_opd_id')
                   ->label('Pilih OPD')
@@ -53,9 +54,15 @@ class OpdRelationManager extends RelationManager
   {
     return $table
       ->recordTitleAttribute('nama')
-      ->modifyQueryUsing(fn($query) => $query->orderBy('nama'))
+      ->defaultSort('id', 'desc')
       ->columns([
-        Tables\Columns\TextColumn::make('nama'),
+        Tables\Columns\TextColumn::make('#')
+          ->label('#')
+          ->state(fn($rowLoop) => $rowLoop->iteration . '.')
+          ->width('7%'),
+        Tables\Columns\TextColumn::make('nama')
+          ->searchable()
+          ->sortable(),
         BadgeColumn::make('struktur_new')
           ->label('File')
           ->color('info')

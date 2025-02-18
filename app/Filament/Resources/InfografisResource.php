@@ -49,9 +49,10 @@ class InfografisResource extends Resource
               ->schema([
                 Forms\Components\FileUpload::make('img')
                   ->label('Gambar')
+                  ->helperText('Max upload file 2MB.')
                   ->required()
                   ->image()
-                  ->maxSize(1024)
+                  ->maxSize(2048)
                   ->disk('public')
                   ->directory('infografis/' . date('Y')),
               ])->columnSpan(1)
@@ -62,12 +63,11 @@ class InfografisResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Infografis::query()->orderBy('release', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')
+          ->placeholder('Judul')
           ->state(fn($rowLoop) => $rowLoop->iteration . '.')
           ->width('7%'),
 

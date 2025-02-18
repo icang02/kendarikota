@@ -32,14 +32,16 @@ class AgendaResource extends Resource
     return $form
       ->schema([
         Forms\Components\TextInput::make('nama')
+          ->placeholder('Nama')
           ->required(),
         Forms\Components\DatePicker::make('tanggal')
           ->default(now())
           ->required(),
-        Forms\Components\Textarea::make('deskripsi')
+        Forms\Components\Textarea::make('deskripsi')->placeholder('Deskripsi')
           ->rows(4)
           ->required(),
         Forms\Components\TextInput::make('lokasi')
+          ->placeholder('Lokasi')
           ->required(),
       ]);
   }
@@ -47,9 +49,7 @@ class AgendaResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Agenda::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')

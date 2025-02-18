@@ -33,6 +33,7 @@ class JabatanResource extends Resource
         Forms\Components\TextInput::make('nama')
           ->label('Nama Jabatan')
           ->unique(ignoreRecord: true)
+          ->placeholder('Nama Jabatan')
           ->required(),
       ]);
   }
@@ -41,15 +42,14 @@ class JabatanResource extends Resource
   {
     return $table
       ->reorderable('sort')
-      ->query(
-        Jabatan::query()->orderBy('sort')
-      )
+      ->defaultSort('sort', 'asc')
       ->columns([
         Tables\Columns\TextColumn::make('#')
           ->label('#')
           ->state(fn($rowLoop) => $rowLoop->iteration . '.')
           ->width('7%'),
         Tables\Columns\TextColumn::make('nama')
+          ->searchable()
           ->label('Nama Jabatan')
       ])
       ->filters([

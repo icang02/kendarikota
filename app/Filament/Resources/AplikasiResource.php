@@ -38,8 +38,10 @@ class AplikasiResource extends Resource
             Forms\Components\Grid::make(1)
               ->schema([
                 Forms\Components\TextInput::make('nama')
+                  ->placeholder('Nama Aplikasi')
                   ->required(),
                 Forms\Components\TextInput::make('link')
+                  ->placeholder('Link Aplikasi')
                   ->label('Link Aplikasi')
                   ->required(),
               ])->columnSpan(2),
@@ -60,9 +62,7 @@ class AplikasiResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Aplikasi::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')

@@ -33,10 +33,13 @@ class PengumumanResource extends Resource
     return $form
       ->schema([
         Forms\Components\TextInput::make('judul')
+          ->placeholder('Judul')
           ->required(),
         Forms\Components\TextInput::make('link')
+          ->placeholder('Link File')
           ->required(),
         Forms\Components\TextInput::make('sumber')
+          ->placeholder('Sumber')
           ->required(),
         Forms\Components\DateTimePicker::make('tanggal')
           ->default(now())
@@ -47,9 +50,7 @@ class PengumumanResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Pengumuman::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')

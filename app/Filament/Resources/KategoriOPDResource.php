@@ -34,6 +34,7 @@ class KategoriOPDResource extends Resource
         Forms\Components\TextInput::make('nama')
           ->label('Nama OPD')
           ->required()
+          ->placeholder('Nama OPD')
           ->maxLength(255),
       ]);
   }
@@ -41,6 +42,7 @@ class KategoriOPDResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
+      ->defaultSort('id', 'asc')
       ->columns([
         Tables\Columns\TextColumn::make('#')
           ->label('#')

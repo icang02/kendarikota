@@ -44,6 +44,7 @@ class PejabatResource extends Resource
           Card::make()->schema([
             Grid::make(2)->schema([
               TextInput::make('nama')
+                ->placeholder('Nama')
                 ->required(),
               Select::make('jabatan_id')
                 ->label('Jabatan')
@@ -56,10 +57,12 @@ class PejabatResource extends Resource
                 ->searchable(),
               TextInput::make('tahun_periode')
                 ->label('Tahun Periode')
+                ->placeholder(date('Y'))
                 ->maxLength(20),
             ]),
             RichEditor::make('keterangan')
               ->label('Keterangan Lain')
+              ->placeholder('Keterangan')
               ->toolbarButtons([
                 // 'attachFiles',
                 'blockquote',
@@ -88,9 +91,9 @@ class PejabatResource extends Resource
                 ->directory('foto-pejabat'),
             ]),
             Card::make()->schema([
-              TextInput::make('facebook')->label('Link Facebook'),
-              TextInput::make('twitter')->label('Link Twitter'),
-              TextInput::make('instagram')->label('Link Instagram'),
+              TextInput::make('facebook')->label('Link Facebook')->placeholder('https://facebook.com/username'),
+              TextInput::make('twitter')->label('Link Twitter')->placeholder('https://twitter.com/username'),
+              TextInput::make('instagram')->label('Link Instagram')->placeholder('https://instagram.com/username'),
             ]),
           ])->columnSpan(1),
         ])
@@ -119,14 +122,11 @@ class PejabatResource extends Resource
 
         TextColumn::make('nama')
           ->label('Nama Lengkap')
-          ->searchable()
-          ->sortable(),
+          ->searchable(query: fn($query, $search) => $query->orWhere('pejabat.nama', 'like', "%{$search}%")),
 
         BadgeColumn::make('jabatan.nama')
           ->label('Jabatan')
-          ->color('info')
-          ->searchable()
-          ->sortable(),
+          ->color('info'),
       ])
       ->filters([
         //

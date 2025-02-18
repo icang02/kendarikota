@@ -38,10 +38,13 @@ class TwibbonResource extends Resource
               ->schema([
                 Forms\Components\TextInput::make('title')
                   ->label('Judul')
+                  ->placeholder('Judul')
                   ->required(),
                 Forms\Components\TextInput::make('slogan')
+                  ->placeholder('Slogan')
                   ->required(),
                 Forms\Components\RichEditor::make('deskripsi')
+                  ->placeholder('Deskripsi')
                   ->required()
                   ->toolbarButtons([
                     // 'attachFiles',
@@ -59,8 +62,6 @@ class TwibbonResource extends Resource
                     'underline',
                     'undo',
                   ])
-                // Forms\Components\Textarea::make('deskripsi')
-                //   ->required(),
               ])->columnSpan(2),
 
             Forms\Components\Grid::make(1)
@@ -81,9 +82,7 @@ class TwibbonResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Twibbon::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -100,6 +99,7 @@ class TwibbonResource extends Resource
           ->width('450px')
           ->wrap()
           ->formatStateUsing(fn(?string $state) => strip_tags($state))
+          ->searchable()
           ->sortable(),
 
         ImageColumn::make('img')

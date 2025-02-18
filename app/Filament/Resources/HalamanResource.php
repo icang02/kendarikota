@@ -15,6 +15,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class HalamanResource extends Resource
@@ -28,6 +29,10 @@ class HalamanResource extends Resource
 
   // Show/hide button add
   public static function canCreate(): bool
+  {
+    return false;
+  }
+  public static function canDelete(Model $record): bool
   {
     return false;
   }
@@ -46,7 +51,22 @@ class HalamanResource extends Resource
           TextInput::make('judul')
             ->disabled(),
           RichEditor::make('isi')
-            ->label('Isi Konten'),
+            ->label('Isi Konten')->toolbarButtons([
+              // 'attachFiles',
+              'blockquote',
+              'bold',
+              'bulletList',
+              'codeBlock',
+              'h2',
+              'h3',
+              'italic',
+              'link',
+              'orderedList',
+              'redo',
+              'strike',
+              'underline',
+              'undo',
+            ]),
         ])
       ]);
   }
@@ -79,9 +99,9 @@ class HalamanResource extends Resource
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
-        Tables\Actions\BulkActionGroup::make([
-          Tables\Actions\DeleteBulkAction::make(),
-        ]),
+        // Tables\Actions\BulkActionGroup::make([
+        //   Tables\Actions\DeleteBulkAction::make(),
+        // ]),
       ]);
   }
 

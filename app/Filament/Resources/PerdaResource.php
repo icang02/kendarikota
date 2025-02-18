@@ -35,12 +35,16 @@ class PerdaResource extends Resource
     return $form
       ->schema([
         Forms\Components\TextInput::make('no_perda')
+          ->placeholder('Nomor Perda')
           ->required(),
         Forms\Components\TextInput::make('tentang')
+          ->placeholder('Tentang')
           ->required(),
         Forms\Components\DateTimePicker::make('tanggal')
+          ->placeholder('Tanggal upload')
           ->required(),
         Forms\Components\TextInput::make('link')
+          ->placeholder('Link')
           ->required(),
       ]);
   }
@@ -48,9 +52,7 @@ class PerdaResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Perda::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')

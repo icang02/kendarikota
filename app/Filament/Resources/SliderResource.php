@@ -40,6 +40,8 @@ class SliderResource extends Resource
           ->required(),
         Forms\Components\Select::make('jenis_gambar')
           ->options([
+            'banner' => 'Banner',
+            'hero halaman' => 'Hero Halaman',
             'slider' => 'Slider',
           ])
           ->default('slider')
@@ -88,9 +90,9 @@ class SliderResource extends Resource
         Tables\Actions\EditAction::make(),
       ])
       ->bulkActions([
-        Tables\Actions\BulkActionGroup::make([
-          Tables\Actions\DeleteBulkAction::make(),
-        ]),
+        // Tables\Actions\BulkActionGroup::make([
+        //   Tables\Actions\DeleteBulkAction::make(),
+        // ]),
       ]);
   }
 

@@ -1,4 +1,5 @@
 import { WordObject } from "@/types";
+import axios from "axios";
 import { Download } from "lucide-react";
 
 export function convertStringToWords(inputString: string): WordObject[] {
@@ -359,7 +360,9 @@ export const columnsStatistik = [
     accessorKey: "download",
     header: "Download",
     cell: ({ row }: any) => (
-      <div className="capitalize">{row.getValue("download")}</div>
+      <div className="capitalize">
+        {Number(row.getValue("download")).toLocaleString("id-ID")}
+      </div>
     ),
   },
   {
@@ -374,6 +377,15 @@ export const columnsStatistik = [
             ? "hover:bg-opacity-90"
             : "cursor-default bg-opacity-70"
         }`}
+        onClick={async (e) => {
+          if (!row.getValue("link")) {
+            e.preventDefault();
+          }
+          const res = await axios.post("/api/count-download", {
+            link: row.getValue("link"),
+          });
+          // console.log(res.data);
+        }}
       >
         <Download size={14} /> <span>Download</span>
       </a>

@@ -48,6 +48,7 @@ class DirektoriResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')
@@ -56,10 +57,12 @@ class DirektoriResource extends Resource
 
         TextColumn::make('nama')
           ->searchable()
+          ->placeholder('Nama')
           ->sortable(),
 
         TextColumn::make('deskripsi')
           ->searchable()
+          ->placeholder('Deskripsi')
           ->sortable(),
       ])
       ->filters([

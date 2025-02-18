@@ -38,14 +38,14 @@ class ArsipResource extends Resource
   {
     return $form
       ->schema([
-        Forms\Components\TextInput::make('judul')
+        Forms\Components\TextInput::make('judul')->placeholder('Judul Arsip')
           ->required(),
-        Forms\Components\TextInput::make('sumber')
+        Forms\Components\TextInput::make('sumber')->placeholder('Sumber Arsip')
           ->required(),
-        Forms\Components\DateTimePicker::make('release'),
-        Forms\Components\DateTimePicker::make('penetapan'),
-
-        Forms\Components\TextInput::make('link')
+        Forms\Components\DateTimePicker::make('release')->placeholder('Tanggal Rilis')
+          ->required(),
+        Forms\Components\DateTimePicker::make('penetapan')->placeholder('Tanggal Penetapan'),
+        Forms\Components\TextInput::make('link')->placeholder('Link File')
           ->label('Link file')
           ->required()
           ->url(),
@@ -55,9 +55,7 @@ class ArsipResource extends Resource
   public static function table(Table $table): Table
   {
     return $table
-      ->query(
-        Arsip::query()->orderBy('id', 'desc')
-      )
+      ->defaultSort('id', 'desc')
       ->columns([
         TextColumn::make('#')
           ->label('#')

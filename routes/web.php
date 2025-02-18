@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Models\Download;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 // use Inertia\Inertia;
@@ -86,6 +88,21 @@ Route::get('/api/pengumuman', function () {
   }
 
   return response()->json($posts);
+});
+
+Route::post('/api/count-download', function () {
+  $data = Download::where('link', request('link'))->first();
+  abort_if(!$data, 404);
+
+  if (!Cookie::get('downloaded_id_' . $data->id)) {
+    $data->increment('download');
+    Cookie::queue('downloaded_id_' . $data->id, true, 10);
+    $message = 'Success count download';
+  }
+
+  return response()->json([
+    'message' => $message ?? 'Success. Nothing to update',
+  ]);
 });
 
 
