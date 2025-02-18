@@ -46,11 +46,13 @@ export default function PerangkatDaerah({
                           <Dialog>
                             <DialogTrigger
                               asChild
-                              disabled={list.struktur_new === null}
+                              disabled={
+                                list.files == null || list.files.length == 0
+                              }
                             >
                               <button
                                 className={`flex text-nowrap items-center space-x-1.5 font-extrabold bg-[#1A5590] text-white text-[10px] lg:text-[8px] px-3 lg:px-2 rounded py-0.5 hover:bg-opacity-90 transition ease-out ${
-                                  list.struktur_new === null
+                                  list.files == null || list.files.length == 0
                                     ? "cursor-not-allowed opacity-60"
                                     : "cursor-pointer"
                                 }`}
@@ -71,12 +73,17 @@ export default function PerangkatDaerah({
                                     </span>
                                   </div>
                                   <Button
-                                    onClick={() =>
-                                      handleDownload(
-                                        list.struktur_new,
-                                        `Struktur OPD - ${list.nama} Kota Kendari`
-                                      )
-                                    }
+                                    onClick={() => {
+                                      if (
+                                        list.files != null ||
+                                        list.files.length != 0
+                                      ) {
+                                        handleDownload(
+                                          list.files[0],
+                                          `Struktur OPD - ${list.nama} Kota Kendari`
+                                        );
+                                      }
+                                    }}
                                     className="flex items-center"
                                     variant={"outline"}
                                     size={"sm"}
@@ -88,18 +95,15 @@ export default function PerangkatDaerah({
                                   </Button>
                                 </div>
 
-                                <div className="h-full border-2 overflow-scroll custom-scrollbar">
-                                  <iframe
-                                    className="w-full h-full"
-                                    src={`https://docs.google.com/gview?url=${location.origin}/storage/${list.struktur_new}&embedded=true`}
-                                    title={list.nama}
-                                  />
-                                  {/* <iframe
-                                    className="w-full h-full"
-                                    src={`https://docs.google.com/gview?url=${"https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"}&embedded=true`}
-                                    title="Google PDF Viewer"
-                                  /> */}
-                                </div>
+                                {list.files != null && (
+                                  <div className="h-full border-2 overflow-scroll custom-scrollbar">
+                                    <iframe
+                                      className="w-full h-full"
+                                      src={`https://docs.google.com/gview?url=${location.origin}/storage/${list.files[0]}&embedded=true`}
+                                      title={list.nama}
+                                    />
+                                  </div>
+                                )}
                               </div>
                             </DialogContent>
                           </Dialog>

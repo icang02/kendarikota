@@ -9,39 +9,39 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 // use Inertia\Inertia;
 
-Route::get('/tes', function () {
-  // return Inertia::render('Tes');
-  // $data = App\Models\Infografis::all();
-  // $count = 0;
-  // foreach ($data as $item) {
-  //   if ($item->release != null) {
-  //     $timestamp = $item->release;
-  //     $count += 1;
-  //     $datetime = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
-  //     $item->update(['releasee' => $datetime]);
-  //   }
-  // }
+// Route::get('/tes', function () {
+// return Inertia::render('Tes');
+// $data = App\Models\Infografis::all();
+// $count = 0;
+// foreach ($data as $item) {
+//   if ($item->release != null) {
+//     $timestamp = $item->release;
+//     $count += 1;
+//     $datetime = Carbon::createFromTimestamp($timestamp)->toDateTimeString();
+//     $item->update(['releasee' => $datetime]);
+//   }
+// }
 
-  // echo $count;
+// echo $count;
 
-  // Ambil semua foto dari database
-  // $data = Infografis::whereNotNull('img')->pluck('img')->toArray();
+// Ambil semua foto dari database
+// $data = Infografis::whereNotNull('img')->pluck('img')->toArray();
 
-  // // Ambil semua file dalam folder infografis/2023
-  // $files = Storage::disk('public')->files('infografis/2023');
+// // Ambil semua file dalam folder infografis/2023
+// $files = Storage::disk('public')->files('infografis/2023');
 
-  // // Hapus file yang tidak ada dalam database
-  // foreach ($files as $file) {
-  //   if (!in_array($file, $data)) {
-  //     Storage::disk('public')->delete($file);
-  //   }
-  // }
+// // Hapus file yang tidak ada dalam database
+// foreach ($files as $file) {
+//   if (!in_array($file, $data)) {
+//     Storage::disk('public')->delete($file);
+//   }
+// }
 
-  // // Hapus data di database jika tidak ada filenya di penyimpanan
-  // Infografis::whereNotIn('img', $files)->delete();
+// // Hapus data di database jika tidak ada filenya di penyimpanan
+// Infografis::whereNotIn('img', $files)->delete();
 
-  // echo "oke";
-});
+// echo "oke";
+// });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/event/{menu}', [HomeController::class, 'menuEvent']);

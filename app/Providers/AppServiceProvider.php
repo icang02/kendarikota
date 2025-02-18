@@ -39,6 +39,6 @@ class AppServiceProvider extends ServiceProvider
     Infografis::observe(InfografisObserver::class);
     Twibbon::observe(TwibbonObserver::class);
     Slider::observe(SliderObserver::class);
-    OPD::observe(OPDObserver::class);
+    // OPD::observe(OPDObserver::class);
   }
 }

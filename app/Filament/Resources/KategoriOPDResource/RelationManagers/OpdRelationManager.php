@@ -11,6 +11,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class OpdRelationManager extends RelationManager
 {
@@ -29,23 +30,36 @@ class OpdRelationManager extends RelationManager
                   ->placeholder('Nama')
                   ->maxLength(255),
                 Forms\Components\Select::make('kategori_opd_id')
-                  ->label('Pilih OPD')
-                  ->options(\App\Models\KategoriOPD::pluck('nama', 'id'))
-                  ->searchable()
+                  ->label('Kategori OPD')
+                  ->relationship('kategori', 'nama')
                   ->required()
-                  ->default(fn() => $this->ownerRecord->id),
+                  ->preload()
+                  ->searchable(),
               ])->columnSpan(1),
 
-            Forms\Components\Grid::make(1)->schema([
-              Forms\Components\FileUpload::make('struktur_new')
-                ->label('Struktur OPD')
-                ->required()
-                ->disk('public')
-                ->directory('dokumen/' . date('Y'))
-                ->helperText('Max upload file 100MB. Type file: .pdf')
-                ->acceptedFileTypes(['application/pdf'])
-                ->maxSize(102400)
-            ])->columnSpan(1),
+            Forms\Components\Grid::make(1)
+              ->schema([
+                Forms\Components\FileUpload::make('files')
+                  ->multiple()
+                  ->acceptedFileTypes(['application/pdf'])
+                  ->maxSize(102400)
+                  ->helperText('Max upload 100MB / file.')
+                  ->maxParallelUploads(2)
+                  ->saveUploadedFileUsing(function (TemporaryUploadedFile $file, $get) {
+                    // Mengubah nama file menjadi slug
+                    $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                    $slug = str()->slug($originalName);
+
+                    // Menambahkan 4 digit angka acak
+                    $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT); // 4 digit angka acak
+
+                    // Gabungkan slug dengan angka acak
+                    $newFilename = $slug . '-' . $randomNumber . '.' . $file->getClientOriginalExtension();
+
+                    // Simpan file dengan nama baru
+                    return $file->storeAs('dokumen/' . date('Y'), $newFilename, 'public');
+                  }),
+              ])->columnSpan(1),
           ])
       ]);
   }

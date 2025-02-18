@@ -18,7 +18,7 @@ class KategoriOPDResource extends Resource
 {
   protected static ?string $model = KategoriOPD::class;
 
-  protected static ?string $navigationIcon = 'heroicon-o-building-office';
+  protected static ?string $navigationIcon = 'heroicon-o-archive-box';
   protected static ?string $navigationLabel = 'OPD';
   protected static ?string $navigationGroup = 'Menu Profil';
 
@@ -27,15 +27,27 @@ class KategoriOPDResource extends Resource
     return 'opd';
   }
 
+  public static function getModelLabel(): string
+  {
+    return 'OPD';
+  }
+
+  public static function getPluralModelLabel(): string
+  {
+    return 'OPD';
+  }
+
   public static function form(Form $form): Form
   {
     return $form
       ->schema([
-        Forms\Components\TextInput::make('nama')
-          ->label('Nama OPD')
-          ->required()
-          ->placeholder('Nama OPD')
-          ->maxLength(255),
+        Forms\Components\Card::make()->schema([
+          Forms\Components\TextInput::make('nama')
+            ->label('Nama OPD')
+            ->required()
+            ->placeholder('Nama OPD')
+            ->maxLength(255),
+        ])
       ]);
   }
 
@@ -56,7 +68,7 @@ class KategoriOPDResource extends Resource
 
         Tables\Columns\BadgeColumn::make('opd_count')
           ->label('Total Data')
-          ->counts('opd') // Menghitung jumlah relasi OPD
+          ->counts('opd')
           ->color(fn(int $state): string => 'success'),
       ])
       ->filters([
