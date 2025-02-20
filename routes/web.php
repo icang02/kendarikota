@@ -70,9 +70,7 @@ Route::get('/api/pengumuman', function () {
     $posts = Cache::get($cacheKey);
   } else {
     // Jika tidak ada, ambil data dari API eksternal
-    $response = Http::withHeaders([
-      'X-Requested-With' => 'XMLHttpRequest',
-    ])->get('https://berita.kendarikota.go.id/wp-json/wp/v2/posts', [
+    $response = Http::get('https://berita.kendarikota.go.id/wp-json/wp/v2/posts', [
       'per_page' => 5,
       'categories' => 22,
     ]);

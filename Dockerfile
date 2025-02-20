@@ -32,6 +32,7 @@ COPY . .
 
 # Install dependensi Laravel
 RUN composer install
+RUN php artisan key:generate
 
 # Install dependensi npm
 RUN npm install
