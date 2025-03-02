@@ -79,11 +79,17 @@ class AplikasiResource extends Resource
           ->searchable()
           ->sortable(),
 
-        BadgeColumn::make('link')
+        TextColumn::make('link')
+          ->label('Link')
+          ->searchable()
+          ->sortable(),
+
+        BadgeColumn::make('link_url')
           ->label('URL Aplikasi')
           ->color('success')
           ->formatStateUsing(fn(string $state): string => 'Kunjungi')
           ->url(fn(string $state): string => $state, true)
+          ->getStateUsing(fn($record) => $record->link)
       ])
       ->filters([
         //

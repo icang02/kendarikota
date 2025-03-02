@@ -7,10 +7,10 @@ import Walikota from "@/Components/Walikota";
 import GuestLayout from "@/Layouts/GuestLayout";
 import { useEffect } from "react";
 
-import { Autoplay, EffectFade } from "swiper/modules";
+import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CardTwibbonGenerate from "@/Components/CardTwibbonGenerate";
-// import CardTwibbonGenerate from "@/Components/CardTwibbonGenerate";
+import Fancybox from "@/Components/Fancybox";
+import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
 
 export default function Welcome({
   youtube,
@@ -64,6 +64,7 @@ export default function Welcome({
                     disableOnInteraction: false,
                   }}
                   speed={1000}
+                  effect="fade"
                 >
                   {pejabat.map((item: any, i: any) => (
                     <SwiperSlide key={i} className="relative group">
@@ -89,29 +90,52 @@ export default function Welcome({
             </div>
             {/* Infografis */}
             <div className="p-1 lg:p-0">
-              <h1 className="mb-3 font-sen text-xl font-bold">Infografis</h1>
+              <div className="flex items-center justify-between mb-3">
+                <h1 className="font-sen text-xl font-bold">Infografis</h1>
+                {/* Tombol Next dan Prev */}
+                <div className="flex gap-1">
+                  <button className="swiper-button-prev-infografis text-sky-700/70">
+                    <CircleArrowLeft />
+                  </button>
+                  <button className="swiper-button-next-infografis text-sky-700/70">
+                    <CircleArrowRight />
+                  </button>
+                </div>
+              </div>
               <Swiper
-                modules={[Autoplay, EffectFade]}
+                modules={[Navigation]}
                 slidesPerView={1}
                 loop
-                autoplay={{
-                  delay: 3500,
-                  disableOnInteraction: false,
+                navigation={{
+                  nextEl: ".swiper-button-next-infografis", // Target tombol next
+                  prevEl: ".swiper-button-prev-infografis", // Target tombol prev
                 }}
-                speed={1000}
               >
                 {infografis.map((item: any, i: number) => (
                   <SwiperSlide key={i}>
                     <Card className="py-5">
-                      <img
-                        className="w-full lg:w-[94%] mx-auto transition ease-out group-hover:brightness-50 rounded-none lg:rounded-lg border"
-                        src={
-                          item.img
-                            ? `/storage/${item.img}`
-                            : "/img/default/foto-pejabat.png"
-                        }
-                        alt="img"
-                      />
+                      <Fancybox
+                        options={{
+                          Carousel: {
+                            infinite: false,
+                          },
+                        }}
+                      >
+                        <a
+                          data-fancybox="gallery"
+                          href={location.origin + `/storage/${item.img}`}
+                        >
+                          <img
+                            className="w-full lg:w-[94%] mx-auto transition ease-out group-hover:brightness-50 rounded-none lg:rounded-lg border"
+                            src={
+                              item.img
+                                ? `/storage/${item.img}`
+                                : "/img/default/foto-pejabat.png"
+                            }
+                            alt="img"
+                          />
+                        </a>
+                      </Fancybox>
                     </Card>
                   </SwiperSlide>
                 ))}

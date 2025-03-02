@@ -6,6 +6,7 @@ use App\Filament\Resources\ArsipResource\Pages;
 use App\Filament\Resources\ArsipResource\RelationManagers;
 use App\Models\Arsip;
 use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -15,7 +16,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 use function PHPUnit\Framework\isNull;
 
@@ -44,11 +47,29 @@ class ArsipResource extends Resource
           ->required(),
         Forms\Components\DateTimePicker::make('release')->placeholder('Tanggal Rilis')
           ->required(),
-        Forms\Components\DateTimePicker::make('penetapan')->placeholder('Tanggal Penetapan'),
-        Forms\Components\TextInput::make('link')->placeholder('Link File')
-          ->label('Link file')
+        Forms\Components\DateTimePicker::make('penetapan')
+          ->placeholder('Tanggal Penetapan'),
+        Forms\Components\FileUpload::make('link')
+          ->label('Upload File')
+          ->placeholder('Max upload file: 100MB. Type: .pdf')
+          ->disk('public')
+          ->acceptedFileTypes(['application/pdf'])
+          ->directory('dokumen/' . date('Y'))
+          ->maxSize(102400)
           ->required()
-          ->url(),
+          ->rules([
+            'file',
+            'mimes:pdf',
+            'max:102400',
+          ])
+          ->validationMessages([
+            'mimes' => 'File harus berupa PDF.',
+            'max' => 'Ukuran file tidak boleh melebihi 100MB.',
+          ])
+          ->getUploadedFileNameForStorageUsing(
+            fn(TemporaryUploadedFile $file): string => (string) str($file->getClientOriginalName())
+              ->prepend(rand(0, 9) . str()->random(1) . rand(0, 9) . str()->random(1) . '-'),
+          )
       ]);
   }
 
@@ -73,10 +94,18 @@ class ArsipResource extends Resource
           ->sortable(),
 
         BadgeColumn::make('link')
-          ->label('Link File')
+          ->label('File')
           ->color('info')
           ->formatStateUsing(fn(?string $state) => 'Lihat')
-          ->url(fn(?string $state): ?string => $state, true),
+          ->url(function (?string $state): ?string {
+            if (empty($state)) {
+              return null;
+            }
+            if (str_starts_with($state, 'dokumen/')) {
+              return Storage::url($state);
+            }
+            return $state;
+          }, true),
 
         TextColumn::make('release')
           ->sortable()

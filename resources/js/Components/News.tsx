@@ -21,15 +21,38 @@ export default function News() {
     setRefreshKey((prev) => prev + 1);
   };
 
+  // useEffect(() => {
+  //   fetch("/api/pengumuman")
+  //     .then((res) => res.json())
+  //     .then((response: Post[]) => {
+  //       setPengumuman({ loading: false, response, error: null });
+  //     })
+  //     .catch((error) =>
+  //       setPengumuman({ loading: false, response: null, error: error.message })
+  //     );
+  // }, [refreshKey]);
+
   useEffect(() => {
-    fetch("/api/pengumuman")
-      .then((res) => res.json())
-      .then((response: Post[]) => {
-        setPengumuman({ loading: false, response, error: null });
-      })
-      .catch((error) =>
-        setPengumuman({ loading: false, response: null, error: error.message })
-      );
+    const getPosts = async () => {
+      try {
+        const uri =
+          "https://berita.kendarikota.go.id/wp-json/wp/v2/posts?per_page=5&_fields=id,title,date,link,featured_media,better_featured_image.source_url";
+
+        const response = await fetch(uri);
+
+        if (!response.ok) {
+          return console.table("Failed to fetch posts");
+        }
+
+        const posts = await response.json();
+        setPengumuman({ loading: false, response: posts, error: null });
+      } catch (error) {
+        // setPengumuman(log{ loading: false, response: null, error: error.message })
+        console.table(error);
+      }
+    };
+
+    getPosts();
   }, [refreshKey]);
 
   return (
@@ -103,7 +126,11 @@ export default function News() {
                       <span className="text-xs text-neutral-500 flex items-center space-x-1">
                         <Clock className="w-[12px]" />
                         <span className="font-sen ml-1.5 font-medium">
-                          {item.date}
+                          {new Date(item.date).toLocaleDateString("id-ID", {
+                            day: "2-digit",
+                            month: "long",
+                            year: "numeric",
+                          })}
                         </span>
                       </span>
                       <p className="mt-2">
@@ -139,7 +166,9 @@ export default function News() {
               Informasi Kementerian Komunikasi dan Digital
             </p>
           </div>
-          <div id="gpr-kominfo-widget-container"></div>
+          <div className="px-3 md:px-0">
+            <div id="gpr-kominfo-widget-container"></div>
+          </div>
         </div>
       </div>
     </section>

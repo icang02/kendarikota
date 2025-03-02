@@ -26,9 +26,6 @@ class HomeController extends Controller
 {
   public function index()
   {
-    Meta::addMeta('title', 'Portal Resmi Pemerintah Daerah Kota Kendari');
-    Meta::addMeta('description', 'Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya kendari kota layak huni yang berbasis Ekologi, Informasi & Teknologi.');
-
     return Inertia::render('Welcome', [
       'youtube'    => Youtube::limit(3)->orderBy('id', 'desc')->get(),
       'pejabat'    => Pejabat::with(['jabatan'])
