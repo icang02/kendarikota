@@ -8,9 +8,7 @@ const SubDomain = () => {
     <section className="py-12 pb-16 pt-0">
       <div>
         <div className="mb-6">
-          <h1 className="font-sen text-xl lg:text-3xl font-bold">
-            Akses Cepat
-          </h1>
+          <p className="font-sen text-xl lg:text-3xl font-bold">Akses Cepat</p>
           <p className="text-xs lg:text-sm italic">
             Terhubung ke berbagai layanan melalui tautan berikut
           </p>
@@ -44,9 +42,9 @@ const SubDomain = () => {
                   className="object-cover object-center"
                 />
               </div>
-              <h6 className="text-xs lg:text-sm font-bold uppercase my-2 mb-3 lg:mb-4 font-sen">
+              <p className="text-xs lg:text-sm font-bold uppercase my-2 mb-3 lg:mb-4 font-sen">
                 {item.nama}
-              </h6>
+              </p>
               <div className="absolute bottom-3 w-full">
                 <a
                   href={item.link}

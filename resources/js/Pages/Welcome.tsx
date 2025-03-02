@@ -94,33 +94,40 @@ export default function Welcome({
                 <h1 className="font-sen text-xl font-bold">Infografis</h1>
                 {/* Tombol Next dan Prev */}
                 <div className="flex gap-1">
-                  <button className="swiper-button-prev-infografis text-sky-700/70">
+                  <button
+                    aria-label="prev button"
+                    className="swiper-button-prev-infografis text-sky-700/70"
+                  >
                     <CircleArrowLeft />
                   </button>
-                  <button className="swiper-button-next-infografis text-sky-700/70">
+                  <button
+                    aria-label="next button"
+                    className="swiper-button-next-infografis text-sky-700/70"
+                  >
                     <CircleArrowRight />
                   </button>
                 </div>
               </div>
-              <Swiper
-                modules={[Navigation]}
-                slidesPerView={1}
-                loop
-                navigation={{
-                  nextEl: ".swiper-button-next-infografis", // Target tombol next
-                  prevEl: ".swiper-button-prev-infografis", // Target tombol prev
+              <Fancybox
+                options={{
+                  Carousel: {
+                    infinite: false,
+                    Navigation: false,
+                  },
                 }}
               >
-                {infografis.map((item: any, i: number) => (
-                  <SwiperSlide key={i}>
-                    <Card className="py-5">
-                      <Fancybox
-                        options={{
-                          Carousel: {
-                            infinite: false,
-                          },
-                        }}
-                      >
+                <Swiper
+                  modules={[Navigation]}
+                  slidesPerView={1}
+                  loop
+                  navigation={{
+                    nextEl: ".swiper-button-next-infografis",
+                    prevEl: ".swiper-button-prev-infografis",
+                  }}
+                >
+                  {infografis.map((item: any, i: number) => (
+                    <SwiperSlide key={i}>
+                      <Card className="py-5">
                         <a
                           data-fancybox="gallery"
                           href={location.origin + `/storage/${item.img}`}
@@ -135,11 +142,11 @@ export default function Welcome({
                             alt="img"
                           />
                         </a>
-                      </Fancybox>
-                    </Card>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                      </Card>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </Fancybox>
             </div>
           </div>
         </div>

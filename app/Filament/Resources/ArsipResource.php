@@ -51,19 +51,19 @@ class ArsipResource extends Resource
           ->placeholder('Tanggal Penetapan'),
         Forms\Components\FileUpload::make('link')
           ->label('Upload File')
-          ->placeholder('Max upload file: 100MB. Type: .pdf')
+          ->placeholder('Max upload file: 100MB. Type: .pdf, .zip, .rar')
           ->disk('public')
-          ->acceptedFileTypes(['application/pdf'])
+          ->acceptedFileTypes(['application/pdf', 'application/zip', 'application/x-rar-compressed'])
           ->directory('dokumen/' . date('Y'))
           ->maxSize(102400)
           ->required()
           ->rules([
             'file',
-            'mimes:pdf',
+            'mimes:pdf,zip,rar',
             'max:102400',
           ])
           ->validationMessages([
-            'mimes' => 'File harus berupa PDF.',
+            'mimes' => 'File harus berupa PDF, ZIP, atau RAR.',
             'max' => 'Ukuran file tidak boleh melebihi 100MB.',
           ])
           ->getUploadedFileNameForStorageUsing(

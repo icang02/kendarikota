@@ -79,7 +79,11 @@ const Navbar = () => {
         {/* Hamburger */}
         <Sheet>
           <SheetTrigger asChild>
-            <span className="cursor-pointer block lg:hidden text-white text-xl">
+            <span
+              className="cursor-pointer block lg:hidden text-white text-xl"
+              role="button"
+              aria-label="Toggle menu"
+            >
               <AlignJustify />
             </span>
           </SheetTrigger>

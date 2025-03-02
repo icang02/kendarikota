@@ -324,9 +324,8 @@ export const columnsArsip = [
       <a
         target="_blank"
         href={
-          row.getValue("link") &&
-          row.getValue("link").startsWith("dokumen/static")
-            ? `/storage/${row.getValue("link")}`
+          row.getValue("link") && row.getValue("link").startsWith("dokumen/")
+            ? location.origin + `/storage/${row.getValue("link")}`
             : row.getValue("link") || "#"
         }
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${

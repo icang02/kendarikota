@@ -196,6 +196,7 @@ export function PlaceholdersAndVanishInput({
         }}
         onKeyDown={handleKeyDown}
         ref={inputRef}
+        aria-label="input"
         value={value}
         type="text"
         className={cn(
