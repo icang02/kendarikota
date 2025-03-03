@@ -59,6 +59,7 @@ const Topnav = () => {
         <div className="flex space-x-1.5 text-[10px]">
           {icons.map((item, i) => (
             <a
+              aria-label="link"
               target="_blank"
               href={item.link}
               key={i}

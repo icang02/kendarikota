@@ -281,6 +281,7 @@ export const columnsPengumuman = [
     header: "Lihat",
     cell: ({ row }: any) => (
       <a
+        aria-label="link"
         target="_blank"
         href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
@@ -322,6 +323,7 @@ export const columnsArsip = [
     header: "Lihat",
     cell: ({ row }: any) => (
       <a
+        aria-label="link"
         target="_blank"
         href={
           row.getValue("link") && row.getValue("link").startsWith("dokumen/")
@@ -369,6 +371,7 @@ export const columnsStatistik = [
     header: "File",
     cell: ({ row }: any) => (
       <a
+        aria-label="link"
         target="_blank"
         href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${
@@ -419,6 +422,7 @@ export const columnsPerda = [
     header: "File",
     cell: ({ row }: any) => (
       <a
+        aria-label="link"
         target="_blank"
         href={row.getValue("link")}
         className={`flex items-center space-x-1 bg-[#173454] transition ease-out text-white px-4 py-1 rounded-md text-[10px] w-fit ${

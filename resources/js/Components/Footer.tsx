@@ -36,7 +36,7 @@ const Footer = () => {
               </p>
               <div className="flex items-center space-x-3.5 text-base lg:text-xl">
                 {icons.map((item: any, i: any) => (
-                  <a key={i} href={item.link}>
+                  <a key={i} href={item.link} aria-label="link">
                     {item.icon}
                   </a>
                 ))}
@@ -44,9 +44,9 @@ const Footer = () => {
             </div>
 
             <div className="col-span-4 lg:col-span-1">
-              <h5 className="font-sen font-bold text-base lg:text-xl">
+              <p className="font-sen font-bold text-base lg:text-xl">
                 Tautan Cepat
-              </h5>
+              </p>
               <div className="w-full h-1 relative mt-2">
                 <div
                   className="absolute left-0 top-0 h-[1px] bg-[#2A619D]"
@@ -69,9 +69,9 @@ const Footer = () => {
             </div>
 
             <div className="col-span-4 lg:col-span-1">
-              <h5 className="font-sen font-bold text-base lg:text-xl">
+              <p className="font-sen font-bold text-base lg:text-xl">
                 Eksternal Link
-              </h5>
+              </p>
               <div className="w-full h-1 relative mt-2">
                 <div
                   className="absolute left-0 top-0 h-[1px] bg-[#2A619D]"
@@ -84,28 +84,46 @@ const Footer = () => {
               </div>
 
               <div className="mt-4 flex flex-wrap flex-row lg:flex-col gap-5 gap-y-1.5 lg:gap-3.5 text-xs lg:text-sm">
-                <a target="_blank" href="https://indonesia.go.id">
+                <a
+                  aria-label="link"
+                  target="_blank"
+                  href="https://indonesia.go.id"
+                >
                   Indonesia
                 </a>
-                <a target="_blank" href="https://www.komdigi.go.id">
+                <a
+                  aria-label="link"
+                  target="_blank"
+                  href="https://www.komdigi.go.id"
+                >
                   Komdigi RI
                 </a>
-                <a target="_blank" href="https://www.kemendag.go.id">
+                <a
+                  aria-label="link"
+                  target="_blank"
+                  href="https://www.kemendag.go.id"
+                >
                   Kemendagri
                 </a>
-                <a target="_blank" href="https://www.sultraprov.go.id">
+                <a
+                  aria-label="link"
+                  target="_blank"
+                  href="https://www.sultraprov.go.id"
+                >
                   Provinsi Sultra
                 </a>
-                <a target="_blank" href="https://www.lapor.go.id">
+                <a
+                  aria-label="link"
+                  target="_blank"
+                  href="https://www.lapor.go.id"
+                >
                   Lapor
                 </a>
               </div>
             </div>
 
             <div className="col-span-4 lg:col-span-1">
-              <h5 className="font-sen font-bold text-base lg:text-xl">
-                Kontak
-              </h5>
+              <p className="font-sen font-bold text-base lg:text-xl">Kontak</p>
               <div className="w-full h-1 relative mt-2">
                 <div
                   className="absolute left-0 top-0 h-[1px] bg-[#2A619D]"
@@ -143,7 +161,7 @@ const Footer = () => {
       <section className="bg-[#1A3C61]">
         <div className="container py-4 lg:py-7 text-xs lg:text-sm text-white text-center">
           Copyright &copy; 2025{" "}
-          <a href="/" className="hover:underline">
+          <a aria-label="link" href="/" className="hover:underline">
             Diskominfo
           </a>{" "}
           Kota Kendari. All Rights Reserved

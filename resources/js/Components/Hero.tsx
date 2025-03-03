@@ -28,9 +28,9 @@ const Hero = ({ slider }: any) => {
           />
 
           <p className="p-text text-sm lg:text-base mx-auto mt-7 lg:mt-10 max-w-3xl text-slate-300 leading-relaxed">
-            Kami siap mengabdi untuk Melayani Masyarakat demi terwujudnya
-            kendari kota layak huni yang berbasis Ekologi, Informasi &
-            Teknologi.
+            Kami siap untuk melayani masyarakat demi Terwujudnya Kota Kendari
+            Tahun 2029 sebagai Kota Layak Huni yang Semakin Maju, Berdaya Saing,
+            Adil, Sejahtera, dan Berkelanjutan.
           </p>
         </div>
 

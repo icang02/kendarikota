@@ -204,6 +204,7 @@ const Navbar = () => {
                                   <div className="pl-2.5 flex mt-1.5 flex-col space-y-1">
                                     {list.subMenu.map((list2: any, k: any) => (
                                       <a
+                                        aria-label="link"
                                         target="_blank"
                                         key={k}
                                         href={list2.url}
@@ -217,6 +218,7 @@ const Navbar = () => {
                                 </div>
                               ) : (
                                 <a
+                                  aria-label="link"
                                   target="_blank"
                                   key={j}
                                   href={list.url}
@@ -231,6 +233,7 @@ const Navbar = () => {
                         </div>
                       ) : (
                         <a
+                          aria-label="link"
                           target="_blank"
                           key={i}
                           href={item.url}
@@ -388,6 +391,7 @@ const Navbar = () => {
                                             key={`submenu-item-${i}-${j}-${k}`}
                                           >
                                             <a
+                                              aria-label="link"
                                               target="_blank"
                                               rel="noopener noreferrer"
                                               href={m.url}
@@ -402,6 +406,7 @@ const Navbar = () => {
                                 ) : (
                                   <DropdownMenuItem key={`item-${i}-${j}`}>
                                     <a
+                                      aria-label="link"
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       href={list.url}
@@ -417,6 +422,7 @@ const Navbar = () => {
                       ) : (
                         <DropdownMenuItem key={`menu-item-${i}`} asChild>
                           <a
+                            aria-label="link"
                             target="_blank"
                             rel="noopener noreferrer"
                             href={item.url}

@@ -31,9 +31,9 @@ export default function EventPage({
             <div className="col-span-5 lg:col-span-2">
               <Card className="p-6 lg:p-8 lg:px-9 flex flex-rpw gap-4 justify-between items-center">
                 <div>
-                  <h6 className="font-sen text-lg font-bold leading-tight">
+                  <p className="font-sen text-lg font-bold leading-tight">
                     {data.nama}
-                  </h6>
+                  </p>
                   <p className="text-sm my-4 mb-6">{data.alamat}</p>
                   <p className="text-sm flex items-center space-x-1.5 tracking-wide">
                     <Phone size={12} />{" "}
@@ -43,9 +43,9 @@ export default function EventPage({
               </Card>
 
               <Card className="mt-6 p-6 lg:p-8 lg:px-9">
-                <h6 className="text-[#1D3D61] font-sen text-lg font-bold leading-tight uppercase">
+                <p className="text-[#1D3D61] font-sen text-lg font-bold leading-tight uppercase">
                   Direktori
-                </h6>
+                </p>
                 <div className="mt-4">
                   <div className="flex flex-wrap">
                     {globalDirektori.map((item: any, i: any) => (

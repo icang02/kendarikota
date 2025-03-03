@@ -40,6 +40,7 @@ const SubDomain = () => {
                   }
                   alt="img"
                   className="object-cover object-center"
+                  loading="lazy"
                 />
               </div>
               <p className="text-xs lg:text-sm font-bold uppercase my-2 mb-3 lg:mb-4 font-sen">
@@ -47,6 +48,7 @@ const SubDomain = () => {
               </p>
               <div className="absolute bottom-3 w-full">
                 <a
+                  aria-label="link"
                   href={item.link}
                   target="_blank"
                   className="hover:bg-opacity-90 w-[80%] transition inline-block text-[9px] lg:text-[10px] font-bold uppercase rounded lg:rounded-xl px-5 py-2 bg-main text-white "

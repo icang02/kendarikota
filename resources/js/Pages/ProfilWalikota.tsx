@@ -36,9 +36,9 @@ export default function ProfilWalikota({
                   />
                 </CardContent>
                 <CardFooter className="flex flex-col">
-                  <h6 className="text-lg font-bold font-sen">
+                  <p className="text-lg font-bold font-sen">
                     {data?.nama ? data.nama : "No name"}
-                  </h6>
+                  </p>
                   <p className="tracking-wide text-sm text-main font-extrabold uppercase">
                     {data?.jabatan.nama}
                   </p>
@@ -57,6 +57,7 @@ export default function ProfilWalikota({
                 </CardContent>
                 <CardFooter className="flex flex-col lg:flex-row space-y-3 lg:space-y-0 justify-between">
                   <a
+                    aria-label="link"
                     href="#"
                     className="flex items-center space-x-1 text-sm hover:underline font-medium"
                   >

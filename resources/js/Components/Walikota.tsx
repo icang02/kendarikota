@@ -8,6 +8,7 @@ const Walikota = ({ banner }: any) => {
           src={`/storage/${banner.image}`}
           alt={banner.image}
           className="w-full mx-auto lg:w-[70%] border rounded"
+          loading="lazy"
         />
       </div>
     </div>

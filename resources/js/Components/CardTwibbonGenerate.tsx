@@ -32,9 +32,9 @@ const CardTwibbonGenerate = ({ twibbon }: any) => {
 
   return (
     <Card className="p-3 py-5 lg:p-5 lg:py-7">
-      <h6 className="mb-4 w-full lg:w-[90%] mx-auto font-extrabold font-sen text-base text-[#1A3C61] uppercase leading-tight text-center">
+      <p className="mb-4 w-full lg:w-[90%] mx-auto font-extrabold font-sen text-base text-[#1A3C61] uppercase leading-tight text-center">
         {twibbon.title}
-      </h6>
+      </p>
       <Form title={twibbon.title} frameTwibbon={frameTwibbon} />
     </Card>
   );

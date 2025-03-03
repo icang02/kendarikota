@@ -27,7 +27,7 @@ export default function Pejabat({
                   className="w-full border border-white/30 rounded-2xl aspect-[3/3.5] object-cover object-top"
                 />
                 <div className="mt-3 text-center">
-                  <h6 className="font-bold text-sm font-sen">{item.nama}</h6>
+                  <p className="font-bold text-sm font-sen">{item.nama}</p>
                   <p className="mt-1 text-[#173454] uppercase text-xs font-extrabold tracking-wide">
                     {item.jabatan.nama}
                   </p>

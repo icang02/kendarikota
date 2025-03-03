@@ -76,12 +76,13 @@ export default function Welcome({
                             : "/img/default/foto-pejabat.png"
                         }
                         alt="img"
+                        loading="lazy"
                       />
                       <div className="p-5 font-sen text-start text-white absolute -bottom-[50%] duration-500 transition-all ease-out group-hover:bottom-0">
-                        <h6 className="font-bold text-base">{item.nama}</h6>
-                        <h6 className="font-normal text-sm">
+                        <p className="font-bold text-base">{item.nama}</p>
+                        <p className="font-normal text-sm">
                           {item.jabatan.nama}
-                        </h6>
+                        </p>
                       </div>
                     </SwiperSlide>
                   ))}
@@ -129,6 +130,7 @@ export default function Welcome({
                     <SwiperSlide key={i}>
                       <Card className="py-5">
                         <a
+                          aria-label="link"
                           data-fancybox="gallery"
                           href={location.origin + `/storage/${item.img}`}
                         >
@@ -140,6 +142,7 @@ export default function Welcome({
                                 : "/img/default/foto-pejabat.png"
                             }
                             alt="img"
+                            loading="lazy"
                           />
                         </a>
                       </Card>

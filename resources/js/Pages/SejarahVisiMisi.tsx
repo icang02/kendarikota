@@ -32,6 +32,7 @@ export default function SejarahVisiMisi({
             </CardContent>
             <CardFooter className="flex flex-col lg:flex-row space-y-3 lg:space-y-0 justify-between">
               <a
+                aria-label="link"
                 href="#"
                 className="flex items-center space-x-1 text-sm hover:underline font-medium"
               >

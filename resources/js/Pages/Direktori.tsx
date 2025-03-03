@@ -26,9 +26,9 @@ export default function Direktori({
                 <div key={i} className="col-span-2 lg:col-span-1">
                   <Card className="p-6 lg:p-8 lg:px-9 flex flex-row gap-4 justify-between items-center h-full">
                     <div>
-                      <h6 className="font-sen text-base font-bold leading-tight">
+                      <p className="font-sen text-base font-bold leading-tight">
                         {item.nama}
-                      </h6>
+                      </p>
                       <p className="text-xs mt-2 mb-4">{item.alamat}</p>
                       <p className="text-xs flex items-center space-x-1.5 tracking-wide">
                         <Phone size={12} />{" "}

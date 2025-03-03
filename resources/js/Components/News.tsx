@@ -115,11 +115,16 @@ export default function News() {
                   }`}
                 >
                   <Card className="p-4 h-full hover:shadow-xl transition group">
-                    <a href="#" className="relative overflow-hidden">
+                    <a
+                      aria-label="link"
+                      href="#"
+                      className="relative overflow-hidden"
+                    >
                       <img
                         src={item.better_featured_image?.source_url}
                         alt="img"
                         className="hover:brightness-90 object-cover object-center mb-3 w-full h-[180px] lg:h-[145px] rounded-lg transition"
+                        loading="lazy"
                       />
                     </a>
                     <div className="group-hover:translate-x-1.5 transition ease-out">
@@ -135,6 +140,7 @@ export default function News() {
                       </span>
                       <p className="mt-2">
                         <a
+                          aria-label="link"
                           target="_blank"
                           href={item.link}
                           className="line-clamp-2 leading-tight font-sen text-[15px] font-semibold"
@@ -149,6 +155,7 @@ export default function News() {
             )}
           </div>
           <a
+            aria-label="link"
             target="_blank"
             href="https://berita.kendarikota.go.id/category/berita-kendari"
             className="w-fit rounded-xl px-4 py-1 bg-white text-black border border-gray-300 text-xs font-semibold flex items-center space-x-2 hover:border hover:border-[#1A5590] hover:text-[#1A5590] transition"

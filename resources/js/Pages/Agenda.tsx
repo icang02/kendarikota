@@ -28,9 +28,9 @@ export default function EventPage({
                     </p>
                   </div>
                   <div className="flex-1 w-full">
-                    <h6 className="font-sen text-base font-bold leading-tight">
+                    <p className="font-sen text-base font-bold leading-tight">
                       {item.nama}
-                    </h6>
+                    </p>
                     <p className="text-xs mt-2 lg:mt-3 mb-4">
                       {item.deskripsi}
                     </p>
